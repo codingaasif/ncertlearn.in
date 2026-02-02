@@ -1,0 +1,70 @@
+<svg
+  width="520"
+  height="120"
+  viewBox="0 0 520 120"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- Left Logo Icon -->
+  <g transform="translate(20,10)">
+    <!-- Outer Circle -->
+    <circle cx="50" cy="50" r="46" fill="white" stroke="#2563eb" stroke-width="6"/>
+
+    <!-- Inner Circle -->
+    <circle cx="50" cy="50" r="30" fill="#2563eb"/>
+
+    <!-- NL Text -->
+    <text
+      x="50"
+      y="58"
+      text-anchor="middle"
+      font-size="26"
+      font-weight="700"
+      fill="white"
+      font-family="Arial, Helvetica, sans-serif"
+    >
+      NL
+    </text>
+
+    <!-- AI Bubble -->
+    <circle cx="78" cy="18" r="14" fill="#2563eb"/>
+    <text
+      x="78"
+      y="23"
+      text-anchor="middle"
+      font-size="12"
+      font-weight="700"
+      fill="white"
+      font-family="Arial, Helvetica, sans-serif"
+    >
+      AI
+    </text>
+  </g>
+
+  <!-- Text Content -->
+  <g transform="translate(130,42)">
+    <!-- NCERTLearn -->
+    <text
+      x="0"
+      y="0"
+      font-size="36"
+      font-weight="700"
+      font-family="Arial, Helvetica, sans-serif"
+    >
+      <tspan fill="#2563eb">NCERT</tspan>
+      <tspan fill="#2563eb">Learn</tspan>
+    </text>
+
+    <!-- Subtitle -->
+    <text
+      x="2"
+      y="30"
+      font-size="16"
+      font-weight="600"
+      fill="#2563eb"
+      font-family="Arial, Helvetica, sans-serif"
+      letter-spacing="1"
+    >
+      AI-POWERED LEARNING
+    </text>
+  </g>
+</svg>

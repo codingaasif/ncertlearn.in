@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+
+@keyframes wave {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(14deg); }
+  40% { transform: rotate(-8deg); }
+  60% { transform: rotate(14deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.animate-wave {
+  animation: wave 1.5s ease-in-out infinite;
+}
+
