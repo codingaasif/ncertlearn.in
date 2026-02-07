@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Mail, Send } from "lucide-react";
 import {
   FaFacebookF,
@@ -6,6 +6,8 @@ import {
   FaTwitter,
   FaLinkedinIn,
 } from "react-icons/fa";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -14,6 +16,15 @@ export default function Contact() {
     message: "",
   });
   const [success, setSuccess] = useState(false);
+
+  // AOS init
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: "ease-out-cubic",
+      once: true,
+    });
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,13 +39,22 @@ export default function Contact() {
   };
 
   return (
-    <div className="bg-gray-50 flex items-start justify-center px-4 pt-20 sm:pt-24 mb-8">
-      {/* SAME CARD – just enhanced shadow & hover */}
-      <div className="w-full max-w-3xl bg-white rounded-2xl 
-                      shadow-lg hover:shadow-xl transition-shadow
-                      p-6 sm:p-8">
+    <div
+      className="bg-gray-50 flex items-start justify-center px-4 pt-20 sm:pt-24 mb-8"
+      data-aos="fade-up"
+    >
+      {/* SAME CARD – just animation added */}
+      <div
+        className="w-full max-w-3xl bg-white rounded-2xl 
+                   shadow-lg hover:shadow-xl transition-shadow
+                   p-6 sm:p-8"
+        data-aos="zoom-in"
+      >
         {/* Header */}
-        <div className="flex items-center gap-3 mb-3">
+        <div
+          className="flex items-center gap-3 mb-3"
+          data-aos="fade-right"
+        >
           <div className="p-2 bg-blue-100 rounded-full">
             <Mail className="text-blue-900 w-6 h-6" />
           </div>
@@ -43,16 +63,26 @@ export default function Contact() {
           </h1>
         </div>
 
-        <p className="text-sm sm:text-base text-gray-500 mb-6">
+        <p
+          className="text-sm sm:text-base text-gray-500 mb-6"
+          data-aos="fade-left"
+        >
           Have a question or feedback? We’d love to hear from you.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Contact Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-4"
+            data-aos="fade-up"
+          >
             {success && (
-              <p className="text-green-600 bg-green-50 border border-green-200
-                            rounded-lg py-2 px-3 text-sm text-center">
+              <p
+                className="text-green-600 bg-green-50 border border-green-200
+                           rounded-lg py-2 px-3 text-sm text-center"
+                data-aos="zoom-in"
+              >
                 Your message has been sent successfully!
               </p>
             )}
@@ -64,6 +94,7 @@ export default function Contact() {
               value={formData.name}
               onChange={handleChange}
               required
+              data-aos="fade-up"
               className="w-full border rounded-lg px-4 py-2
                          focus:outline-none focus:ring-1 focus:ring-blue-900
                          hover:border-blue-400 transition"
@@ -76,6 +107,8 @@ export default function Contact() {
               value={formData.email}
               onChange={handleChange}
               required
+              data-aos="fade-up"
+              data-aos-delay="100"
               className="w-full border rounded-lg px-4 py-2
                          focus:outline-none focus:ring-1 focus:ring-blue-900
                          hover:border-blue-400 transition"
@@ -88,6 +121,8 @@ export default function Contact() {
               value={formData.message}
               onChange={handleChange}
               required
+              data-aos="fade-up"
+              data-aos-delay="200"
               className="w-full border rounded-lg px-4 py-2 resize-none
                          focus:outline-none focus:ring-1 focus:ring-blue-900
                          hover:border-blue-400 transition"
@@ -95,6 +130,8 @@ export default function Contact() {
 
             <button
               type="submit"
+              data-aos="zoom-in"
+              data-aos-delay="300"
               className="w-full bg-blue-900 text-white py-2.5 rounded-lg
                          flex items-center justify-center gap-2
                          hover:bg-blue-800 hover:shadow-md
@@ -106,7 +143,10 @@ export default function Contact() {
           </form>
 
           {/* Social Media */}
-          <div className="flex flex-col items-center justify-center text-center space-y-5">
+          <div
+            className="flex flex-col items-center justify-center text-center space-y-5"
+            data-aos="fade-left"
+          >
             <h3 className="text-lg font-semibold text-gray-700">
               Connect with us
             </h3>
@@ -123,6 +163,8 @@ export default function Contact() {
                   <a
                     key={i}
                     href="#"
+                    data-aos="zoom-in"
+                    data-aos-delay={i * 100}
                     className="w-11 h-11 flex items-center justify-center
                                rounded-full bg-gray-100 text-gray-600
                                hover:bg-blue-900 hover:text-white

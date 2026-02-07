@@ -17,19 +17,34 @@ import {
   FaWhatsapp,
   FaYoutube,
 } from "react-icons/fa";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function FooterPage() {
 
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: "ease-in-out",
+      once: true,
+      offset: 80,
+    });
+  }, []);
+
   const footerLinks = [
-  { label: "Privacy Policy", path: "/privacy-policy" },
-  { label: "Terms", path: "/terms-and-conditions" },
-  { label: "Cookies", path: "/cookies-policy" },
-];
+    { label: "Privacy Policy", path: "/privacy-policy" },
+    { label: "Terms", path: "/terms-and-conditions" },
+    { label: "Cookies", path: "/cookies-policy" },
+  ];
 
   return (
     <footer className="bg-gray-900 text-white relative">
       {/* Floating CTA Banner */}
-      <div className="relative top-5 max-w-5xl mx-auto px-4 sm:px-6">
+      <div
+        className="relative top-5 max-w-5xl mx-auto px-4 sm:px-6"
+        data-aos="fade-up"
+      >
         <div className="bg-linear-to-r from-blue-900 to-indigo-900 rounded-2xl shadow-2xl p-6 sm:p-8 transition-transform duration-300">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
             <div className="text-center lg:text-left">
@@ -63,8 +78,12 @@ export default function FooterPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-10 mb-10">
+          
           {/* Brand */}
-          <div className="lg:col-span-2 space-y-4">
+          <div
+            className="lg:col-span-2 space-y-4"
+            data-aos="fade-right"
+          >
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center shrink-0">
                 <img
@@ -100,6 +119,8 @@ export default function FooterPage() {
                     key={idx}
                     href="#"
                     className={`w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center text-gray-300 ${social.color} hover:text-white transition-colors`}
+                    data-aos="zoom-in"
+                    data-aos-delay={idx * 100}
                   >
                     <social.icon size={18} />
                   </a>
@@ -108,7 +129,7 @@ export default function FooterPage() {
           </div>
 
           {/* Quick Links */}
-          <div>
+          <div data-aos="fade-up">
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-3">
               {[{ path: "/dashboard", label: "Dashboard", icon: GraduationCap },
@@ -130,7 +151,7 @@ export default function FooterPage() {
           </div>
 
           {/* Classes */}
-          <div>
+          <div data-aos="fade-up" data-aos-delay="150">
             <h3 className="text-lg font-semibold mb-4">Classes</h3>
             <div className="grid grid-cols-2 gap-2">
               {[6, 7, 8, 9, 10].map((grade) => (
@@ -146,7 +167,7 @@ export default function FooterPage() {
           </div>
 
           {/* Contact */}
-          <div>
+          <div data-aos="fade-up" data-aos-delay="300">
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
             <ul className="space-y-3 text-sm">
               <li className="flex gap-3">
@@ -160,14 +181,14 @@ export default function FooterPage() {
               </li>
               <li className="flex gap-3">
                 <Phone size={16} className="text-blue-400" />
-                <a href="tel:+919852858089" className="hover:text-white">
-                  +91 9852858089
+                <a href="tel:+919973948370" className="hover:text-white">
+                  +91 9973948370
                 </a>
               </li>
               <li className="flex gap-3">
                 <MapPin size={16} className="text-blue-400 mt-1" />
                 <span>
-                  NCERT Learning Center,
+                  NCERTLearn Learning Center,
                   <br />
                   New Ashok Nagar Delhi, India 110096
                 </span>
@@ -180,15 +201,17 @@ export default function FooterPage() {
         <div className="border-t border-gray-800 my-8"></div>
 
         {/* Bottom Footer */}
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm">
-          {/* Left side: Copyright + policies */}
+        <div
+          className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm"
+          data-aos="fade-up"
+        >
           <div className="text-center sm:text-left">
             <p className="text-gray-400">
               &copy; {new Date().getFullYear()} NCERTLearn. All rights reserved.
             </p>
 
             <div className="flex flex-wrap justify-center sm:justify-start gap-4 mt-2">
-              {footerLinks.map((item, idx) => (
+              {footerLinks?.map((item, idx) => (
                 <Link
                   key={idx}
                   to={item.path}
@@ -200,7 +223,6 @@ export default function FooterPage() {
             </div>
           </div>
 
-          {/* Right side: Made for students + Founder */}
           <div className="flex flex-col sm:flex-row items-center gap-2 text-gray-400">
             <div className="flex items-center gap-2">
               <Heart
@@ -226,7 +248,10 @@ export default function FooterPage() {
         </div>
 
         {/* Disclaimer */}
-        <div className="mt-8 p-4 bg-gray-800/50 rounded-lg">
+        <div
+          className="mt-8 p-4 bg-gray-800/50 rounded-lg"
+          data-aos="fade-up"
+        >
           <p className="text-xs text-gray-400 text-center leading-relaxed">
             Disclaimer: This platform is an independent educational resource and
             is not officially affiliated with NCERT. All materials are for
@@ -240,6 +265,7 @@ export default function FooterPage() {
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 w-11 h-11 sm:w-12 sm:h-12 bg-blue-900 hover:bg-blue-800 text-white rounded-full shadow-lg flex items-center justify-center transition hover:scale-110 z-50 cursor-pointer"
         aria-label="Back to top"
+        data-aos="zoom-in"
       >
         <ArrowRight className="rotate-90" size={18} strokeWidth={4} />
       </button>

@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaGoogle, FaMobileAlt, FaEnvelope } from "react-icons/fa";
 import { UserCircle } from "lucide-react";
 import { useNavigate } from "react-router";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function AccountAuth() {
   const [authMode, setAuthMode] = useState("login");
@@ -18,6 +20,15 @@ export default function AccountAuth() {
   const [message, setMessage] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
+
+  // ✅ AOS init
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: "ease-out-cubic",
+      once: true,
+    });
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -49,8 +60,8 @@ export default function AccountAuth() {
       loginMethod === "mobile"
         ? "OTP verified successfully!"
         : authMode === "signup"
-          ? "Account created successfully!"
-          : "Logged in successfully!"
+        ? "Account created successfully!"
+        : "Logged in successfully!"
     );
 
     setFormData({
@@ -65,10 +76,19 @@ export default function AccountAuth() {
   };
 
   return (
-    <div className="bg-gray-50 flex items-start justify-center px-4 py-8 mt-16">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg hover:shadow-xl transition p-6 sm:p-8">
+    <div
+      className="bg-gray-50 flex items-start justify-center px-4 py-8 mt-16"
+      data-aos="fade-up"
+    >
+      <div
+        className="w-full max-w-md bg-white rounded-2xl shadow-lg hover:shadow-xl transition p-6 sm:p-8"
+        data-aos="zoom-in"
+      >
         {/* Header */}
-        <div className="flex items-center gap-3 mb-4">
+        <div
+          className="flex items-center gap-3 mb-4"
+          data-aos="fade-right"
+        >
           <div className="p-2 bg-blue-100 rounded-full">
             <UserCircle className="text-blue-900 w-6 h-6" />
           </div>
@@ -77,13 +97,17 @@ export default function AccountAuth() {
           </h2>
         </div>
 
-        <p className="text-sm text-gray-500 mb-5">
+        <p
+          className="text-sm text-gray-500 mb-5"
+          data-aos="fade-left"
+        >
           Access your NCERT learning dashboard
         </p>
 
         {/* Message */}
         {message && (
           <p
+            data-aos="fade-down"
             className={`mb-4 text-sm text-center rounded-lg py-2 px-3
               ${
                 message.includes("success")
@@ -97,15 +121,20 @@ export default function AccountAuth() {
 
         {/* Login Method Tabs */}
         {authMode === "login" && (
-          <div className="grid grid-cols-3 gap-2 mb-5">
+          <div
+            className="grid grid-cols-3 gap-2 mb-5"
+            data-aos="fade-up"
+          >
             {[
               { id: "email", icon: <FaEnvelope />, label: "Email" },
               { id: "google", icon: <FaGoogle />, label: "Google" },
               { id: "mobile", icon: <FaMobileAlt />, label: "Mobile" },
-            ].map((item) => (
+            ].map((item, i) => (
               <button
                 key={item.id}
                 onClick={() => setLoginMethod(item.id)}
+                data-aos="zoom-in"
+                data-aos-delay={i * 80}
                 className={`flex flex-col items-center justify-center py-2 rounded-lg text-sm
                   ${
                     loginMethod === item.id
@@ -124,6 +153,7 @@ export default function AccountAuth() {
         <form onSubmit={handleSubmit} className="space-y-4">
           {authMode === "signup" && (
             <input
+              data-aos="fade-up"
               type="text"
               name="name"
               placeholder="Full Name"
@@ -138,6 +168,7 @@ export default function AccountAuth() {
           {(loginMethod === "email" || authMode === "signup") && (
             <>
               <input
+                data-aos="fade-up"
                 type="email"
                 name="email"
                 placeholder="Email Address"
@@ -148,6 +179,8 @@ export default function AccountAuth() {
                            focus:ring-1 focus:ring-blue-900 focus:outline-none"
               />
               <input
+                data-aos="fade-up"
+                data-aos-delay="100"
                 type="password"
                 name="password"
                 placeholder="Password"
@@ -158,9 +191,11 @@ export default function AccountAuth() {
                            focus:ring-1 focus:ring-blue-900 focus:outline-none"
               />
 
-              {/* ✅ Remember / Forgot */}
               {authMode === "login" && (
-                <div className="flex items-center justify-between text-sm">
+                <div
+                  className="flex items-center justify-between text-sm"
+                  data-aos="fade-in"
+                >
                   <label className="flex items-center gap-2 text-gray-600 cursor-pointer">
                     <input
                       type="checkbox"
@@ -185,6 +220,7 @@ export default function AccountAuth() {
           {loginMethod === "mobile" && (
             <>
               <input
+                data-aos="fade-up"
                 type="tel"
                 name="mobile"
                 placeholder="Mobile Number"
@@ -193,7 +229,10 @@ export default function AccountAuth() {
                 className="w-full border rounded-lg px-4 py-2
                            focus:ring-1 focus:ring-blue-900 focus:outline-none"
               />
-              <div className="flex gap-2">
+              <div
+                className="flex gap-2"
+                data-aos="fade-up"
+              >
                 <input
                   type="text"
                   name="otp"
@@ -219,6 +258,8 @@ export default function AccountAuth() {
 
           {!(loginMethod === "mobile" && !otpSent) && (
             <button
+              data-aos="zoom-in"
+              data-aos-delay="200"
               type="submit"
               disabled={loading}
               onClick={() => navigate("/")}
@@ -229,16 +270,19 @@ export default function AccountAuth() {
               {loading
                 ? "Please wait..."
                 : loginMethod === "mobile"
-                  ? "Verify OTP"
-                  : authMode === "signup"
-                    ? "Create Account"
-                    : "Login"}
+                ? "Verify OTP"
+                : authMode === "signup"
+                ? "Create Account"
+                : "Login"}
             </button>
           )}
         </form>
 
         {/* Toggle */}
-        <p className="mt-5 text-center text-sm text-gray-600">
+        <p
+          className="mt-5 text-center text-sm text-gray-600"
+          data-aos="fade-up"
+        >
           {authMode === "login"
             ? "Don’t have an account?"
             : "Already have an account?"}
