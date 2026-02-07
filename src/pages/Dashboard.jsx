@@ -134,12 +134,12 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className="flex bg-gray-50 mt-7">
+    <div className="flex bg-gray-50 mt-7 overflow-x-hidden">
       {/* Sidebar Menu - Fixed position */}
       <SidebarMenu />
 
       {/* Main Content with margin for sidebar */}
-      <div className="flex-1 md:ml-64 p-3 sm:p-4 sm:pt-20 md:pt-6 mt-11.25">
+      <div className="flex-1 md:ml-64 p-3 sm:p-4 sm:pt-20 md:pt-6 mt-11 overflow-x-hidden">
         {/* Header with Student Info */}
         <div className="mb-4 sm:mb-6" data-aos="fade-down">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
@@ -223,9 +223,9 @@ export default function Dashboard() {
 
         {/* Quick Stats */}
         <div
-  className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6"
-  data-aos="fade-up"
->
+          className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6"
+          data-aos="fade-up"
+        >
           <StatCard
             icon={
               <BookOpen className="text-blue-900 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
@@ -309,7 +309,10 @@ export default function Dashboard() {
                 to={`/tutorials/class/${classId}/${subject.id}`}
                 className="group"
               >
-                <div className="bg-white p-3 sm:p-4 rounded-xl shadow hover:shadow-lg transition-all hover:scale-[1.02]" data-aos="zoom-in">
+                <div
+                  className="bg-white p-3 sm:p-4 rounded-xl shadow hover:shadow-lg transition-all hover:scale-[1.02]"
+                  data-aos="zoom-in"
+                >
                   <div className="flex justify-between items-start mb-2 sm:mb-3">
                     <h3 className="font-semibold text-gray-700 group-hover:text-blue-900 text-sm sm:text-base">
                       {subject.name}
@@ -410,7 +413,10 @@ export default function Dashboard() {
         </div>
 
         {/* Daily Learning Goal */}
-        <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-linear-to-r from-green-50 to-blue-50 rounded-xl border border-green-200" data-aos="fade-up">
+        <div
+          className="mt-4 sm:mt-6 p-3 sm:p-4 bg-linear-to-r from-green-50 to-blue-50 rounded-xl border border-green-200"
+          data-aos="fade-up"
+        >
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3">
             <div className="flex-1">
               <h3 className="font-semibold text-gray-800 flex items-center gap-2 text-sm sm:text-base">
