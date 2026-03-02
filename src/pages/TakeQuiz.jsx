@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import quizData from "../data/quizData";
 import { 
@@ -16,15 +16,68 @@ import {
   Star
 } from "lucide-react";
 import toast, { Toaster } from "react-hot-toast";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+// Custom hook for responsive AOS
+const useResponsiveAOS = () => {
+  const aosInitialized = useRef(false);
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== 'undefined' ? window.innerWidth : 1200
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (!aosInitialized.current) {
+      const isMobile = windowWidth < 640;
+      const isTablet = windowWidth >= 640 && windowWidth < 1024;
+      
+      AOS.init({
+        duration: isMobile ? 400 : isTablet ? 500 : 600,
+        easing: "ease-out",
+        once: true,
+        mirror: false,
+        offset: isMobile ? 10 : isTablet ? 20 : 30,
+        throttleDelay: 99,
+        debounceDelay: 50,
+        disable: window.innerWidth < 480 ? true : false,
+        startEvent: 'DOMContentLoaded',
+      });
+      
+      aosInitialized.current = true;
+    } else {
+      AOS.refresh();
+    }
+  }, [windowWidth]);
+
+  return { windowWidth };
+};
+
+// Responsive animation helper
+const getResponsiveDelay = (baseDelay, windowWidth) => {
+  if (windowWidth < 640) return Math.floor(baseDelay / 2);
+  if (windowWidth < 1024) return Math.floor(baseDelay * 0.75);
+  return baseDelay;
+};
 
 export default function TakeQuiz() {
   const navigate = useNavigate();
+  const { windowWidth } = useResponsiveAOS();
+  
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState("");
   const [answered, setAnswered] = useState(false);
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
-  const [timeSpent, setTimeSpent] = useState(0); // in seconds
+  const [timeSpent, setTimeSpent] = useState(0);
   const [quizStats, setQuizStats] = useState({
     correctAnswers: 0,
     totalAnswered: 0,
@@ -32,10 +85,16 @@ export default function TakeQuiz() {
   });
 
   const current = quizData[currentQuestion];
-  const progress = Math.round(((currentQuestion + 1) / quizData.length) * 100);
-  const isLastQuestion = currentQuestion === quizData.length - 1;
+  const progress = useMemo(() => 
+    Math.round(((currentQuestion + 1) / quizData.length) * 100), 
+    [currentQuestion]
+  );
+  const isLastQuestion = useMemo(() => 
+    currentQuestion === quizData.length - 1, 
+    [currentQuestion]
+  );
 
-  // Timer effect
+  // Timer effect with cleanup
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeSpent(prev => prev + 1);
@@ -44,7 +103,7 @@ export default function TakeQuiz() {
     return () => clearInterval(timer);
   }, []);
 
-  // Update stats whenever score or currentQuestion changes
+  // Update stats with useMemo
   useEffect(() => {
     const totalAnswered = currentQuestion + (answered ? 1 : 0);
     const accuracy = totalAnswered > 0 ? Math.round((score / totalAnswered) * 100) : 0;
@@ -56,22 +115,32 @@ export default function TakeQuiz() {
     });
   }, [score, currentQuestion, answered]);
 
-  const handleOptionSelect = (opt) => {
+  // Memoized callbacks
+  const handleOptionSelect = useCallback((opt) => {
     if (!answered) {
       setSelectedOption(opt);
     }
-  };
+  }, [answered]);
 
-  const handleCheckAnswer = () => {
+  const handleCheckAnswer = useCallback(() => {
     if (!answered && selectedOption) {
       if (selectedOption === current.correctAnswer) {
         setScore((s) => s + 1);
+        toast.success('Correct answer! 🎉', {
+          duration: 2000,
+          icon: '✅',
+        });
+      } else {
+        toast.error('Incorrect answer!', {
+          duration: 2000,
+          icon: '❌',
+        });
       }
       setAnswered(true);
     }
-  };
+  }, [answered, selectedOption, current]);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     if (!answered) {
       handleCheckAnswer();
       return;
@@ -79,62 +148,76 @@ export default function TakeQuiz() {
 
     if (isLastQuestion) {
       setShowResult(true);
+      toast.success('Quiz completed! 🏆', {
+        duration: 3000,
+        icon: '🎯',
+      });
       return;
     }
 
     setAnswered(false);
     setSelectedOption("");
     setCurrentQuestion((q) => q + 1);
-  };
+  }, [answered, handleCheckAnswer, isLastQuestion]);
 
-  const handleRestart = () => {
-  toast.success('Quiz restarted successfully!', {
-    duration: 3000,
-    icon: '🔄',
-    style: {
-      background: '#10b981',
-      color: '#fff',
-    },
-  });
-  
-  // Reset all quiz state
-  setCurrentQuestion(0);
-  setSelectedOption("");
-  setAnswered(false);
-  setScore(0);
-  setShowResult(false);
-  setTimeSpent(0);
-};
+  const handleRestart = useCallback(() => {
+    toast.success('Quiz restarted successfully!', {
+      duration: 3000,
+      icon: '🔄',
+      style: {
+        background: '#10b981',
+        color: '#fff',
+      },
+    });
+    
+    setCurrentQuestion(0);
+    setSelectedOption("");
+    setAnswered(false);
+    setScore(0);
+    setShowResult(false);
+    setTimeSpent(0);
+  }, []);
 
-  const handleNewQuiz = () => {
-  // Reset all quiz state
-  setCurrentQuestion(0);
-  setSelectedOption("");
-  setAnswered(false);
-  setScore(0);
-  setShowResult(false);
-  setTimeSpent(0);
-  
-  // Show success toast
-  toast.success('New quiz started!', {
-    duration: 3000,
-    icon: '✨',
-    style: {
-      background: '#10b981',
-      color: '#fff',
-    },
-  });
-};
+  const handleNewQuiz = useCallback(() => {
+    setCurrentQuestion(0);
+    setSelectedOption("");
+    setAnswered(false);
+    setScore(0);
+    setShowResult(false);
+    setTimeSpent(0);
+    
+    toast.success('New quiz started!', {
+      duration: 3000,
+      icon: '✨',
+      style: {
+        background: '#10b981',
+        color: '#fff',
+      },
+    });
+  }, []);
 
-  const handleBackToDashboard = () => {
+  const handleBackToDashboard = useCallback(() => {
     navigate("/dashboard");
-  };
+  }, [navigate]);
 
-  const formatTime = (seconds) => {
+  const formatTime = useCallback((seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return `${mins}:${secs.toString().padStart(2, '0')}`;
-  };
+  }, []);
+
+  // Responsive animation props
+  const getAOSProps = useCallback((animation, baseDelay = 0) => {
+    if (windowWidth < 480) return {};
+    
+    return {
+      'data-aos': animation,
+      'data-aos-duration': windowWidth < 640 ? '400' : windowWidth < 1024 ? '500' : '600',
+      'data-aos-delay': getResponsiveDelay(baseDelay, windowWidth),
+      'data-aos-once': 'true',
+      'data-aos-offset': windowWidth < 640 ? '10' : windowWidth < 1024 ? '20' : '30',
+    };
+  }, [windowWidth]);
 
   if (showResult) {
     const percentage = Math.round((score / quizData.length) * 100);
@@ -142,13 +225,10 @@ export default function TakeQuiz() {
     return (
       <div className="min-h-screen bg-linear-to-br from-gray-50 to-blue-50 py-8 px-4 md:ml-64">
         <div className="max-w-7xl mx-auto">
-          {/* Toast Container */}
           <Toaster
             position="top-center"
             reverseOrder={false}
             gutter={8}
-            containerClassName=""
-            containerStyle={{}}
             toastOptions={{
               duration: 4000,
               style: {
@@ -165,7 +245,10 @@ export default function TakeQuiz() {
           />
           
           {/* Header */}
-          <div className="mb-8">
+          <div 
+            className="mb-8"
+            {...getAOSProps('fade-down', 0)}
+          >
             <button
               onClick={handleBackToDashboard}
               className="flex items-center gap-2 text-blue-700 hover:text-blue-800 mb-6 text-sm"
@@ -177,14 +260,23 @@ export default function TakeQuiz() {
             <p className="text-gray-600 text-sm text-center">Class 8 Science Quiz</p>
           </div>
 
-          <div className="bg-white rounded-xl shadow-lg p-6 text-center">
-            <div className="w-20 h-20 mx-auto mb-4 bg-linear-to-r from-blue-100 to-green-100 rounded-full flex items-center justify-center">
+          <div 
+            className="bg-white rounded-xl shadow-lg p-6 text-center"
+            {...getAOSProps('zoom-in', 100)}
+          >
+            <div 
+              className="w-20 h-20 mx-auto mb-4 bg-linear-to-r from-blue-100 to-green-100 rounded-full flex items-center justify-center"
+              {...getAOSProps('zoom-in', 200)}
+            >
               <Trophy className="text-blue-900" size={32} />
             </div>
             <h2 className="text-lg font-semibold mb-2">Quiz Completed!</h2>
             <p className="text-gray-500 text-sm mb-4">Congratulations on finishing the quiz</p>
             
-            <div className="text-4xl font-bold text-blue-900 mb-2">
+            <div 
+              className="text-4xl font-bold text-blue-900 mb-2"
+              {...getAOSProps('fade-up', 300)}
+            >
               {score}/{quizData.length}
             </div>
             <div className="text-lg font-semibold mb-4">
@@ -192,11 +284,14 @@ export default function TakeQuiz() {
             </div>
             
             {/* Performance message */}
-            <div className={`max-w-md mx-auto p-4 rounded-xl mb-6 ${
-              percentage >= 90 ? "bg-green-50 text-green-800 border border-green-200" :
-              percentage >= 70 ? "bg-blue-50 text-blue-800 border border-blue-200" :
-              "bg-yellow-50 text-yellow-800 border border-yellow-200"
-            }`}>
+            <div 
+              className={`max-w-md mx-auto p-4 rounded-xl mb-6 ${
+                percentage >= 90 ? "bg-green-50 text-green-800 border border-green-200" :
+                percentage >= 70 ? "bg-blue-50 text-blue-800 border border-blue-200" :
+                "bg-yellow-50 text-yellow-800 border border-yellow-200"
+              }`}
+              {...getAOSProps('fade-up', 400)}
+            >
               <p className="font-medium text-base">
                 {percentage === 100 ? "🎉 Perfect score! You're a science expert!" :
                  percentage >= 90 ? "👍 Excellent work! You really know your stuff!" :
@@ -207,7 +302,10 @@ export default function TakeQuiz() {
             </div>
 
             {/* Quiz summary */}
-            <div className="grid grid-cols-3 gap-4 mb-6 max-w-md mx-auto">
+            <div 
+              className="grid grid-cols-3 gap-4 mb-6 max-w-md mx-auto"
+              {...getAOSProps('fade-up', 500)}
+            >
               <div className="bg-gray-50 p-3 rounded-xl">
                 <p className="text-sm text-gray-500 mb-1">Time Spent</p>
                 <p className="font-bold text-lg">{formatTime(timeSpent)}</p>
@@ -222,7 +320,10 @@ export default function TakeQuiz() {
               </div>
             </div>
 
-            <div className="space-y-3 max-w-md mx-auto">
+            <div 
+              className="space-y-3 max-w-md mx-auto"
+              {...getAOSProps('fade-up', 600)}
+            >
               <button
                 onClick={handleRestart}
                 className="w-full bg-blue-900 hover:bg-blue-800 text-white py-3 rounded-lg flex items-center justify-center gap-2 text-sm font-medium"
@@ -253,13 +354,10 @@ export default function TakeQuiz() {
 
   return (
     <div className="min-h-screen bg-linear-to-br from-gray-50 to-blue-50 py-8 px-4">
-      {/* Toast Container */}
       <Toaster
         position="top-center"
         reverseOrder={false}
         gutter={8}
-        containerClassName=""
-        containerStyle={{}}
         toastOptions={{
           duration: 4000,
           style: {
@@ -278,7 +376,10 @@ export default function TakeQuiz() {
       {/* Main Content Container */}
       <div className="mx-auto md:ml-64 mt-16">
         {/* Header */}
-        <div className="mb-8">
+        <div 
+          className="mb-8"
+          {...getAOSProps('fade-down', 0)}
+        >
           <button
             onClick={handleBackToDashboard}
             className="flex items-center gap-2 text-blue-700 hover:text-blue-800 mb-6 text-sm"
@@ -291,41 +392,54 @@ export default function TakeQuiz() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div 
+          className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8"
+          {...getAOSProps('fade-up', 100)}
+        >
           <StatCard 
             title="Current Score" 
             value={`${score}/${quizData.length}`}
             icon={<Trophy className="text-blue-900" size={16} />}
             change=""
+            delay={100}
           />
           <StatCard 
             title="Accuracy" 
             value={`${quizStats.accuracy}%`}
             icon={<Target className="text-green-600" size={16} />}
             change=""
+            delay={150}
           />
           <StatCard 
             title="Questions" 
             value={`${quizStats.totalAnswered}/${quizData.length}`}
             icon={<BarChart3 className="text-purple-600" size={16} />}
             change=""
+            delay={200}
           />
           <StatCard 
             title="Time" 
             value={formatTime(timeSpent)}
             icon={<Clock className="text-orange-600" size={16} />}
             change=""
+            delay={250}
           />
         </div>
 
         {/* Content */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Quiz Card */}
-          <div className="lg:col-span-2">
+          <div 
+            className="lg:col-span-2"
+            {...getAOSProps('fade-right', 200)}
+          >
             <div className="bg-white rounded-xl shadow-lg p-6">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
                 <div className="flex items-center gap-4">
-                  <div className="p-3 bg-blue-100 rounded-full">
+                  <div 
+                    className="p-3 bg-blue-100 rounded-full"
+                    {...getAOSProps('zoom-in', 250)}
+                  >
                     <HelpCircle className="text-blue-900" size={20} />
                   </div>
                   <div>
@@ -343,7 +457,10 @@ export default function TakeQuiz() {
               </div>
 
               {/* Progress */}
-              <div className="mb-6">
+              <div 
+                className="mb-6"
+                {...getAOSProps('fade-up', 300)}
+              >
                 <div className="flex justify-between text-sm text-gray-600 mb-1">
                   <span className="font-semibold">
                     Question {currentQuestion + 1} of {quizData.length}
@@ -359,7 +476,10 @@ export default function TakeQuiz() {
               </div>
 
               {/* Question */}
-              <div className="mb-6">
+              <div 
+                className="mb-6"
+                {...getAOSProps('fade-up', 350)}
+              >
                 <div className="text-sm text-blue-900 font-bold mb-2">
                   Question {currentQuestion + 1}
                 </div>
@@ -373,7 +493,7 @@ export default function TakeQuiz() {
                 {current.options.map((opt, idx) => {
                   const isCorrect = opt === current.correctAnswer;
                   const isSelected = opt === selectedOption;
-                  const letter = String.fromCharCode(65 + idx); // A, B, C, D
+                  const letter = String.fromCharCode(65 + idx);
 
                   let style = "border border-gray-200 hover:border-blue-300 hover:bg-blue-50";
                   let letterStyle = "bg-gray-100 text-gray-700";
@@ -397,6 +517,7 @@ export default function TakeQuiz() {
                       className={`w-full text-left rounded-lg p-3 transition-all duration-200 flex items-start gap-3 ${style} ${
                         answered ? "cursor-default" : "cursor-pointer hover:scale-[1.01]"
                       }`}
+                      {...getAOSProps('fade-up', 400 + (idx * 50))}
                     >
                       <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-bold text-sm ${letterStyle}`}>
                         {letter}
@@ -418,7 +539,10 @@ export default function TakeQuiz() {
               </div>
 
               {/* Action Button */}
-              <div className="flex flex-col sm:flex-row gap-3">
+              <div 
+                className="flex flex-col sm:flex-row gap-3"
+                {...getAOSProps('fade-up', 600)}
+              >
                 <button
                   onClick={answered ? handleNext : handleCheckAnswer}
                   disabled={!selectedOption && !answered}
@@ -451,7 +575,10 @@ export default function TakeQuiz() {
           </div>
 
           {/* Right Stats Card */}
-          <div className="lg:col-span-1">
+          <div 
+            className="lg:col-span-1"
+            {...getAOSProps('fade-left', 300)}
+          >
             <div className="bg-white rounded-xl shadow-lg p-6">
               <div className="mb-6">
                 <h3 className="text-lg font-bold mb-4">Quiz Stats</h3>
@@ -485,7 +612,10 @@ export default function TakeQuiz() {
                 </div>
               </div>
 
-              <div className="mb-6 p-3 bg-linear-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-100">
+              <div 
+                className="mb-6 p-3 bg-linear-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-100"
+                {...getAOSProps('zoom-in', 400)}
+              >
                 <p className="text-sm font-semibold text-blue-800 mb-1">
                   💡 Pro Tip
                 </p>
@@ -497,7 +627,10 @@ export default function TakeQuiz() {
                 </p>
               </div>
 
-              <div className="space-y-3">
+              <div 
+                className="space-y-3"
+                {...getAOSProps('fade-up', 450)}
+              >
                 <button 
                   onClick={handleNewQuiz}
                   className="w-full bg-linear-to-r from-blue-900 to-purple-900 text-white py-3 rounded-lg hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 text-sm font-medium"
@@ -520,10 +653,25 @@ export default function TakeQuiz() {
   );
 }
 
-/* Enhanced Stat Card */
-function StatCard({ title, value, icon, change }) {
+/* Enhanced Stat Card with AOS */
+function StatCard({ title, value, icon, change, delay = 0 }) {
+  const { windowWidth } = useResponsiveAOS();
+  
+  const getCardAOSProps = () => {
+    if (windowWidth < 480) return {};
+    return {
+      'data-aos': 'fade-up',
+      'data-aos-duration': windowWidth < 640 ? '400' : '500',
+      'data-aos-delay': getResponsiveDelay(delay, windowWidth),
+      'data-aos-once': 'true',
+    };
+  };
+
   return (
-    <div className="bg-white rounded-lg shadow p-3 hover:shadow-md transition-shadow duration-300">
+    <div 
+      className="bg-white rounded-lg shadow p-3 hover:shadow-md transition-shadow duration-300"
+      {...getCardAOSProps()}
+    >
       <div className="flex items-center justify-between mb-2">
         <p className="text-gray-600 font-medium text-sm">{title}</p>
         <div className="p-1.5 bg-gray-50 rounded-lg">

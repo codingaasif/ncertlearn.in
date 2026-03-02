@@ -12,9 +12,8 @@ import {
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { FaBolt } from "react-icons/fa";
 import ncertContent from "../data/ncertContent";
-import { useState } from "react";
+import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import { SidebarMenu } from "../components/SidebarMenu";
-import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -22,7 +21,7 @@ import "aos/dist/aos.css";
 const mockStudentData = {
   id: "STU001",
   name: "Aasif Khan",
-  class: "8", // Student's class
+  class: "8",
   totalStudyHours: 45,
   completedChapters: 12,
   lastActive: "2 hours ago",
@@ -36,80 +35,120 @@ const mockStudentData = {
   },
 };
 
-export default function Dashboard() {
-  const navigate = useNavigate();
-  const [studentData, setStudentData] = useState(mockStudentData);
-
-  // Get the student's class from their data
-  const classId = studentData.class;
-  const data = ncertContent[classId];
-  const params = useParams();
-
-  useEffect(() => {
-    AOS.init({
-      duration: 800,
-      easing: "ease-in-out",
-      once: true,
-      offset: 80,
-    });
-  }, []);
-
-  console.log("Dashboard Params:", params);
-
-  // If data doesn't exist for student's class, show error
-  if (!data) {
-    return (
-      <div className="p-4 sm:p-6 bg-gray-50 min-h-screen">
-        <div className="bg-white rounded-xl shadow p-6 sm:p-8 text-center max-w-md mx-auto mt-8 sm:mt-10">
-          <h2 className="text-lg sm:text-xl font-bold text-red-600 mb-4">
-            Data Not Available
-          </h2>
-          <p className="text-gray-600 mb-6 text-sm sm:text-base">
-            Study materials for Class {classId} are not available yet.
-          </p>
-          <button
-            onClick={() => navigate("/")}
-            className="px-4 py-2 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition text-sm sm:text-base"
-          >
-            Go to Home
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  // Extract subjects from the data structure
-  const subjects = Object.keys(data || {}).map((subjectKey) => ({
-    id: subjectKey,
-    name: subjectKey
-      .split("-")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" "),
-    chapters: data[subjectKey]?.chapters || [],
-    // Use student's performance data or default to random progress
-    progress:
-      studentData.performance?.[subjectKey] || Math.floor(Math.random() * 100),
-  }));
-
-  const totalSubjects = subjects.length;
-  const totalChapters = subjects.reduce(
-    (total, subject) => total + (subject.chapters?.length || 0),
-    0,
+// Custom hook for responsive AOS
+const useResponsiveAOS = () => {
+  const aosInitialized = useRef(false);
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== 'undefined' ? window.innerWidth : 1200
   );
 
-  // Calculate average progress based on student's performance
-  const avgProgress =
-    totalSubjects > 0
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (!aosInitialized.current) {
+      // Responsive AOS settings based on device
+      const isMobile = windowWidth < 640;
+      const isTablet = windowWidth >= 640 && windowWidth < 1024;
+      
+      AOS.init({
+        // Base settings
+        duration: isMobile ? 400 : isTablet ? 500 : 600,
+        easing: "ease-out",
+        once: true, // Always animate once for better performance
+        mirror: false,
+        offset: isMobile ? 20 : isTablet ? 30 : 50,
+        
+        // Performance settings
+        throttleDelay: 99,
+        debounceDelay: 50,
+        
+        // Disable on very small devices or slow devices
+        disable: window.innerWidth < 480 ? true : false,
+        
+        // Start animation when element is in view
+        startEvent: 'DOMContentLoaded',
+        
+        // Responsive delays
+        delay: isMobile ? 0 : 50,
+      });
+      
+      aosInitialized.current = true;
+    } else {
+      // Refresh AOS on resize with new settings
+      AOS.refresh();
+    }
+  }, [windowWidth]);
+
+  return { windowWidth };
+};
+
+// Responsive animation helper
+const getResponsiveDelay = (baseDelay, windowWidth) => {
+  if (windowWidth < 640) return Math.floor(baseDelay / 2); // Half delay on mobile
+  if (windowWidth < 1024) return Math.floor(baseDelay * 0.75); // 75% delay on tablet
+  return baseDelay; // Full delay on desktop
+};
+
+export default function Dashboard() {
+  const navigate = useNavigate();
+  const [studentData] = useState(mockStudentData);
+  const params = useParams();
+  
+  // Use responsive AOS
+  const { windowWidth } = useResponsiveAOS();
+
+  const classId = studentData.class;
+  const data = ncertContent[classId];
+
+  // Memoize expensive computations
+  const { subjects, totalSubjects, totalChapters, avgProgress } = useMemo(() => {
+    if (!data) {
+      return { subjects: [], totalSubjects: 0, totalChapters: 0, avgProgress: 0 };
+    }
+
+    const subjectsList = Object.keys(data || {}).map((subjectKey) => ({
+      id: subjectKey,
+      name: subjectKey
+        .split("-")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" "),
+      chapters: data[subjectKey]?.chapters || [],
+      progress:
+        studentData.performance?.[subjectKey] || Math.floor(Math.random() * 100),
+    }));
+
+    const totalSub = subjectsList.length;
+    const totalChap = subjectsList.reduce(
+      (total, subject) => total + (subject.chapters?.length || 0),
+      0,
+    );
+
+    const avgProg = totalSub > 0
       ? Math.round(
-          subjects.reduce(
+          subjectsList.reduce(
             (total, subject) => total + (subject.progress || 0),
             0,
-          ) / totalSubjects,
+          ) / totalSub,
         )
       : 0;
 
-  // Get student's recent activity (would come from backend in real app)
-  const recentActivity = [
+    return {
+      subjects: subjectsList,
+      totalSubjects: totalSub,
+      totalChapters: totalChap,
+      avgProgress: avgProg,
+    };
+  }, [data, studentData.performance]);
+
+  // Memoize recent activity
+  const recentActivity = useMemo(() => [
     {
       subjectId: "mathematics",
       chapterId: 1,
@@ -131,17 +170,80 @@ export default function Dashboard() {
       time: "2 days ago",
       duration: "30 mins",
     },
-  ];
+  ], []);
+
+  // Responsive animation classes
+  const getAOSProps = useCallback((animation, baseDelay = 0) => {
+    const isMobile = windowWidth < 640;
+    const isTablet = windowWidth >= 640 && windowWidth < 1024;
+    
+    // Don't animate on very small devices
+    if (windowWidth < 480) {
+      return {};
+    }
+    
+    // Simplified animations for mobile
+    if (isMobile) {
+      return {
+        'data-aos': animation === 'fade-up' || animation === 'fade-down' ? 'fade' : animation,
+        'data-aos-duration': '400',
+        'data-aos-delay': getResponsiveDelay(baseDelay, windowWidth),
+        'data-aos-once': 'true',
+      };
+    }
+    
+    // Tablet animations
+    if (isTablet) {
+      return {
+        'data-aos': animation,
+        'data-aos-duration': '500',
+        'data-aos-delay': getResponsiveDelay(baseDelay, windowWidth),
+        'data-aos-once': 'true',
+        'data-aos-offset': '30',
+      };
+    }
+    
+    // Desktop animations
+    return {
+      'data-aos': animation,
+      'data-aos-duration': '600',
+      'data-aos-delay': baseDelay,
+      'data-aos-once': 'true',
+      'data-aos-offset': '50',
+    };
+  }, [windowWidth]);
+
+  if (!data) {
+    return (
+      <div className="p-4 sm:p-6 bg-gray-50 min-h-screen">
+        <div className="bg-white rounded-xl shadow p-6 sm:p-8 text-center max-w-md mx-auto mt-8 sm:mt-10">
+          <h2 className="text-lg sm:text-xl font-bold text-red-600 mb-4">
+            Data Not Available
+          </h2>
+          <p className="text-gray-600 mb-6 text-sm sm:text-base">
+            Study materials for Class {classId} are not available yet.
+          </p>
+          <button
+            onClick={() => navigate("/")}
+            className="px-4 py-2 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition text-sm sm:text-base"
+          >
+            Go to Home
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex bg-gray-50 mt-7 overflow-x-hidden">
-      {/* Sidebar Menu - Fixed position */}
       <SidebarMenu />
 
-      {/* Main Content with margin for sidebar */}
       <div className="flex-1 md:ml-64 p-3 sm:p-4 sm:pt-20 md:pt-6 mt-11 overflow-x-hidden">
-        {/* Header with Student Info */}
-        <div className="mb-4 sm:mb-6" data-aos="fade-down">
+        {/* Header with responsive animation */}
+        <div 
+          className="mb-4 sm:mb-6"
+          {...getAOSProps('fade-down', 0)}
+        >
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
             <div className="flex-1 min-w-0">
               <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 flex items-center gap-2">
@@ -179,15 +281,15 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Motivation Banner */}
+        {/* Motivation Banner with responsive animation */}
         <div
           className="bg-linear-to-r from-blue-900 to-indigo-700 text-white p-3 sm:p-4 md:p-5 rounded-xl mb-4 sm:mb-6"
-          data-aos="zoom-in"
+          {...getAOSProps('zoom-in', 50)}
         >
           <div className="flex flex-col md:flex-row items-center justify-between gap-2 sm:gap-3 md:gap-4">
             <div className="text-center md:text-left">
               <h3 className="text-sm sm:text-base md:text-lg font-semibold flex items-center gap-2 justify-center md:justify-start">
-                <TrendingUp size={14} sm:size={16} /> Your Learning Progress
+                <TrendingUp size={windowWidth < 640 ? 14 : 16} /> Your Learning Progress
               </h3>
               <p className="text-xs sm:text-sm opacity-90 mt-1">
                 Overall Progress:{" "}
@@ -203,7 +305,6 @@ export default function Dashboard() {
             </Link>
           </div>
 
-          {/* Progress Bar */}
           <div className="mt-2 sm:mt-3 md:mt-4">
             <div className="w-full bg-blue-800/30 rounded-full h-1.5 sm:h-2">
               <div
@@ -221,10 +322,10 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Quick Stats */}
+        {/* Quick Stats - Group animation */}
         <div
           className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6"
-          data-aos="fade-up"
+          {...getAOSProps('fade-up', 100)}
         >
           <StatCard
             icon={
@@ -252,8 +353,8 @@ export default function Dashboard() {
           />
         </div>
 
-        {/* Quick Actions */}
-        <div className="mb-4 sm:mb-6" data-aos="zoom-out">
+        {/* Quick Actions - Responsive grid */}
+        <div className="mb-4 sm:mb-6" {...getAOSProps('zoom-out', 150)}>
           <h2 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3 flex items-center gap-2">
             <FaBolt className="text-amber-500 text-base sm:text-lg drop-shadow-sm" />
             Quick Actions
@@ -303,7 +404,7 @@ export default function Dashboard() {
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
-            {subjects.map((subject) => (
+            {subjects.map((subject, index) => (
               <Link
                 key={subject.id}
                 to={`/tutorials/class/${classId}/${subject.id}`}
@@ -311,7 +412,7 @@ export default function Dashboard() {
               >
                 <div
                   className="bg-white p-3 sm:p-4 rounded-xl shadow hover:shadow-lg transition-all hover:scale-[1.02]"
-                  data-aos="zoom-in"
+                  {...getAOSProps('zoom-in', 200 + (index * 50))}
                 >
                   <div className="flex justify-between items-start mb-2 sm:mb-3">
                     <h3 className="font-semibold text-gray-700 group-hover:text-blue-900 text-sm sm:text-base">
@@ -360,8 +461,8 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Recent Activity */}
-        <div className="mb-4 sm:mb-6" data-aos="fade-up">
+        {/* Recent Activity - No animation on mobile */}
+        <div className="mb-4 sm:mb-6">
           <h2 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3 flex items-center gap-2">
             <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-blue-900" />
             Recent Activity
@@ -412,10 +513,9 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Daily Learning Goal */}
+        {/* Daily Learning Goal - No animation */}
         <div
           className="mt-4 sm:mt-6 p-3 sm:p-4 bg-linear-to-r from-green-50 to-blue-50 rounded-xl border border-green-200"
-          data-aos="fade-up"
         >
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3">
             <div className="flex-1">

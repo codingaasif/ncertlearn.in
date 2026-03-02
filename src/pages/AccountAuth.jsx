@@ -77,7 +77,7 @@ export default function AccountAuth() {
 
   return (
     <div
-      className="bg-gray-50 flex items-start justify-center px-4 py-8 mt-16"
+      className="bg-gray-50 flex items-start justify-center px-4 py-5 lg:py-8 mt-16"
       data-aos="fade-up"
     >
       <div

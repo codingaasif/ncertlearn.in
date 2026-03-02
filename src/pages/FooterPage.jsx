@@ -241,7 +241,7 @@ export default function FooterPage() {
                 to="/founder"
                 className="text-white hover:text-blue-500 transition-colors font-medium"
               >
-                Aasif Noor
+                Aasif Noor Khan
               </Link>
             </p>
           </div>

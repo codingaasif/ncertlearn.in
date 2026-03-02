@@ -25,7 +25,7 @@ const FounderPage = () => {
           >
             <img
               src="assets/images/Founder.webp"
-              alt="Aasif Noor"
+              alt="Aasif Noor Khan"
               className="w-full h-full object-cover"
             />
           </div>
@@ -36,7 +36,7 @@ const FounderPage = () => {
             className="text-center md:text-left"
           >
             <h2 className="text-xl sm:text-2xl font-semibold text-gray-800">
-              Aasif Noor
+              Aasif Noor Khan
             </h2>
 
             <p className="text-sm text-gray-500 mt-1">
