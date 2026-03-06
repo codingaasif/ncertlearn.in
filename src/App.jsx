@@ -44,8 +44,10 @@ function Layout() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/dashboard" element={<Dashboard />} />
-
-            <Route path="/tutorials/class/:classId" element={<TutorialClass />} />
+            <Route
+              path="/tutorials/class/:classId"
+              element={<TutorialClass />}
+            />
             <Route
               path="/tutorials/class/:classId/:subjectId"
               element={<TutorialSubject />}
@@ -54,33 +56,35 @@ function Layout() {
               path="/tutorials/class/:classId/:subjectId/chapter/:chapterId"
               element={<TutorialChapter />}
             />
-
-            <Route path="/exercises/class/:classId" element={<ExerciseClass />} />
+            <Route
+              path="/exercises/class/:classId"
+              element={<ExerciseClass />}
+            />
             <Route
               path="/exercises/class/:classId/:subjectId/chapter/:chapterId"
               element={<ExerciseChapter />}
             />
-
             <Route path="/account-auth" element={<AccountAuth />} />
             <Route path="/tutorials" element={<ClassCards />} />
             <Route path="/exercises" element={<ExerciseCards />} />
             <Route path="/questions" element={<AskQuestion />} />
             <Route path="/feedback" element={<Feedback />} />
             <Route path="/contact" element={<ContactForm />} />
-
             <Route path="/quiz/class/:classId" element={<TakeQuiz />} />
             <Route path="/notes" element={<NotesPage />} />
             <Route path="/progress" element={<Progress />} />
             <Route path="/founder" element={<FounderPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/cookies-policy" element={<CookiesPolicy />} /> 
-            <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
-
+            <Route path="/cookies-policy" element={<CookiesPolicy />} />
+            <Route
+              path="/terms-and-conditions"
+              element={<TermsAndConditions />}
+            />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </main>
       </div>
-      {!showSidebar && <FooterPage/>}
+      {!showSidebar && <FooterPage />}
     </>
   );
 }

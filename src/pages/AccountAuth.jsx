@@ -150,7 +150,7 @@ export default function AccountAuth() {
         )}
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4 w-full">
           {authMode === "signup" && (
             <input
               data-aos="fade-up"

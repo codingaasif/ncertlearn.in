@@ -1,26 +1,97 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import Navbar from "../pages/Navbar";
 import ncertContent from "../data/ncertContent";
 
 export default function TutorialChapter() {
   const { classId, subjectId, chapterId } = useParams();
+  const navigate = useNavigate();
 
-  // Convert classId to number if needed, or keep as string
+  console.log("URL Params:", { classId, subjectId, chapterId });
+
+  // Get class and subject data
   const classData = ncertContent[classId];
   const subjectData = classData?.[subjectId];
-  
-  // Find the chapter with matching ID
-  const chapter = subjectData?.chapters?.find(
-    (ch) => ch.id === Number(chapterId)
+
+  // Get all chapters for navigation
+  const chapters = subjectData?.chapters || [];
+
+  console.log(
+    "Available chapters:",
+    chapters.map((ch) => ({ id: ch.id, title: ch.title })),
   );
+
+  // Find current chapter index and data
+  const currentChapterId = chapterId ? parseInt(chapterId, 10) : null;
+  const currentChapterIndex = chapters.findIndex(
+    (ch) => ch.id === currentChapterId,
+  );
+  const chapter = chapters[currentChapterIndex];
+
+  console.log("Current chapter ID (parsed):", currentChapterId);
+  console.log("Current chapter index:", currentChapterIndex);
+  console.log("Found chapter:", chapter);
+
+  // Handle navigation to next/previous chapter
+  const goToNextChapter = () => {
+    if (currentChapterIndex < chapters.length - 1) {
+      const nextChapter = chapters[currentChapterIndex + 1];
+      navigate(
+        `/tutorials/class/${classId}/${subjectId}/chapter/${nextChapter.id}`,
+      );
+    }
+  };
+
+  const goToPreviousChapter = () => {
+    if (currentChapterIndex > 0) {
+      const prevChapter = chapters[currentChapterIndex - 1];
+      navigate(
+        `/tutorials/class/${classId}/${subjectId}/chapter/${prevChapter.id}`,
+      );
+    }
+  };
+
+  // Handle keyboard navigation
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (e.key === "ArrowLeft" && currentChapterIndex > 0) {
+        goToPreviousChapter();
+      } else if (
+        e.key === "ArrowRight" &&
+        currentChapterIndex < chapters.length - 1
+      ) {
+        goToNextChapter();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+    return () => window.removeEventListener("keydown", handleKeyPress);
+  }, [currentChapterIndex, chapters.length]);
 
   if (!chapter) {
     return (
       <div>
         <Navbar />
-        <p className="pt-24 text-center text-red-500 font-medium px-4">
-          Chapter not found
-        </p>
+        <div className="pt-24 text-center px-4">
+          <p className="text-red-500 font-medium mb-4">Chapter not found</p>
+          <button
+            onClick={() => navigate(`/tutorials/class/${classId}/${subjectId}`)}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm sm:text-base"
+          >
+            Back to Chapters
+          </button>
+          <div className="mt-8 text-left bg-gray-100 p-4 rounded max-w-2xl mx-auto text-sm sm:text-base">
+            <h3 className="font-bold mb-2">Debug Info:</h3>
+            <p>Class ID: {classId}</p>
+            <p>Subject ID: {subjectId}</p>
+            <p>Chapter ID from URL: {chapterId}</p>
+            <p>Parsed Chapter ID: {currentChapterId}</p>
+            <p>Available chapters: {chapters.length}</p>
+            <p>
+              Chapter IDs available: {chapters.map((ch) => ch.id).join(", ")}
+            </p>
+          </div>
+        </div>
       </div>
     );
   }
@@ -29,11 +100,33 @@ export default function TutorialChapter() {
 
   // Format subject name for display
   const formatSubjectName = (subject) => {
-    if (!subject) return '';
+    if (!subject) return "";
     return subject
-      .split('-')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
+
+  // Helper function to render content based on type
+  const renderContent = (content) => {
+    if (typeof content === "string") {
+      return (
+        <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
+          {content}
+        </p>
+      );
+    } else if (Array.isArray(content)) {
+      return (
+        <ul className="list-disc pl-4 sm:pl-5 space-y-1">
+          {content.map((item, idx) => (
+            <li key={idx} className="text-gray-700 text-sm sm:text-base">
+              {item}
+            </li>
+          ))}
+        </ul>
+      );
+    }
+    return null;
   };
 
   return (
@@ -41,17 +134,21 @@ export default function TutorialChapter() {
       <Navbar />
 
       {/* Mobile Header Sticky Bar */}
-      <div className="lg:hidden fixed top-12.5 left-0 right-0 bg-white shadow-sm z-40 px-4 py-2 border-b">
-        <h1 className="text-lg font-bold text-blue-900 truncate mt-4">{title}</h1>
+      <div className="lg:hidden fixed top-[60px] left-0 right-0 bg-white shadow-sm z-40 px-4 py-2 border-b">
+        <h1 className="text-base sm:text-lg font-bold text-blue-900 truncate">
+          Ch {chapter.id}: {title}
+        </h1>
         <p className="text-xs text-gray-600">
           Class {classId} • {formatSubjectName(subjectId)}
         </p>
       </div>
 
-      <div className="pt-20 lg:pt-24 max-w-6xl mx-auto px-3 sm:px-4 md:px-6 pb-8">
+      <div className="pt-28 lg:pt-24 max-w-6xl mx-auto px-3 sm:px-4 md:px-6 pb-8">
         {/* Desktop Header */}
         <div className="hidden lg:block mb-6">
-          <h1 className="text-3xl md:text-4xl font-bold mb-2 text-blue-900">{title}</h1>
+          <h1 className="text-3xl md:text-4xl font-bold mb-2 text-blue-900">
+            Chapter {chapter.id}: {title}
+          </h1>
           <p className="text-gray-600 mb-6">
             Class {classId} • {formatSubjectName(subjectId)}
           </p>
@@ -59,16 +156,14 @@ export default function TutorialChapter() {
 
         {/* Chapter Content */}
         {content ? (
-          <div className="bg-white rounded-lg shadow-sm sm:shadow-lg p-4 sm:p-6 md:p-8 mt-10 lg:mt-6">
+          <div className="bg-white rounded-lg shadow-sm sm:shadow-lg p-4 sm:p-6 md:p-8">
             {/* Introduction */}
             {content.introduction && (
               <div className="mb-6 sm:mb-8">
                 <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-blue-800 border-b pb-2">
                   Introduction
                 </h2>
-                <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
-                  {content.introduction}
-                </p>
+                {renderContent(content.introduction)}
               </div>
             )}
 
@@ -83,10 +178,14 @@ export default function TutorialChapter() {
                     <h3 className="text-lg sm:text-xl font-medium mb-2 sm:mb-3 text-green-700">
                       {section.title}
                     </h3>
-                    <p className="text-gray-700 mb-3 sm:mb-4 leading-relaxed text-sm sm:text-base">
-                      {section.content}
-                    </p>
-                    
+
+                    {/* Section Content */}
+                    {section.content && (
+                      <div className="text-gray-700 mb-3 sm:mb-4 leading-relaxed text-sm sm:text-base">
+                        {renderContent(section.content)}
+                      </div>
+                    )}
+
                     {/* Examples */}
                     {section.examples && section.examples.length > 0 && (
                       <div className="bg-gray-50 p-3 sm:p-4 rounded-lg mb-3 sm:mb-4">
@@ -95,7 +194,10 @@ export default function TutorialChapter() {
                         </h4>
                         <ul className="list-disc pl-4 sm:pl-5 space-y-1">
                           {section.examples.map((example, idx) => (
-                            <li key={idx} className="text-gray-700 text-sm sm:text-base">
+                            <li
+                              key={idx}
+                              className="text-gray-700 text-sm sm:text-base"
+                            >
                               {example}
                             </li>
                           ))}
@@ -103,7 +205,7 @@ export default function TutorialChapter() {
                       </div>
                     )}
 
-                    {/* Formula (for science/math) */}
+                    {/* Formula */}
                     {section.formula && (
                       <div className="bg-yellow-50 p-3 sm:p-4 rounded-lg mb-3 sm:mb-4 border-l-2 sm:border-l-4 border-yellow-400">
                         <h4 className="font-medium mb-1 sm:mb-2 text-gray-800 text-sm sm:text-base">
@@ -126,30 +228,37 @@ export default function TutorialChapter() {
                   Exercises
                 </h2>
                 {content.exercises.map((exercise, index) => (
-                  <div key={index} className="mb-4 sm:mb-6 last:mb-0 bg-blue-50 p-3 sm:p-5 rounded-lg">
+                  <div
+                    key={index}
+                    className="mb-4 sm:mb-6 last:mb-0 bg-blue-50 p-3 sm:p-5 rounded-lg"
+                  >
                     <h4 className="font-medium mb-2 sm:mb-3 text-blue-700 capitalize text-sm sm:text-base">
-                      {exercise.type.replace('-', ' ')} Questions:
+                      {exercise.type?.replace("-", " ") || "Practice"}{" "}
+                      Questions:
                     </h4>
-                    {exercise.questions.map((question, qIdx) => (
-                      <div key={qIdx} className="mb-3 sm:mb-4 last:mb-0">
-                        <p className="text-gray-800 mb-1 sm:mb-2 text-sm sm:text-base">
-                          <span className="font-medium">Q{qIdx + 1}:</span> {question}
-                        </p>
-                        {exercise.answers && exercise.answers[qIdx] && (
-                          <div className="ml-2 sm:ml-4 mt-1 p-2 sm:p-3 bg-green-50 rounded border border-green-200">
-                            <p className="text-green-800 text-sm sm:text-base">
-                              <span className="font-medium">Answer:</span> {exercise.answers[qIdx]}
-                            </p>
-                          </div>
-                        )}
-                      </div>
-                    ))}
+                    {exercise.questions &&
+                      exercise.questions.map((question, qIdx) => (
+                        <div key={qIdx} className="mb-3 sm:mb-4 last:mb-0">
+                          <p className="text-gray-800 mb-1 sm:mb-2 text-sm sm:text-base">
+                            <span className="font-medium">Q{qIdx + 1}:</span>{" "}
+                            {question}
+                          </p>
+                          {exercise.answers && exercise.answers[qIdx] && (
+                            <div className="ml-2 sm:ml-4 mt-1 p-2 sm:p-3 bg-green-50 rounded border border-green-200">
+                              <p className="text-green-800 text-sm sm:text-base">
+                                <span className="font-medium">Answer:</span>{" "}
+                                {exercise.answers[qIdx]}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      ))}
                   </div>
                 ))}
               </div>
             )}
 
-            {/* Activities (for Science) */}
+            {/* Activities */}
             {content.activities && content.activities.length > 0 && (
               <div className="mb-6 sm:mb-8">
                 <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-blue-800 border-b pb-2">
@@ -157,7 +266,10 @@ export default function TutorialChapter() {
                 </h2>
                 <ul className="list-disc pl-4 sm:pl-5 space-y-1 sm:space-y-2">
                   {content.activities.map((activity, index) => (
-                    <li key={index} className="text-gray-700 leading-relaxed text-sm sm:text-base">
+                    <li
+                      key={index}
+                      className="text-gray-700 leading-relaxed text-sm sm:text-base"
+                    >
                       {activity}
                     </li>
                   ))}
@@ -165,7 +277,7 @@ export default function TutorialChapter() {
               </div>
             )}
 
-            {/* Vocabulary (for Languages) */}
+            {/* Vocabulary */}
             {content.vocabulary && content.vocabulary.length > 0 && (
               <div className="mb-6 sm:mb-8">
                 <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-blue-800 border-b pb-2">
@@ -174,7 +286,9 @@ export default function TutorialChapter() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   {content.vocabulary.map((item, index) => (
                     <div key={index} className="bg-gray-50 p-3 sm:p-4 rounded">
-                      <p className="text-gray-800 text-sm sm:text-base">{item}</p>
+                      <p className="text-gray-800 text-sm sm:text-base">
+                        {item}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -190,7 +304,9 @@ export default function TutorialChapter() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   {content.शब्दार्थ.map((item, index) => (
                     <div key={index} className="bg-gray-50 p-3 sm:p-4 rounded">
-                      <p className="text-gray-800 text-sm sm:text-base">{item}</p>
+                      <p className="text-gray-800 text-sm sm:text-base">
+                        {item}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -214,7 +330,10 @@ export default function TutorialChapter() {
                       </h5>
                       <ul className="list-disc pl-4 sm:pl-5 space-y-1">
                         {content.grammar.examples.map((example, idx) => (
-                          <li key={idx} className="text-gray-700 text-sm sm:text-base">
+                          <li
+                            key={idx}
+                            className="text-gray-700 text-sm sm:text-base"
+                          >
                             {example}
                           </li>
                         ))}
@@ -233,7 +352,10 @@ export default function TutorialChapter() {
                 </h2>
                 <ul className="list-decimal pl-4 sm:pl-5 space-y-2 sm:space-y-3">
                   {content.comprehension.map((question, index) => (
-                    <li key={index} className="text-gray-800 text-sm sm:text-base">
+                    <li
+                      key={index}
+                      className="text-gray-800 text-sm sm:text-base"
+                    >
                       {question}
                     </li>
                   ))}
@@ -247,9 +369,22 @@ export default function TutorialChapter() {
                 <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-blue-800">
                   Chapter Summary
                 </h2>
-                <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
-                  {content.summary}
-                </p>
+                {Array.isArray(content.summary) ? (
+                  <ul className="list-disc pl-4 sm:pl-5 space-y-2">
+                    {content.summary.map((point, idx) => (
+                      <li
+                        key={idx}
+                        className="text-gray-700 leading-relaxed text-sm sm:text-base"
+                      >
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
+                    {content.summary}
+                  </p>
+                )}
               </div>
             )}
           </div>
@@ -264,23 +399,76 @@ export default function TutorialChapter() {
           </div>
         )}
 
-        {/* Navigation Buttons - Responsive */}
-        <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row justify-between gap-3 sm:gap-0">
+        {/* Navigation Buttons - Only Previous and Next */}
+        <div className="mt-6 sm:mt-8 flex justify-between items-center gap-3">
+          {/* Previous Button */}
           <button
-            onClick={() => window.history.back()}
-            className="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition text-sm sm:text-base flex items-center justify-center gap-1 sm:gap-2"
+            onClick={goToPreviousChapter}
+            disabled={currentChapterIndex === 0}
+            className={`flex-1 sm:flex-none px-4 py-2.5 sm:px-6 sm:py-3 rounded-lg transition-all duration-200 text-sm sm:text-base font-medium flex items-center justify-center gap-2 cursor-pointer ${
+              currentChapterIndex === 0
+                ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                : "bg-white border-2 border-blue-600 text-blue-600 hover:bg-blue-50 active:scale-95"
+            }`}
           >
-            <span>←</span>
-            <span>Back to Chapters</span>
+            <svg
+              className="w-4 h-4 sm:w-5 sm:h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+            <span className="hidden sm:inline">Previous</span>
+            <span className="sm:hidden">Prev</span>
           </button>
+
+          {/* Chapter Indicator - Visible on mobile */}
+          <div className="sm:hidden text-sm text-gray-500 font-medium">
+            {currentChapterIndex + 1}/{chapters.length}
+          </div>
+
+          {/* Next Button */}
           <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="px-4 py-2 bg-blue-100 text-blue-800 rounded-lg hover:bg-blue-200 transition text-sm sm:text-base flex items-center justify-center gap-1 sm:gap-2"
+            onClick={goToNextChapter}
+            disabled={currentChapterIndex === chapters.length - 1}
+            className={`flex-1 sm:flex-none px-4 py-2.5 sm:px-6 sm:py-3 rounded-lg transition-all duration-200 text-sm sm:text-base font-medium flex items-center justify-center gap-2 cursor-pointer ${
+              currentChapterIndex === chapters.length - 1
+                ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                : "bg-blue-600 text-white hover:bg-blue-700 active:scale-95 shadow-md"
+            }`}
           >
-            <span>↑</span>
-            <span>Scroll to Top</span>
+            <span className="hidden sm:inline">Next</span>
+            <span className="sm:hidden">Next</span>
+            <svg
+              className="w-4 h-4 sm:w-5 sm:h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
           </button>
         </div>
+
+        {/* Desktop Chapter Progress - Hidden on mobile */}
+        {chapters.length > 0 && (
+          <div className="hidden sm:block mt-4 text-center">
+            <span className="text-sm text-gray-500 bg-white px-4 py-2 rounded-full shadow-sm">
+              Chapter {currentChapterIndex + 1} of {chapters.length}
+            </span>
+          </div>
+        )}
       </div>
     </div>
   );
