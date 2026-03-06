@@ -24,6 +24,7 @@ import FounderPage from "./pages/FounderPage";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import CookiesPolicy from "./pages/CookiesPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
+import ScrollToTop from "./hooks/ScrollToTop";
 
 function Layout() {
   const location = useLocation();
@@ -37,6 +38,7 @@ function Layout() {
 
   return (
     <>
+    <ScrollToTop />
       <Navbar />
       <div className="flex">
         {showSidebar && <SidebarMenu />}

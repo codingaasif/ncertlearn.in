@@ -5,6 +5,7 @@ import {
   FaCalculator,
   FaChalkboardTeacher,
   FaGraduationCap,
+  FaRocket,
 } from "react-icons/fa";
 
 const classes = [
@@ -46,6 +47,22 @@ const classes = [
     description:
       "Complete board exam preparation with detailed explanations, practice, and revision",
     icon: <FaGraduationCap size={32} className="text-white" />,
+    gradient: "from-red-400 to-pink-500",
+  },
+  {
+    id: 11,
+    label: "Class 11",
+    description:
+      "Advanced concepts and problem-solving to build a strong base for board exams",
+    icon: <FaBrain size={32} className="text-white" />,
+    gradient: "from-red-400 to-pink-500",
+  },
+  {
+    id: 12,
+    label: "Class 12",
+    description:
+      "Advanced concepts and problem-solving to build a strong base for board exams",
+    icon: <FaRocket size={32} className="text-white" />,
     gradient: "from-red-400 to-pink-500",
   },
 ];

@@ -154,7 +154,7 @@ export default function FooterPage() {
           <div data-aos="fade-up" data-aos-delay="150">
             <h3 className="text-lg font-semibold mb-4">Classes</h3>
             <div className="grid grid-cols-2 gap-2">
-              {[6, 7, 8, 9, 10].map((grade) => (
+              {[6, 7, 8, 9, 10, 11, 12].map((grade) => (
                 <Link
                   key={grade}
                   to={`/tutorials/class/${grade}`}
@@ -241,7 +241,7 @@ export default function FooterPage() {
                 to="/founder"
                 className="text-white hover:text-blue-500 transition-colors font-medium"
               >
-                Aasif Noor Khan
+                Aasif Noor
               </Link>
             </p>
           </div>

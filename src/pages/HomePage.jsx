@@ -23,7 +23,7 @@ export default function HomePage() {
           {/* Left Content */}
           <div className="text-center md:text-left" data-aos="fade-right">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-              Learn NCERT <br /> Class 6 to 10
+              Learn NCERT <br /> Class 6 to 12
             </h1>
 
             <p className="mt-4 text-base sm:text-lg text-blue-100 max-w-lg mx-auto md:mx-0">
@@ -33,7 +33,7 @@ export default function HomePage() {
 
             <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <Link
-                to="/exercises"
+                to="/tutorials"
                 className="bg-white text-blue-900 px-5 sm:px-6 py-3 rounded-lg font-semibold hover:bg-gray-300 text-center transition"
               >
                 Get Started
@@ -94,7 +94,7 @@ export default function HomePage() {
           </h2>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 md:gap-6 max-w-2xl mx-auto">
-            {[6, 7, 8, 9, 10].map((cls, i) => (
+            {[6, 7, 8, 9, 10, 11, 12].map((cls, i) => (
               <Link
                 key={cls}
                 to={`/tutorials/class/${cls}`}

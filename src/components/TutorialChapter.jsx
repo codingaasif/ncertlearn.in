@@ -1,35 +1,38 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Navbar from "../pages/Navbar";
-import ncertContent from "../data/ncertContent";
+import ncertContent from "../data/ncertData/index"; // Ensure this path is correct
 
 export default function TutorialChapter() {
   const { classId, subjectId, chapterId } = useParams();
   const navigate = useNavigate();
 
+  console.log("Full ncertContent:", ncertContent);
   console.log("URL Params:", { classId, subjectId, chapterId });
 
-  // Get class and subject data
-  const classData = ncertContent[classId];
+  // Get class and subject data - FIXED ACCESS
+  const classData = ncertContent?.[classId];
+  console.log("Class Data:", classData);
+  
   const subjectData = classData?.[subjectId];
+  console.log("Subject Data:", subjectData);
 
   // Get all chapters for navigation
   const chapters = subjectData?.chapters || [];
-
-  console.log(
-    "Available chapters:",
-    chapters.map((ch) => ({ id: ch.id, title: ch.title })),
-  );
+  
+  console.log("Chapters array:", chapters);
+  console.log("Chapters length:", chapters.length);
 
   // Find current chapter index and data
   const currentChapterId = chapterId ? parseInt(chapterId, 10) : null;
   const currentChapterIndex = chapters.findIndex(
-    (ch) => ch.id === currentChapterId,
+    (ch) => ch && ch.id === currentChapterId,
   );
-  const chapter = chapters[currentChapterIndex];
-
+  
   console.log("Current chapter ID (parsed):", currentChapterId);
   console.log("Current chapter index:", currentChapterIndex);
+  
+  const chapter = chapters[currentChapterIndex];
   console.log("Found chapter:", chapter);
 
   // Handle navigation to next/previous chapter
@@ -86,9 +89,11 @@ export default function TutorialChapter() {
             <p>Subject ID: {subjectId}</p>
             <p>Chapter ID from URL: {chapterId}</p>
             <p>Parsed Chapter ID: {currentChapterId}</p>
+            <p>Class Data exists: {classData ? "Yes" : "No"}</p>
+            <p>Subject Data exists: {subjectData ? "Yes" : "No"}</p>
             <p>Available chapters: {chapters.length}</p>
             <p>
-              Chapter IDs available: {chapters.map((ch) => ch.id).join(", ")}
+              Chapter IDs available: {chapters.map((ch) => ch?.id).join(", ")}
             </p>
           </div>
         </div>
@@ -472,4 +477,4 @@ export default function TutorialChapter() {
       </div>
     </div>
   );
-}
+};

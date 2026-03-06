@@ -1,9 +1,7 @@
-// ncertContent.js
+// mathematics.js
 
-const ncertContent = {
-  6: {
-    mathematics: {
-      subjectName: "Mathematics",
+const mathematics = {
+  subjectName: "Mathematics",
       chapters: [
         {
           id: 1,
@@ -3476,8 +3474,6 @@ const ncertContent = {
         },
         // Add more chapters here as needed
       ],
-    },
-  },
 };
 
-export default ncertContent;
+export default mathematics;

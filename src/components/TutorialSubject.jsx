@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import Navbar from "../pages/Navbar";
-import ncertContent from "../data/ncertContent";
+import ncertContent from "../data/ncertData/index"; // Ensure this path is correct based on your project structure
 
 export default function TutorialSubject() {
   const { classId, subjectId } = useParams();
