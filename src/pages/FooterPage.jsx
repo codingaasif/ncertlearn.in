@@ -105,7 +105,7 @@ export default function FooterPage() {
 
             <p className="text-sm sm:text-base text-gray-300 max-w-md">
               Your comprehensive learning platform for NCERT curriculum from
-              Class 6 to 10 with interactive tutorials, exercises, and progress
+              Class 6 to 12 with interactive tutorials, exercises, and progress
               tracking.
             </p>
 

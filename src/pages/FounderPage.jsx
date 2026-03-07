@@ -1,4 +1,10 @@
-import { FaLinkedin, FaInstagram, FaGithub, FaEnvelope } from "react-icons/fa";
+import {
+  FaLinkedin,
+  FaInstagram,
+  FaGithub,
+  FaEnvelope,
+  FaGlobe,
+} from "react-icons/fa";
 
 const FounderPage = () => {
   return (
@@ -31,12 +37,9 @@ const FounderPage = () => {
           </div>
 
           {/* Text Content */}
-          <div
-            data-aos="fade-left"
-            className="text-center md:text-left"
-          >
+          <div data-aos="fade-left" className="text-center md:text-left">
             <h2 className="text-xl sm:text-2xl font-semibold text-gray-800">
-              Aasif Noor Khan
+              Aasif Noor
             </h2>
 
             <p className="text-sm text-gray-500 mt-1">
@@ -114,6 +117,18 @@ const FounderPage = () => {
             aria-label="Email"
           >
             <FaEnvelope size={16} />
+          </a>
+          <a
+            href="https://aasifnoor.netlify.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-9 h-9 flex items-center justify-center rounded-full
+             bg-gray-100 text-gray-600
+             hover:bg-green-600 hover:text-white
+             transition"
+            aria-label="Portfolio"
+          >
+            <FaGlobe size={16} />
           </a>
         </div>
 

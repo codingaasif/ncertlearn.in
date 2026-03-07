@@ -13,13 +13,13 @@ export default function TutorialChapter() {
   // Get class and subject data - FIXED ACCESS
   const classData = ncertContent?.[classId];
   console.log("Class Data:", classData);
-  
+
   const subjectData = classData?.[subjectId];
   console.log("Subject Data:", subjectData);
 
   // Get all chapters for navigation
   const chapters = subjectData?.chapters || [];
-  
+
   console.log("Chapters array:", chapters);
   console.log("Chapters length:", chapters.length);
 
@@ -28,10 +28,10 @@ export default function TutorialChapter() {
   const currentChapterIndex = chapters.findIndex(
     (ch) => ch && ch.id === currentChapterId,
   );
-  
+
   console.log("Current chapter ID (parsed):", currentChapterId);
   console.log("Current chapter index:", currentChapterIndex);
-  
+
   const chapter = chapters[currentChapterIndex];
   console.log("Found chapter:", chapter);
 
@@ -264,7 +264,7 @@ export default function TutorialChapter() {
             )}
 
             {/* Activities */}
-            {content.activities && content.activities.length > 0 && (
+            {/* {content.activities && content.activities.length > 0 && (
               <div className="mb-6 sm:mb-8">
                 <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-blue-800 border-b pb-2">
                   Activities
@@ -276,6 +276,27 @@ export default function TutorialChapter() {
                       className="text-gray-700 leading-relaxed text-sm sm:text-base"
                     >
                       {activity}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )} */}
+
+            {/* Activities */}
+            {content.activities && content.activities.length > 0 && (
+              <div className="mb-6 sm:mb-8">
+                <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-blue-800 border-b pb-2">
+                  Activities
+                </h2>
+                <ul className="list-disc pl-4 sm:pl-5 space-y-1 sm:space-y-2">
+                  {content.activities.map((activity, index) => (
+                    <li
+                      key={index}
+                      className="text-gray-700 leading-relaxed text-sm sm:text-base"
+                    >
+                      {typeof activity === "string"
+                        ? activity
+                        : `${activity.title}${activity.description ? ` - ${activity.description}` : ""}`}
                     </li>
                   ))}
                 </ul>
@@ -477,4 +498,4 @@ export default function TutorialChapter() {
       </div>
     </div>
   );
-};
+}
