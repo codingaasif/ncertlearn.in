@@ -124,7 +124,7 @@ const FounderPage = () => {
             rel="noopener noreferrer"
             className="w-9 h-9 flex items-center justify-center rounded-full
              bg-gray-100 text-gray-600
-             hover:bg-green-600 hover:text-white
+             hover:bg-blue-600 hover:text-white
              transition"
             aria-label="Portfolio"
           >

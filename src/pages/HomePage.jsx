@@ -19,7 +19,6 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="bg-linear-to-br from-blue-900 to-indigo-900 text-white pt-16 overflow-x-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20 grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
-          
           {/* Left Content */}
           <div className="text-center md:text-left" data-aos="fade-right">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
@@ -38,11 +37,12 @@ export default function HomePage() {
               >
                 Get Started
               </Link>
+
               <Link
-                to="/tutorials"
+                to="/about-founder"
                 className="border border-white px-5 sm:px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-900 text-center transition"
               >
-                Browse Classes
+                Meet the Founder
               </Link>
             </div>
           </div>
@@ -89,7 +89,10 @@ export default function HomePage() {
       {/* Classes Section */}
       <section className="py-12 md:py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 md:mb-10" data-aos="fade-up">
+          <h2
+            className="text-2xl sm:text-3xl font-bold text-center mb-8 md:mb-10"
+            data-aos="fade-up"
+          >
             📚 Classes We Cover
           </h2>
 
@@ -115,7 +118,10 @@ export default function HomePage() {
       {/* Why Choose Us */}
       <section className="py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center gap-2 mb-8 md:mb-10" data-aos="fade-up">
+          <div
+            className="flex items-center justify-center gap-2 mb-8 md:mb-10"
+            data-aos="fade-up"
+          >
             <Sparkles className="text-yellow-400" size={28} />
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
               Why Choose NCERTLearn?
@@ -123,9 +129,32 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-4xl mx-auto">
-            <Feature icon={<BookOpen className="text-blue-900 w-8 h-8 md:w-10 md:h-10" />} title="NCERT Focused" desc="Strictly based on NCERT syllabus." aos="fade-up" />
-            <Feature icon={<CheckCircle className="text-green-600 w-8 h-8 md:w-10 md:h-10" />} title="Solved Questions" desc="Step-by-step easy solutions." aos="fade-up" delay="150" />
-            <Feature icon={<GraduationCap className="text-purple-900 w-8 h-8 md:w-10 md:h-10" />} title="Student Friendly" desc="Simple language & clean UI." aos="fade-up" delay="300" />
+            <Feature
+              icon={
+                <BookOpen className="text-blue-900 w-8 h-8 md:w-10 md:h-10" />
+              }
+              title="NCERT Focused"
+              desc="Strictly based on NCERT syllabus."
+              aos="fade-up"
+            />
+            <Feature
+              icon={
+                <CheckCircle className="text-green-600 w-8 h-8 md:w-10 md:h-10" />
+              }
+              title="Solved Questions"
+              desc="Step-by-step easy solutions."
+              aos="fade-up"
+              delay="150"
+            />
+            <Feature
+              icon={
+                <GraduationCap className="text-purple-900 w-8 h-8 md:w-10 md:h-10" />
+              }
+              title="Student Friendly"
+              desc="Simple language & clean UI."
+              aos="fade-up"
+              delay="300"
+            />
           </div>
         </div>
       </section>

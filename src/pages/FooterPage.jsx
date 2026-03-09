@@ -238,7 +238,7 @@ export default function FooterPage() {
             <p>
               Founded & Developed by{" "}
               <Link
-                to="/founder"
+                to="/about-founder"
                 className="text-white hover:text-blue-500 transition-colors font-medium"
               >
                 Aasif Noor

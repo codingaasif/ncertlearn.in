@@ -75,7 +75,7 @@ function Layout() {
             <Route path="/quiz/class/:classId" element={<TakeQuiz />} />
             <Route path="/notes" element={<NotesPage />} />
             <Route path="/progress" element={<Progress />} />
-            <Route path="/founder" element={<FounderPage />} />
+            <Route path="/about-founder" element={<FounderPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/cookies-policy" element={<CookiesPolicy />} />
             <Route
