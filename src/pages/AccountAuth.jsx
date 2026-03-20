@@ -1,9 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { FaGoogle, FaMobileAlt, FaEnvelope } from "react-icons/fa";
 import { UserCircle } from "lucide-react";
 import { useNavigate } from "react-router";
-import AOS from "aos";
-import "aos/dist/aos.css";
 
 export default function AccountAuth() {
   const [authMode, setAuthMode] = useState("login");
@@ -21,32 +19,35 @@ export default function AccountAuth() {
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
 
-  // ✅ AOS init
-  useEffect(() => {
-    AOS.init({
-      duration: 800,
-      easing: "ease-out-cubic",
-      once: true,
-    });
-  }, []);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
   const handleSendOtp = async () => {
-    if (!formData.mobile) {
-      setMessage("Please enter your mobile number.");
+    if (!formData.mobile || formData.mobile.length < 10) {
+      setMessage("Please enter a valid 10-digit mobile number.");
       return;
     }
     setLoading(true);
     setMessage("");
 
+    // Simulate OTP sending
     await new Promise((res) => setTimeout(res, 1000));
     setOtpSent(true);
     setLoading(false);
     setMessage("OTP sent successfully!");
+  };
+
+  const handleGoogleLogin = () => {
+    setLoading(true);
+    setMessage("");
+    // Simulate Google login
+    setTimeout(() => {
+      setLoading(false);
+      setMessage("Google login successful! Redirecting...");
+      setTimeout(() => navigate("/dashboard"), 1500);
+    }, 1000);
   };
 
   const handleSubmit = async (e) => {
@@ -56,13 +57,27 @@ export default function AccountAuth() {
 
     await new Promise((res) => setTimeout(res, 1000));
 
-    setMessage(
-      loginMethod === "mobile"
-        ? "OTP verified successfully!"
-        : authMode === "signup"
-        ? "Account created successfully!"
-        : "Logged in successfully!"
-    );
+    if (loginMethod === "mobile") {
+      if (!formData.otp) {
+        setMessage("Please enter the OTP.");
+        setLoading(false);
+        return;
+      }
+      setMessage("OTP verified successfully! Redirecting...");
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 1500);
+    } else if (authMode === "signup") {
+      setMessage("Account created successfully! Redirecting...");
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 1500);
+    } else {
+      setMessage("Logged in successfully! Redirecting...");
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 1500);
+    }
 
     setFormData({
       name: "",
@@ -76,19 +91,10 @@ export default function AccountAuth() {
   };
 
   return (
-    <div
-      className="bg-gray-50 flex items-start justify-center px-4 py-5 lg:py-8 mt-16"
-      data-aos="fade-up"
-    >
-      <div
-        className="w-full max-w-md bg-white rounded-2xl shadow-lg hover:shadow-xl transition p-6 sm:p-8"
-        data-aos="zoom-in"
-      >
+    <div className="bg-gray-50 flex items-start justify-center px-4 py-5 lg:py-8 mt-16">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg hover:shadow-xl transition p-6 sm:p-8">
         {/* Header */}
-        <div
-          className="flex items-center gap-3 mb-4"
-          data-aos="fade-right"
-        >
+        <div className="flex items-center gap-3 mb-4">
           <div className="p-2 bg-blue-100 rounded-full">
             <UserCircle className="text-blue-900 w-6 h-6" />
           </div>
@@ -97,20 +103,16 @@ export default function AccountAuth() {
           </h2>
         </div>
 
-        <p
-          className="text-sm text-gray-500 mb-5"
-          data-aos="fade-left"
-        >
+        <p className="text-sm text-gray-500 mb-5">
           Access your NCERT learning dashboard
         </p>
 
         {/* Message */}
         {message && (
           <p
-            data-aos="fade-down"
             className={`mb-4 text-sm text-center rounded-lg py-2 px-3
               ${
-                message.includes("success")
+                message.includes("success") || message.includes("verified")
                   ? "bg-green-50 text-green-700 border border-green-200"
                   : "bg-red-50 text-red-700 border border-red-200"
               }`}
@@ -121,31 +123,46 @@ export default function AccountAuth() {
 
         {/* Login Method Tabs */}
         {authMode === "login" && (
-          <div
-            className="grid grid-cols-3 gap-2 mb-5"
-            data-aos="fade-up"
-          >
-            {[
-              { id: "email", icon: <FaEnvelope />, label: "Email" },
-              { id: "google", icon: <FaGoogle />, label: "Google" },
-              { id: "mobile", icon: <FaMobileAlt />, label: "Mobile" },
-            ].map((item, i) => (
-              <button
-                key={item.id}
-                onClick={() => setLoginMethod(item.id)}
-                data-aos="zoom-in"
-                data-aos-delay={i * 80}
-                className={`flex flex-col items-center justify-center py-2 rounded-lg text-sm
-                  ${
-                    loginMethod === item.id
-                      ? "bg-blue-900 text-white shadow"
-                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                  } transition`}
-              >
-                {item.icon}
-                {item.label}
-              </button>
-            ))}
+          <div className="grid grid-cols-3 gap-2 mb-5">
+            <button
+              onClick={() => setLoginMethod("email")}
+              className={`flex flex-col items-center justify-center py-2 rounded-lg text-sm
+                ${
+                  loginMethod === "email"
+                    ? "bg-blue-900 text-white shadow"
+                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                } transition`}
+            >
+              <FaEnvelope />
+              <span>Email</span>
+            </button>
+
+            <button
+              onClick={handleGoogleLogin}
+              disabled={loading}
+              className={`flex flex-col items-center justify-center py-2 rounded-lg text-sm
+                ${
+                  loginMethod === "google"
+                    ? "bg-red-600 text-white shadow"
+                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                } transition disabled:opacity-50`}
+            >
+              <FaGoogle />
+              <span>Google</span>
+            </button>
+
+            <button
+              onClick={() => setLoginMethod("mobile")}
+              className={`flex flex-col items-center justify-center py-2 rounded-lg text-sm
+                ${
+                  loginMethod === "mobile"
+                    ? "bg-green-600 text-white shadow"
+                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                } transition`}
+            >
+              <FaMobileAlt />
+              <span>Mobile</span>
+            </button>
           </div>
         )}
 
@@ -153,7 +170,6 @@ export default function AccountAuth() {
         <form onSubmit={handleSubmit} className="space-y-4 w-full">
           {authMode === "signup" && (
             <input
-              data-aos="fade-up"
               type="text"
               name="name"
               placeholder="Full Name"
@@ -168,7 +184,6 @@ export default function AccountAuth() {
           {(loginMethod === "email" || authMode === "signup") && (
             <>
               <input
-                data-aos="fade-up"
                 type="email"
                 name="email"
                 placeholder="Email Address"
@@ -179,8 +194,6 @@ export default function AccountAuth() {
                            focus:ring-1 focus:ring-blue-900 focus:outline-none"
               />
               <input
-                data-aos="fade-up"
-                data-aos-delay="100"
                 type="password"
                 name="password"
                 placeholder="Password"
@@ -192,10 +205,7 @@ export default function AccountAuth() {
               />
 
               {authMode === "login" && (
-                <div
-                  className="flex items-center justify-between text-sm"
-                  data-aos="fade-in"
-                >
+                <div className="flex items-center justify-between text-sm">
                   <label className="flex items-center gap-2 text-gray-600 cursor-pointer">
                     <input
                       type="checkbox"
@@ -220,19 +230,16 @@ export default function AccountAuth() {
           {loginMethod === "mobile" && (
             <>
               <input
-                data-aos="fade-up"
                 type="tel"
                 name="mobile"
                 placeholder="Mobile Number"
                 value={formData.mobile}
                 onChange={handleChange}
+                maxLength="10"
                 className="w-full border rounded-lg px-4 py-2
                            focus:ring-1 focus:ring-blue-900 focus:outline-none"
               />
-              <div
-                className="flex gap-2"
-                data-aos="fade-up"
-              >
+              <div className="flex gap-2">
                 <input
                   type="text"
                   name="otp"
@@ -246,11 +253,11 @@ export default function AccountAuth() {
                 <button
                   type="button"
                   onClick={handleSendOtp}
-                  disabled={loading}
+                  disabled={loading || !formData.mobile || formData.mobile.length !== 10}
                   className="px-4 bg-blue-900 text-white rounded-lg
                              hover:bg-blue-800 transition cursor-pointer disabled:opacity-60"
                 >
-                  {otpSent ? "Resend" : "Send OTP"}
+                  {loading ? "Sending..." : otpSent ? "Resend" : "Send OTP"}
                 </button>
               </div>
             </>
@@ -258,11 +265,8 @@ export default function AccountAuth() {
 
           {!(loginMethod === "mobile" && !otpSent) && (
             <button
-              data-aos="zoom-in"
-              data-aos-delay="200"
               type="submit"
               disabled={loading}
-              onClick={() => navigate("/")}
               className="w-full bg-blue-900 text-white py-2.5 rounded-lg
                          hover:bg-blue-800 hover:shadow transition
                          disabled:opacity-60 cursor-pointer"
@@ -279,17 +283,16 @@ export default function AccountAuth() {
         </form>
 
         {/* Toggle */}
-        <p
-          className="mt-5 text-center text-sm text-gray-600"
-          data-aos="fade-up"
-        >
+        <p className="mt-5 text-center text-sm text-gray-600">
           {authMode === "login"
-            ? "Don’t have an account?"
+            ? "Don't have an account?"
             : "Already have an account?"}
           <button
-            onClick={() =>
-              setAuthMode(authMode === "login" ? "signup" : "login")
-            }
+            onClick={() => {
+              setAuthMode(authMode === "login" ? "signup" : "login");
+              setMessage("");
+              setOtpSent(false);
+            }}
             className="ml-1 text-blue-900 font-semibold hover:underline cursor-pointer"
           >
             {authMode === "login" ? "Sign Up" : "Login"}
