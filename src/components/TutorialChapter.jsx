@@ -1,11 +1,17 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 import { useParams, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../pages/Navbar";
 import ncertContent from "../data/ncertData/index"; // Ensure this path is correct
+import LazyImage from "../components/LazyImage";
+import Loader from "../components/Loader";
+import SkeletonLoader from "../components/SkeletonLoader";
 
 export default function TutorialChapter() {
   const { classId, subjectId, chapterId } = useParams();
   const navigate = useNavigate();
+  const [isPageLoading, setIsPageLoading] = useState(true);
+  const [contentLoaded, setContentLoaded] = useState(false);
 
   console.log("Full ncertContent:", ncertContent);
   console.log("URL Params:", { classId, subjectId, chapterId });
@@ -34,6 +40,23 @@ export default function TutorialChapter() {
 
   const chapter = chapters[currentChapterIndex];
   console.log("Found chapter:", chapter);
+
+  // Simulate loading when chapter changes
+  useEffect(() => {
+    setIsPageLoading(true);
+    setContentLoaded(false);
+    
+    // Simulate initial page load
+    const timer = setTimeout(() => {
+      setIsPageLoading(false);
+      // Simulate content loading after page load
+      setTimeout(() => {
+        setContentLoaded(true);
+      }, 500);
+    }, 800);
+
+    return () => clearTimeout(timer);
+  }, [classId, subjectId, chapterId]);
 
   // Handle navigation to next/previous chapter
   const goToNextChapter = () => {
@@ -71,6 +94,12 @@ export default function TutorialChapter() {
     return () => window.removeEventListener("keydown", handleKeyPress);
   }, [currentChapterIndex, chapters.length]);
 
+  // Show full page loader while page is loading
+  if (isPageLoading) {
+    return <Loader isLoading={true} loadingText="Loading Chapter..." type="page" />;
+  }
+
+  // Show chapter not found
   if (!chapter) {
     return (
       <div>
@@ -101,6 +130,18 @@ export default function TutorialChapter() {
     );
   }
 
+  // Show skeleton loader while content is loading
+  if (!contentLoaded) {
+    return (
+      <div>
+        <Navbar />
+        <div className="pt-24 max-w-6xl mx-auto px-3 sm:px-4 md:px-6 pb-8">
+          <SkeletonLoader />
+        </div>
+      </div>
+    );
+  }
+
   const { title, content } = chapter;
 
   // Format subject name for display
@@ -112,12 +153,29 @@ export default function TutorialChapter() {
       .join(" ");
   };
 
-  // Helper function to render content based on type
-  const renderContent = (content) => {
+  // Helper function to render content with lazy loading for images
+  const renderContentWithLazyImages = (content) => {
     if (typeof content === "string") {
+      // Check if the string contains image URLs and replace with LazyImage
+      const imageRegex = /(https?:\/\/[^\s]+\.(jpg|jpeg|png|gif|webp))/gi;
+      const parts = content.split(imageRegex);
+      
       return (
         <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
-          {content}
+          {parts.map((part, index) => {
+            if (part && part.match(imageRegex)) {
+              return (
+                <LazyImage
+                  key={index}
+                  src={part}
+                  alt="Content image"
+                  className="my-2 max-w-full rounded-lg"
+                  placeholderSrc="/placeholder-image.jpg"
+                />
+              );
+            }
+            return part;
+          })}
         </p>
       );
     } else if (Array.isArray(content)) {
@@ -125,7 +183,16 @@ export default function TutorialChapter() {
         <ul className="list-disc pl-4 sm:pl-5 space-y-1">
           {content.map((item, idx) => (
             <li key={idx} className="text-gray-700 text-sm sm:text-base">
-              {item}
+              {typeof item === "string" && item.match(/(https?:\/\/[^\s]+\.(jpg|jpeg|png|gif|webp))/i) ? (
+                <LazyImage
+                  src={item}
+                  alt={`Content image ${idx + 1}`}
+                  className="my-2 max-w-full rounded-lg"
+                  placeholderSrc="/placeholder-image.jpg"
+                />
+              ) : (
+                item
+              )}
             </li>
           ))}
         </ul>
@@ -168,7 +235,7 @@ export default function TutorialChapter() {
                 <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-blue-800 border-b pb-2">
                   Introduction
                 </h2>
-                {renderContent(content.introduction)}
+                {renderContentWithLazyImages(content.introduction)}
               </div>
             )}
 
@@ -187,7 +254,7 @@ export default function TutorialChapter() {
                     {/* Section Content */}
                     {section.content && (
                       <div className="text-gray-700 mb-3 sm:mb-4 leading-relaxed text-sm sm:text-base">
-                        {renderContent(section.content)}
+                        {renderContentWithLazyImages(section.content)}
                       </div>
                     )}
 
@@ -203,7 +270,16 @@ export default function TutorialChapter() {
                               key={idx}
                               className="text-gray-700 text-sm sm:text-base"
                             >
-                              {example}
+                              {typeof example === "string" && example.match(/(https?:\/\/[^\s]+\.(jpg|jpeg|png|gif|webp))/i) ? (
+                                <LazyImage
+                                  src={example}
+                                  alt={`Example ${idx + 1}`}
+                                  className="my-2 max-w-full rounded-lg"
+                                  placeholderSrc="/placeholder-image.jpg"
+                                />
+                              ) : (
+                                example
+                              )}
                             </li>
                           ))}
                         </ul>
@@ -246,13 +322,32 @@ export default function TutorialChapter() {
                         <div key={qIdx} className="mb-3 sm:mb-4 last:mb-0">
                           <p className="text-gray-800 mb-1 sm:mb-2 text-sm sm:text-base">
                             <span className="font-medium">Q{qIdx + 1}:</span>{" "}
-                            {question}
+                            {typeof question === "string" && question.match(/(https?:\/\/[^\s]+\.(jpg|jpeg|png|gif|webp))/i) ? (
+                              <LazyImage
+                                src={question}
+                                alt={`Question ${qIdx + 1}`}
+                                className="my-2 max-w-full rounded-lg"
+                                placeholderSrc="/placeholder-image.jpg"
+                              />
+                            ) : (
+                              question
+                            )}
                           </p>
                           {exercise.answers && exercise.answers[qIdx] && (
                             <div className="ml-2 sm:ml-4 mt-1 p-2 sm:p-3 bg-green-50 rounded border border-green-200">
                               <p className="text-green-800 text-sm sm:text-base">
                                 <span className="font-medium">Answer:</span>{" "}
-                                {exercise.answers[qIdx]}
+                                {typeof exercise.answers[qIdx] === "string" && 
+                                 exercise.answers[qIdx].match(/(https?:\/\/[^\s]+\.(jpg|jpeg|png|gif|webp))/i) ? (
+                                  <LazyImage
+                                    src={exercise.answers[qIdx]}
+                                    alt={`Answer ${qIdx + 1}`}
+                                    className="my-2 max-w-full rounded-lg"
+                                    placeholderSrc="/placeholder-image.jpg"
+                                  />
+                                ) : (
+                                  exercise.answers[qIdx]
+                                )}
                               </p>
                             </div>
                           )}
@@ -262,25 +357,6 @@ export default function TutorialChapter() {
                 ))}
               </div>
             )}
-
-            {/* Activities */}
-            {/* {content.activities && content.activities.length > 0 && (
-              <div className="mb-6 sm:mb-8">
-                <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-blue-800 border-b pb-2">
-                  Activities
-                </h2>
-                <ul className="list-disc pl-4 sm:pl-5 space-y-1 sm:space-y-2">
-                  {content.activities.map((activity, index) => (
-                    <li
-                      key={index}
-                      className="text-gray-700 leading-relaxed text-sm sm:text-base"
-                    >
-                      {activity}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )} */}
 
             {/* Activities */}
             {content.activities && content.activities.length > 0 && (
