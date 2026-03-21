@@ -51,6 +51,7 @@ const FounderPage = lazy(() => import("./pages/FounderPage"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const CookiesPolicy = lazy(() => import("./pages/CookiesPolicy"));
 const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions"));
+const CompetitiveExams = lazy(() => import("./components/CompetitiveExams"));
 
 // Error Boundary Component
 class ErrorBoundary extends React.Component {
@@ -128,6 +129,7 @@ function Layout() {
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/cookies-policy" element={<CookiesPolicy />} />
               <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+              <Route path="/competitive-exams" element={<CompetitiveExams />} />
               <Route path="*" element={<PageNotFound />} />
             </Routes>
           </Suspense>

@@ -22,7 +22,6 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 export default function FooterPage() {
-
   useEffect(() => {
     AOS.init({
       duration: 800,
@@ -78,12 +77,8 @@ export default function FooterPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-10 mb-10">
-          
           {/* Brand */}
-          <div
-            className="lg:col-span-2 space-y-4"
-            data-aos="fade-right"
-          >
+          <div className="lg:col-span-2 space-y-4" data-aos="fade-right">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center shrink-0">
                 <img
@@ -110,20 +105,22 @@ export default function FooterPage() {
             </p>
 
             <div className="flex flex-wrap gap-3 pt-2">
-              {[{ icon: FaFacebookF, color: "hover:bg-blue-600" },
+              {[
+                { icon: FaFacebookF, color: "hover:bg-blue-600" },
                 { icon: FaInstagram, color: "hover:bg-pink-600" },
                 { icon: FaYoutube, color: "hover:bg-red-600" },
                 { icon: FaWhatsapp, color: "hover:bg-green-600" },
-                { icon: FaLinkedin, color: "hover:bg-blue-700" }].map((social, idx) => (
-                  <a
-                    key={idx}
-                    href="#"
-                    className={`w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center text-gray-300 ${social.color} hover:text-white transition-colors`}
-                    data-aos="zoom-in"
-                    data-aos-delay={idx * 100}
-                  >
-                    <social.icon size={18} />
-                  </a>
+                { icon: FaLinkedin, color: "hover:bg-blue-700" },
+              ].map((social, idx) => (
+                <a
+                  key={idx}
+                  href="#"
+                  className={`w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center text-gray-300 ${social.color} hover:text-white transition-colors`}
+                  data-aos="zoom-in"
+                  data-aos-delay={idx * 100}
+                >
+                  <social.icon size={18} />
+                </a>
               ))}
             </div>
           </div>
@@ -132,20 +129,25 @@ export default function FooterPage() {
           <div data-aos="fade-up">
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-3">
-              {[{ path: "/dashboard", label: "Dashboard", icon: GraduationCap },
+              {[
+                { path: "/dashboard", label: "Dashboard", icon: GraduationCap },
                 { path: "/tutorials", label: "Tutorials", icon: BookOpen },
                 { path: "/exercises", label: "Exercises", icon: CheckCircle },
                 { path: "/progress", label: "Progress", icon: CheckCircle },
-                { path: "/notes", label: "Notes", icon: BookOpen }].map((link, idx) => (
-                  <li key={idx}>
-                    <Link
-                      to={link.path}
-                      className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors group"
-                    >
-                      <link.icon size={16} className="group-hover:text-blue-400" />
-                      {link.label}
-                    </Link>
-                  </li>
+                { path: "/notes", label: "Notes", icon: BookOpen },
+              ].map((link, idx) => (
+                <li key={idx}>
+                  <Link
+                    to={link.path}
+                    className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors group"
+                  >
+                    <link.icon
+                      size={16}
+                      className="group-hover:text-blue-400"
+                    />
+                    {link.label}
+                  </Link>
+                </li>
               ))}
             </ul>
           </div>
@@ -248,10 +250,7 @@ export default function FooterPage() {
         </div>
 
         {/* Disclaimer */}
-        <div
-          className="mt-8 p-4 bg-gray-800/50 rounded-lg"
-          data-aos="fade-up"
-        >
+        <div className="mt-8 p-4 bg-gray-800/50 rounded-lg" data-aos="fade-up">
           <p className="text-xs text-gray-400 text-center leading-relaxed">
             Disclaimer: This platform is an independent educational resource and
             is not officially affiliated with NCERT. All materials are for
@@ -263,7 +262,7 @@ export default function FooterPage() {
       {/* Back to Top */}
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 w-11 h-11 sm:w-12 sm:h-12 bg-blue-900 hover:bg-blue-800 text-white rounded-full shadow-lg flex items-center justify-center transition hover:scale-110 z-50 cursor-pointer"
+        className="hidden lg:flex fixed bottom-6 right-6 w-12 h-12 bg-blue-900 hover:bg-blue-800 text-white rounded-full shadow-lg items-center justify-center transition hover:scale-110 z-50 cursor-pointer"
         aria-label="Back to top"
         data-aos="zoom-in"
       >

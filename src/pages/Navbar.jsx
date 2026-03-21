@@ -10,6 +10,7 @@ export default function Navbar() {
   const navItems = [
     { to: "/tutorials", label: "Tutorials" },
     { to: "/exercises", label: "Exercises" },
+    {to: "/competitive-exams", label: "Competitive" },
     { to: "/dashboard", label: "Dashboard" },
     { to: "/questions", label: "Questions" },
     { to: "/contact", label: "Contact" },
