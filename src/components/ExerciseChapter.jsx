@@ -2,7 +2,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import exerciseContent from "../data/exerciseData";
-import Loader from "../components/Loader";
 import LazyImage from "../components/LazyImage";
 
 export default function ExerciseChapter() {
@@ -28,7 +27,7 @@ export default function ExerciseChapter() {
 
   // Show full page loader while page is loading
   if (isPageLoading) {
-    return <Loader isLoading={true} loadingText="Loading Exercises..." type="page" />;
+    return <LoadingSpinner />;
   }
 
   // Show exercise not found
@@ -106,7 +105,7 @@ export default function ExerciseChapter() {
                 {/* Question */}
                 <div className="mb-4">
                   <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-semibold text-sm">
+                    <div className="shrink-0 w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-semibold text-sm">
                       {index + 1}
                     </div>
                     <div className="flex-1">
