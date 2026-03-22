@@ -1,41 +1,14 @@
 import { Link } from "react-router-dom";
 import { BookOpen, GraduationCap, CheckCircle, Sparkles } from "lucide-react";
-import { useEffect, useState } from "react";
 import LazyImage from "../components/LazyImage";
-import Loader from "../components/Loader";
-import SkeletonLoader from "../components/SkeletonLoader";
+// import Loader from "../components/Loader";
 
 export default function HomePage() {
-  const [isPageLoading, setIsPageLoading] = useState(true);
-  const [contentLoaded, setContentLoaded] = useState(false);
-
-  useEffect(() => {
-    // Simulate initial page load
-    const timer = setTimeout(() => {
-      setIsPageLoading(false);
-      // Simulate content loading after page load
-      setTimeout(() => {
-        setContentLoaded(true);
-      }, 500);
-    }, 1500);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Show full page loader while page is loading
-  if (isPageLoading) {
-    return <Loader isLoading={true} loadingText="Loading NCERT Resources..." type="page" />;
-  }
-
-  // Show skeleton loader while content is loading
-  if (!contentLoaded) {
-    return <SkeletonLoader />;
-  }
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-900 to-indigo-900 text-white pt-16 overflow-hidden">
+      <section className="bg-linear-to-br from-blue-900 to-indigo-900 text-white pt-16 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20 grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Content */}
           <div className="text-center md:text-left">

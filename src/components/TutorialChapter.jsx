@@ -4,14 +4,12 @@ import { useEffect, useState } from "react";
 import Navbar from "../pages/Navbar";
 import ncertContent from "../data/ncertData/index"; // Ensure this path is correct
 import LazyImage from "../components/LazyImage";
-import Loader from "../components/Loader";
-import SkeletonLoader from "../components/SkeletonLoader";
+import  LoadingSpinner  from "./LoadingSpinner";
 
 export default function TutorialChapter() {
   const { classId, subjectId, chapterId } = useParams();
   const navigate = useNavigate();
   const [isPageLoading, setIsPageLoading] = useState(true);
-  const [contentLoaded, setContentLoaded] = useState(false);
 
   console.log("Full ncertContent:", ncertContent);
   console.log("URL Params:", { classId, subjectId, chapterId });
@@ -44,14 +42,12 @@ export default function TutorialChapter() {
   // Simulate loading when chapter changes
   useEffect(() => {
     setIsPageLoading(true);
-    setContentLoaded(false);
     
     // Simulate initial page load
     const timer = setTimeout(() => {
       setIsPageLoading(false);
       // Simulate content loading after page load
       setTimeout(() => {
-        setContentLoaded(true);
       }, 500);
     }, 800);
 
@@ -96,7 +92,7 @@ export default function TutorialChapter() {
 
   // Show full page loader while page is loading
   if (isPageLoading) {
-    return <Loader isLoading={true} loadingText="Loading Chapter..." type="page" />;
+    return <LoadingSpinner />;
   }
 
   // Show chapter not found
@@ -125,18 +121,6 @@ export default function TutorialChapter() {
               Chapter IDs available: {chapters.map((ch) => ch?.id).join(", ")}
             </p>
           </div>
-        </div>
-      </div>
-    );
-  }
-
-  // Show skeleton loader while content is loading
-  if (!contentLoaded) {
-    return (
-      <div>
-        <Navbar />
-        <div className="pt-24 max-w-6xl mx-auto px-3 sm:px-4 md:px-6 pb-8">
-          <SkeletonLoader />
         </div>
       </div>
     );

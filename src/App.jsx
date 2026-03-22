@@ -2,29 +2,9 @@ import React from "react";
 import "./App.css";
 import "./index.css";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import ScrollToTop from "./hooks/ScrollToTop";
-
-// Simple inline loading spinner
-const PageLoadingSpinner = () => {
-  return (
-    <div className="fixed inset-0 bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900 flex items-center justify-center z-50">
-      <div className="text-center">
-        <div className="mb-8 animate-bounce">
-          <svg className="w-20 h-20 text-white mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l9-5-9-5-9 5 9 5z"></path>
-          </svg>
-        </div>
-        <div className="flex justify-center space-x-3 mb-6">
-          <div className="w-4 h-4 bg-white rounded-full animate-pulse"></div>
-          <div className="w-4 h-4 bg-white rounded-full animate-pulse" style={{ animationDelay: "0.2s" }}></div>
-          <div className="w-4 h-4 bg-white rounded-full animate-pulse" style={{ animationDelay: "0.4s" }}></div>
-        </div>
-        <p className="text-white text-xl font-semibold">Loading NCERTLearn...</p>
-      </div>
-    </div>
-  );
-};
+import LoadingSpinner from "./components/LoadingSpinner";
 
 // Lazy load all page components
 const Dashboard = lazy(() => import("./pages/Dashboard"));
@@ -64,15 +44,24 @@ class ErrorBoundary extends React.Component {
     return { hasError: true };
   }
 
+  componentDidCatch(error, errorInfo) {
+    console.error("Error caught by boundary:", error, errorInfo);
+  }
+
   render() {
     if (this.state.hasError) {
       return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50">
           <div className="text-center p-8">
-            <h2 className="text-2xl font-bold text-red-600 mb-4">Something went wrong</h2>
+            <h2 className="text-2xl font-bold text-red-600 mb-4">
+              Something went wrong
+            </h2>
+            <p className="text-gray-600 mb-4">
+              Please try refreshing the page
+            </p>
             <button
               onClick={() => window.location.reload()}
-              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
             >
               Reload Page
             </button>
@@ -87,6 +76,7 @@ class ErrorBoundary extends React.Component {
 function Layout() {
   const location = useLocation();
   const { pathname } = location;
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   const showSidebar =
     pathname === "/dashboard" ||
@@ -94,28 +84,52 @@ function Layout() {
     pathname === "/notes" ||
     pathname.startsWith("/quiz/class/");
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsInitialLoad(false);
+    }, 2000);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <ErrorBoundary>
       <ScrollToTop />
-      <Suspense fallback={<PageLoadingSpinner />}>
+      {/* Only show Navbar with suspense */}
+      <Suspense fallback={isInitialLoad ? <LoadingSpinner minDisplayTime={2000} /> : null}>
         <Navbar />
       </Suspense>
       <div className="flex">
         {showSidebar && (
-          <Suspense fallback={<div className="w-64 bg-gray-50 animate-pulse"></div>}>
+          <Suspense fallback={<div className="w-64 bg-gray-50 animate-pulse h-screen"></div>}>
             <SidebarMenu />
           </Suspense>
         )}
         <main className="flex-1">
-          <Suspense fallback={<PageLoadingSpinner />}>
+          <Suspense fallback={isInitialLoad ? <LoadingSpinner minDisplayTime={2000} /> : null}>
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/tutorials/class/:classId" element={<TutorialClass />} />
-              <Route path="/tutorials/class/:classId/:subjectId" element={<TutorialSubject />} />
-              <Route path="/tutorials/class/:classId/:subjectId/chapter/:chapterId" element={<TutorialChapter />} />
-              <Route path="/exercises/class/:classId" element={<ExerciseClass />} />
-              <Route path="/exercises/class/:classId/:subjectId/chapter/:chapterId" element={<ExerciseChapter />} />
+              <Route
+                path="/tutorials/class/:classId"
+                element={<TutorialClass />}
+              />
+              <Route
+                path="/tutorials/class/:classId/:subjectId"
+                element={<TutorialSubject />}
+              />
+              <Route
+                path="/tutorials/class/:classId/:subjectId/chapter/:chapterId"
+                element={<TutorialChapter />}
+              />
+              <Route
+                path="/exercises/class/:classId"
+                element={<ExerciseClass />}
+              />
+              <Route
+                path="/exercises/class/:classId/:subjectId/chapter/:chapterId"
+                element={<ExerciseChapter />}
+              />
               <Route path="/account-auth" element={<AccountAuth />} />
               <Route path="/tutorials" element={<ClassCards />} />
               <Route path="/exercises" element={<ExerciseCards />} />
@@ -128,7 +142,10 @@ function Layout() {
               <Route path="/about-founder" element={<FounderPage />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/cookies-policy" element={<CookiesPolicy />} />
-              <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+              <Route
+                path="/terms-and-conditions"
+                element={<TermsAndConditions />}
+              />
               <Route path="/competitive-exams" element={<CompetitiveExams />} />
               <Route path="*" element={<PageNotFound />} />
             </Routes>
@@ -145,16 +162,6 @@ function Layout() {
 }
 
 function App() {
-  useEffect(() => {
-    const preloadCriticalComponents = async () => {
-      if (typeof window !== 'undefined') {
-        await import("./pages/HomePage");
-        await import("./pages/Navbar");
-      }
-    };
-    preloadCriticalComponents();
-  }, []);
-
   return (
     <BrowserRouter>
       <Layout />

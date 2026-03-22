@@ -3,13 +3,11 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import exerciseContent from "../data/exerciseData";
 import Loader from "../components/Loader";
-import SkeletonLoader from "../components/SkeletonLoader";
 import LazyImage from "../components/LazyImage";
 
 export default function ExerciseChapter() {
   const { classId, subjectId, chapterId } = useParams();
   const [isPageLoading, setIsPageLoading] = useState(true);
-  const [contentLoaded, setContentLoaded] = useState(false);
 
   const chapter =
     exerciseContent[classId]?.[subjectId]?.chapters.find(
@@ -19,15 +17,10 @@ export default function ExerciseChapter() {
   // Simulate loading when chapter changes
   useEffect(() => {
     setIsPageLoading(true);
-    setContentLoaded(false);
     
     // Simulate initial page load
     const timer = setTimeout(() => {
       setIsPageLoading(false);
-      // Simulate content loading after page load
-      setTimeout(() => {
-        setContentLoaded(true);
-      }, 500);
     }, 800);
 
     return () => clearTimeout(timer);
@@ -52,11 +45,6 @@ export default function ExerciseChapter() {
         </div>
       </div>
     );
-  }
-
-  // Show skeleton loader while content is loading
-  if (!contentLoaded) {
-    return <SkeletonLoader />;
   }
 
   // Helper function to render content with lazy loading for images
