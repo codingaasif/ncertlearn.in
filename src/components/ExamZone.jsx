@@ -24,11 +24,25 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
+// Import AOS and its CSS
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
+
 export default function CompetitiveExams() {
   const [selectedExam, setSelectedExam] = useState("upsc");
   const [activeTab, setActiveTab] = useState("overview");
   const [selectedTopic, setSelectedTopic] = useState(null);
   const [showModal, setShowModal] = useState(false);
+
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 50,
+    });
+  }, []);
 
   const exams = {
     upsc: {
@@ -360,19 +374,19 @@ export default function CompetitiveExams() {
 
   return (
     <>
-      <div className="min-h-screen bg-gray-50 pt-16 sm:pt-20">
+      <div className="bg-gray-50 pt-16 sm:pt-16">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-purple-900 text-white py-8 sm:py-12 lg:py-16">
+        <div className="bg-linear-to-r from-blue-900 via-indigo-900 to-purple-900 text-white py-8 sm:py-12 lg:py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 mb-3 sm:mb-4">
+            <div className="text-center" data-aos="fade-up">
+              <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 mb-3 sm:mb-4" data-aos="zoom-in" data-aos-delay="100">
                 <Trophy className="w-3 h-3 sm:w-4 sm:h-4" />
                 <span className="text-xs sm:text-sm font-medium">Competitive Exams</span>
               </div>
-              <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-2 sm:mb-4 px-2">
+              <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-2 sm:mb-4 px-2" data-aos="fade-up" data-aos-delay="200">
                 Ace Your Competitive Exams
               </h1>
-              <p className="text-sm sm:text-base lg:text-lg text-blue-100 max-w-2xl mx-auto px-4">
+              <p className="text-sm sm:text-base lg:text-lg text-blue-100 max-w-2xl mx-auto px-4" data-aos="fade-up" data-aos-delay="300">
                 Comprehensive preparation resources for UPSC, SSC, Banking, Railways, and more
               </p>
             </div>
@@ -382,7 +396,7 @@ export default function CompetitiveExams() {
         <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 py-6 sm:py-8 lg:py-12">
           {/* Exam Selector */}
           <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 mb-6 sm:mb-8">
-            {Object.entries(exams).map(([key, exam]) => (
+            {Object.entries(exams).map(([key, exam], index) => (
               <button
                 key={key}
                 onClick={() => {
@@ -394,6 +408,8 @@ export default function CompetitiveExams() {
                     ? `bg-linear-to-r ${exam.color} text-white shadow-lg scale-105`
                     : "bg-white text-gray-700 hover:shadow-md border border-gray-100"
                 }`}
+                data-aos="fade-up"
+                data-aos-delay={index * 50}
               >
                 <div className="flex justify-center mb-1 sm:mb-2">
                   <div className={`p-1.5 sm:p-2 rounded-lg ${selectedExam === key ? "bg-white/20" : exam.bgColor}`}>
@@ -406,7 +422,7 @@ export default function CompetitiveExams() {
           </div>
 
           {/* Main Content */}
-          <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden">
+          <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="400">
             {/* Exam Header */}
             <div className={`bg-gradient-to-r ${currentExam.color} p-4 sm:p-6 text-white`}>
               <div className="flex items-center gap-2 sm:gap-3 mb-1 sm:mb-2">
@@ -425,7 +441,7 @@ export default function CompetitiveExams() {
                   { id: "pattern", label: "Pattern", icon: <Target size={16} className="sm:w-[18px] sm:h-[18px]" /> },
                   { id: "resources", label: "Resources", icon: <Video size={16} className="sm:w-[18px] sm:h-[18px]" /> },
                   { id: "statistics", label: "Stats", icon: <BarChart size={16} className="sm:w-[18px] sm:h-[18px]" /> }
-                ].map((tab) => (
+                ].map((tab, index) => (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
@@ -434,6 +450,8 @@ export default function CompetitiveExams() {
                         ? "border-b-2 border-blue-600 text-blue-600"
                         : "text-gray-500 hover:text-gray-700"
                     }`}
+                    data-aos="fade-up"
+                    data-aos-delay={450 + index * 30}
                   >
                     {tab.icon}
                     <span className="hidden xs:inline">{tab.label}</span>
@@ -449,21 +467,21 @@ export default function CompetitiveExams() {
               {activeTab === "overview" && (
                 <div className="space-y-4 sm:space-y-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6">
-                    <div className="bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-5">
+                    <div className="bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-5" data-aos="fade-right">
                       <h3 className="font-semibold text-sm sm:text-lg mb-2 sm:mb-3 flex items-center gap-2">
                         <GraduationCap size={16} className="sm:w-5 sm:h-5 text-blue-600" />
                         Eligibility
                       </h3>
                       <p className="text-gray-700 text-xs sm:text-sm">{currentExam.eligibility}</p>
                     </div>
-                    <div className="bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-5">
+                    <div className="bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-5" data-aos="fade-left">
                       <h3 className="font-semibold text-sm sm:text-lg mb-2 sm:mb-3 flex items-center gap-2">
                         <Calendar size={16} className="sm:w-5 sm:h-5 text-blue-600" />
                         Exam Schedule
                       </h3>
                       <p className="text-gray-700 text-xs sm:text-sm">{currentExam.examDate}</p>
                     </div>
-                    <div className="bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-5">
+                    <div className="bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-5" data-aos="fade-right" data-aos-delay="100">
                       <h3 className="font-semibold text-sm sm:text-lg mb-2 sm:mb-3 flex items-center gap-2">
                         <Users size={16} className="sm:w-5 sm:h-5 text-blue-600" />
                         Stages
@@ -476,7 +494,7 @@ export default function CompetitiveExams() {
                         ))}
                       </div>
                     </div>
-                    <div className="bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-5">
+                    <div className="bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-5" data-aos="fade-left" data-aos-delay="100">
                       <h3 className="font-semibold text-sm sm:text-lg mb-2 sm:mb-3 flex items-center gap-2">
                         <Award size={16} className="sm:w-5 sm:h-5 text-blue-600" />
                         Vacancies
@@ -490,7 +508,7 @@ export default function CompetitiveExams() {
               {/* Syllabus Tab - Clickable topics */}
               {activeTab === "syllabus" && (
                 <div>
-                  <h3 className="font-semibold text-sm sm:text-lg mb-3 sm:mb-4 flex items-center gap-2">
+                  <h3 className="font-semibold text-sm sm:text-lg mb-3 sm:mb-4 flex items-center gap-2" data-aos="fade-right">
                     <FileText size={16} className="sm:w-5 sm:h-5 text-blue-600" />
                     Complete Syllabus (Click on any topic for study material)
                   </h3>
@@ -500,6 +518,8 @@ export default function CompetitiveExams() {
                         key={idx}
                         onClick={() => handleTopicClick(topic)}
                         className="flex items-center gap-1.5 sm:gap-2 p-2 sm:p-3 bg-gray-50 rounded-lg hover:bg-blue-50 hover:shadow-md transition-all group cursor-pointer text-left"
+                        data-aos="fade-up"
+                        data-aos-delay={idx * 50}
                       >
                         <ChevronRight size={12} className="sm:w-4 sm:h-4 text-blue-600 shrink-0 group-hover:translate-x-1 transition" />
                         <span className="text-gray-700 text-xs sm:text-sm group-hover:text-blue-600 transition">
@@ -514,18 +534,18 @@ export default function CompetitiveExams() {
               {/* Pattern Tab */}
               {activeTab === "pattern" && (
                 <div>
-                  <h3 className="font-semibold text-sm sm:text-lg mb-3 sm:mb-4 flex items-center gap-2">
+                  <h3 className="font-semibold text-sm sm:text-lg mb-3 sm:mb-4 flex items-center gap-2" data-aos="fade-right">
                     <Target size={16} className="sm:w-5 sm:h-5 text-blue-600" />
                     Detailed Exam Pattern
                   </h3>
                   <div className="space-y-3 sm:space-y-4">
-                    {Object.entries(currentExam.pattern).map(([stage, details]) => (
-                      <div key={stage} className="border-l-2 sm:border-l-4 border-blue-600 pl-2 sm:pl-4">
+                    {Object.entries(currentExam.pattern).map(([stage, details], idx) => (
+                      <div key={stage} className="border-l-2 sm:border-l-4 border-blue-600 pl-2 sm:pl-4" data-aos="fade-up" data-aos-delay={idx * 80}>
                         <h4 className="font-semibold text-gray-800 capitalize text-sm sm:text-base mb-1 sm:mb-2">{stage}</h4>
                         {Array.isArray(details) ? (
                           <ul className="list-disc list-inside space-y-0.5 sm:space-y-1 text-gray-600 text-xs sm:text-sm">
-                            {details.map((item, idx) => (
-                              <li key={idx}>{item}</li>
+                            {details.map((item, itemIdx) => (
+                              <li key={itemIdx}>{item}</li>
                             ))}
                           </ul>
                         ) : (
@@ -540,7 +560,7 @@ export default function CompetitiveExams() {
               {/* Resources Tab */}
               {activeTab === "resources" && (
                 <div>
-                  <h3 className="font-semibold text-sm sm:text-lg mb-3 sm:mb-4 flex items-center gap-2">
+                  <h3 className="font-semibold text-sm sm:text-lg mb-3 sm:mb-4 flex items-center gap-2" data-aos="fade-right">
                     <Video size={16} className="sm:w-5 sm:h-5 text-blue-600" />
                     Study Resources
                   </h3>
@@ -550,6 +570,8 @@ export default function CompetitiveExams() {
                         key={idx}
                         to={resource.link}
                         className="flex items-center justify-between p-3 sm:p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition group"
+                        data-aos="fade-up"
+                        data-aos-delay={idx * 100}
                       >
                         <div className="flex items-center gap-2 sm:gap-3">
                           <span className="text-xl sm:text-2xl">{resource.icon}</span>
@@ -563,7 +585,7 @@ export default function CompetitiveExams() {
                     ))}
                   </div>
                   
-                  <div className="mt-4 sm:mt-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg sm:rounded-xl p-3 sm:p-5">
+                  <div className="mt-4 sm:mt-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg sm:rounded-xl p-3 sm:p-5" data-aos="fade-up" data-aos-delay="500">
                     <div className="flex items-center gap-1.5 sm:gap-2 mb-1 sm:mb-2">
                       <Sparkles size={14} className="sm:w-5 sm:h-5 text-blue-600" />
                       <h4 className="font-semibold text-gray-800 text-sm sm:text-base">NCERT Foundation</h4>
@@ -582,22 +604,22 @@ export default function CompetitiveExams() {
               {/* Statistics Tab */}
               {activeTab === "statistics" && (
                 <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4">
-                  <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg sm:rounded-xl p-3 sm:p-5 text-center">
+                  <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg sm:rounded-xl p-3 sm:p-5 text-center" data-aos="zoom-in" data-aos-delay="100">
                     <Trophy className="w-5 h-5 sm:w-8 sm:h-8 text-orange-600 mx-auto mb-1 sm:mb-2" />
                     <p className="text-lg sm:text-2xl font-bold text-orange-600">{currentExam.successRate}</p>
                     <p className="text-xs text-gray-600">Success Rate</p>
                   </div>
-                  <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg sm:rounded-xl p-3 sm:p-5 text-center">
+                  <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg sm:rounded-xl p-3 sm:p-5 text-center" data-aos="zoom-in" data-aos-delay="200">
                     <Clock className="w-5 h-5 sm:w-8 sm:h-8 text-blue-600 mx-auto mb-1 sm:mb-2" />
                     <p className="text-lg sm:text-2xl font-bold text-blue-600">2-3 Years</p>
                     <p className="text-xs text-gray-600">Avg. Prep Time</p>
                   </div>
-                  <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg sm:rounded-xl p-3 sm:p-5 text-center">
+                  <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg sm:rounded-xl p-3 sm:p-5 text-center" data-aos="zoom-in" data-aos-delay="300">
                     <Users className="w-5 h-5 sm:w-8 sm:h-8 text-green-600 mx-auto mb-1 sm:mb-2" />
                     <p className="text-lg sm:text-2xl font-bold text-green-600">10-15L</p>
                     <p className="text-xs text-gray-600">Annual Applicants</p>
                   </div>
-                  <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg sm:rounded-xl p-3 sm:p-5 text-center">
+                  <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg sm:rounded-xl p-3 sm:p-5 text-center" data-aos="zoom-in" data-aos-delay="400">
                     <Star className="w-5 h-5 sm:w-8 sm:h-8 text-purple-600 mx-auto mb-1 sm:mb-2" />
                     <p className="text-sm sm:text-lg lg:text-2xl font-bold text-purple-600">{currentExam.difficulty}</p>
                     <p className="text-xs text-gray-600">Difficulty Level</p>
@@ -608,7 +630,7 @@ export default function CompetitiveExams() {
           </div>
 
           {/* Preparation Tips */}
-          <div className="mt-6 sm:mt-8 bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6">
+          <div className="mt-6 sm:mt-8 bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6" data-aos="fade-up" data-aos-delay="600">
             <h3 className="text-base sm:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
               <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500" />
               Expert Preparation Tips
@@ -622,7 +644,7 @@ export default function CompetitiveExams() {
                 "Analyze your mistakes",
                 "Stay updated with current affairs"
               ].map((tip, idx) => (
-                <div key={idx} className="flex items-center gap-1.5 sm:gap-2 p-2 sm:p-3 bg-gray-50 rounded-lg">
+                <div key={idx} className="flex items-center gap-1.5 sm:gap-2 p-2 sm:p-3 bg-gray-50 rounded-lg" data-aos="fade-up" data-aos-delay={650 + idx * 50}>
                   <CheckCircle size={12} className="sm:w-4 sm:h-4 text-green-600 flex-shrink-0" />
                   <span className="text-gray-700 text-xs sm:text-sm">{tip}</span>
                 </div>
@@ -635,7 +657,7 @@ export default function CompetitiveExams() {
       {/* Study Material Modal */}
       {showModal && selectedTopic && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setShowModal(false)}>
-          <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+          <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()} data-aos="zoom-in">
             {/* Modal Header */}
             <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center">
               <div>
@@ -660,7 +682,7 @@ export default function CompetitiveExams() {
                 </h4>
                 <ul className="space-y-2">
                   {selectedTopic.topics.map((topic, idx) => (
-                    <li key={idx} className="flex items-start gap-2">
+                    <li key={idx} className="flex items-start gap-2" data-aos="fade-right" data-aos-delay={idx * 50}>
                       <CheckCircle size={16} className="text-green-600 mt-0.5 flex-shrink-0" />
                       <span className="text-gray-700 text-sm">{topic}</span>
                     </li>
@@ -680,6 +702,8 @@ export default function CompetitiveExams() {
                       key={idx}
                       to={resource.link}
                       className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition group"
+                      data-aos="fade-left"
+                      data-aos-delay={idx * 100}
                     >
                       <div>
                         <p className="font-medium text-gray-800 text-sm">{resource.name}</p>
@@ -693,15 +717,15 @@ export default function CompetitiveExams() {
 
               {/* Exam Stats */}
               <div className="grid grid-cols-3 gap-3 pt-4 border-t border-gray-200">
-                <div className="text-center">
+                <div className="text-center" data-aos="flip-up" data-aos-delay="300">
                   <p className="text-xs text-gray-500 mb-1">Weightage</p>
                   <p className="font-bold text-blue-600">{selectedTopic.weightage}</p>
                 </div>
-                <div className="text-center">
+                <div className="text-center" data-aos="flip-up" data-aos-delay="400">
                   <p className="text-xs text-gray-500 mb-1">Difficulty</p>
                   <p className="font-bold text-orange-600">{selectedTopic.difficulty}</p>
                 </div>
-                <div className="text-center">
+                <div className="text-center" data-aos="flip-up" data-aos-delay="500">
                   <p className="text-xs text-gray-500 mb-1">Prep Time</p>
                   <p className="font-bold text-green-600">{selectedTopic.preparationTime}</p>
                 </div>
@@ -712,12 +736,16 @@ export default function CompetitiveExams() {
                 <button
                   onClick={() => setShowModal(false)}
                   className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition"
+                  data-aos="fade-right"
+                  data-aos-delay="600"
                 >
                   Close
                 </button>
                 <Link
                   to="/tutorials"
                   className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-center"
+                  data-aos="fade-left"
+                  data-aos-delay="600"
                 >
                   Start Learning
                 </Link>

@@ -30,8 +30,8 @@ const FooterPage = lazy(() => import("./pages/FooterPage"));
 const FounderPage = lazy(() => import("./pages/FounderPage"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const CookiesPolicy = lazy(() => import("./pages/CookiesPolicy"));
+const CompetitiveExams = lazy(() => import("./components/ExamZone"));
 const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions"));
-const CompetitiveExams = lazy(() => import("./components/CompetitiveExams"));
 
 // Error Boundary Component
 class ErrorBoundary extends React.Component {
@@ -61,7 +61,7 @@ class ErrorBoundary extends React.Component {
             </p>
             <button
               onClick={() => window.location.reload()}
-              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition cursor-pointer"
             >
               Reload Page
             </button>

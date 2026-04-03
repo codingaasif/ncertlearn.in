@@ -4,6 +4,7 @@
 const mathematics = {
   subjectName: "Mathematics",
   chapters: [
+    // Chapter 1: Large Numbers in Our Surroundings
     {
       id: 1,
       title: "Large Numbers in Our Surroundings",
@@ -548,6 +549,7 @@ const mathematics = {
         ]
       }
     },
+    // Chapter 2: Algebraic Expressions
     {
       id: 2,
       title: "Algebraic Expressions",
@@ -1214,6 +1216,7 @@ const mathematics = {
         ]
       }
     },
+    // Chapter 3: A Glimpse Beyond the Point
     {
       id: 3,
       title: "A Glimpse Beyond the Point",
@@ -1791,6 +1794,7 @@ const mathematics = {
         ]
       }
     },
+    // Chapter 4 Useful Expressions with Literal Numbers
     {
       id: 4,
       title: "Useful Expressions with Literal Numbers",
@@ -2358,6 +2362,1873 @@ const mathematics = {
           "Like terms (with same literal factors) can be combined by adding their coefficients.",
           "Unlike terms cannot be combined.",
           "Algebra is a powerful tool for describing patterns and relationships concisely."
+        ]
+      }
+    },
+      // chapter 5 Lines and Angles
+    {
+      id: 5,
+      title: "Lines and Angles",
+      content: {
+        introduction: "In this chapter, we will explore the relationships between lines on a flat surface. We will learn about intersecting lines, perpendicular lines, parallel lines, and the angles formed when a transversal cuts parallel lines.",
+        sections: [
+          {
+            title: "5.1 Across the Line",
+            content: `Take a square piece of paper, fold it in different ways, and then unfold it. Now, using a ruler and pencil, draw lines along the creases made on the paper. You will see various lines on the paper. Take any pair of lines and observe their relationship with each other. Do they meet each other? Do you think that lines which do not meet inside the paper would meet if extended outside the paper?
+
+            In this chapter, we will explore the relationships between lines on a flat surface. The top of a table, your piece of paper, a blackboard, and a bulletin board are all examples of flat surfaces. Let's look at a pair of lines that meet each other. You will notice that they meet at a point. On a flat surface, when a pair of lines meets at a point, it means that the lines intersect each other. Let's see what happens when two lines intersect each other.
+
+            ? How many angles do these intersecting lines form?
+            In Figure 5.2, we can see that where line l intersects line m, four angles are formed.
+
+            Can two straight lines intersect at more than one point?`,
+            images: ["Figure 5.1", "Figure 5.2"]
+          },
+          {
+            title: "Activity 1",
+            content: `Draw two lines on a flat sheet of paper such that they intersect each other. Measure all four angles formed with the help of a protractor. Make four such pairs of intersecting lines and measure the angles formed at the intersection points.
+
+            What pattern do you see among these angles?
+
+            ? In Figure 5.2, if the measure of ∠a is 120°, can you find the measures of ∠b, ∠c, and ∠d without drawing and measuring them?
+
+            We know that the total measure of ∠a and ∠b is 180°, because when they come together, they form a straight angle whose measure is 180°. Therefore, if the measure of ∠a is 120°, then the measure of ∠b must be 60°.
+
+            Similarly, the total measure of ∠b and ∠c is 180°, so if ∠b is 60°, then ∠c must be 120°. And the total measure of ∠c and ∠d is 180°, so if ∠c is 120°, then ∠d must be 60°.
+
+            Thus, in Figure 5.2, the measures of ∠a and ∠c are 120°, and the measures of ∠b and ∠d are 60°.
+
+            Hence, when two lines intersect each other and form four angles a, b, c, and d, as shown in Figure 5.2, then ∠a and ∠c will be equal, and ∠b and ∠d will be equal.
+
+            Is this fact always true for every pair of intersecting lines?
+
+            Check this for different measures of ∠a. Can you explain why this property will hold true for any measure of ∠a using these measurements?
+
+            Without guessing the values of ∠a in Figure 5.2, we can generalize our reasoning. We know that the measure of a straight angle is 180°. Therefore, ∠a + ∠b = ∠a + ∠d = 180°. Thus, ∠b and ∠d will always be equal. Similarly, ∠b + ∠a = ∠b + ∠c = 180°. Therefore, ∠a and ∠c must be equal.
+
+            Adjacent angles formed when two lines intersect each other are called linear pairs, such as ∠a and ∠b. The sum of the angles in a linear pair is always 180°.`,
+            examples: [],
+            exercises: []
+          },
+          {
+            title: "Vertically Opposite Angles",
+            content: `The opposite angles formed when two lines intersect each other are called vertically opposite angles, such as ∠b and ∠d. Vertically opposite angles are always equal to each other.
+
+            From the above reasoning, we conclude that whenever two lines intersect, the vertically opposite angles are equal. Such reasoning in mathematics is called a proof.
+
+            ? In Figure 5.3, list all the linear pairs and vertically opposite angles you see.
+
+            Measurement and Geometry
+
+            You might have noticed that when you measure linear pairs, sometimes their sum is not 180°, or when you measure vertically opposite angles, sometimes they may be unequal. What are the reasons for this? There could be various reasons—
+
+            • Measurement errors due to improper use of measuring instruments like a protractor.
+            • Differences in the thickness of the drawn lines. In geometry, an 'ideal' line has no thickness, but it is impossible for us to draw lines without thickness.
+
+            In geometry, we create ideal representations of lines and other shapes we see around us and analyze the relationships between them. For example, we know that the angle formed by a straight line is 180°. Therefore, if another line divides this angle into two parts, the sum of the two parts must be 180°. We have reached this point through reasoning alone, not by measurement. When we measure with an instrument, these measurements may not be as accurate as our prediction due to the reasons mentioned above, but they are very close to our prediction. This is why geometry has wide applications in various fields, such as physics, art, engineering, and architecture.`,
+            images: ["Figure 5.3"]
+          },
+          {
+            title: "5.2 Perpendicular Lines",
+            content: `Can you create a pair of intersecting lines such that all four angles are equal? Can you find out what the measure of each angle would be?
+
+            If two lines intersect and all four angles are equal, then each angle must be a right angle (90°).
+
+            Perpendicular lines are a pair of lines that intersect each other at a right angle (90°). In Figure 5.4, we can say that lines l and m are perpendicular to each other.`,
+            images: ["Figure 5.4"]
+          },
+          {
+            title: "5.3 Between the Lines",
+            content: `Observe Figure 5.5 and describe the way the line segments meet or cross each other in each situation using appropriate mathematical terms (a point, an endpoint, a midpoint, a junction—where two lines meet, intersect) along with the degree measure of each angle.
+
+            For example, line segments FG and FH meet at endpoint F at an angle of 115°.
+
+            If line segments ST and UV are extended, is it possible for these lines to meet? If line segments OP and QR are extended, is it possible for these lines to meet? Here are some examples of lines we see around us—
+
+            What is common in the lines in the figures above? They do not seem likely to intersect each other. Such lines are called parallel lines.
+
+            A pair of lines that lie on the same plane and never meet each other, no matter how far we extend them on both ends, are called parallel lines.
+
+            Name some parallel lines you can see in your classroom.
+
+            Parallel lines are often used in artworks and shading.
+
+            ? Which pairs of lines in Figure 5.6 appear to be parallel?
+
+            Note for Teachers — It is important that the lines lie on the same plane. A line drawn on a table and a line drawn on a board may never meet, but that does not make them parallel.`,
+            images: ["Figure 5.5", "Examples of parallel lines around us", "Figure 5.6"]
+          },
+          {
+            title: "5.4 Parallel and Perpendicular Lines in Paper Folding",
+            content: `Take a flat square piece of paper (use a newspaper for this activity).
+
+            • How would you describe the opposite edges of the paper? They are ______ to each other.
+            • How would you describe the adjacent edges of the paper? Adjacent edges are ______ to each other. They meet at a point. They form a right angle.
+            • Fold the paper horizontally in half. This creates a new line (see Figure 5.7).
+            • How many parallel lines do you see now? How is the new line segment related to the vertical sides?
+            • Make another horizontal fold in the folded paper. How many parallel lines do you see now?
+            • What happens if you do this once more? How many parallel lines will you get? Is there a pattern here? If you make another horizontal fold, check if this pattern continues.
+            • Make a vertical fold in the square paper. This new vertical line is ______ to the previously made horizontal lines.
+            • Fold the sheet along the diagonal. Can you find a fold that creates a line parallel to the diagonal line?`,
+            images: ["Figure 5.7"]
+          },
+          {
+            title: "Another Activity",
+            content: `Here is another activity for you to practice.
+
+            • Take a square piece of paper, fold it in half, and unfold it.
+            • Fold the edges towards the center line and unfold those folds.
+            • Fold the top right corner and the bottom left corner onto the fold line in such a way that triangles are formed. See Figure 5.8.
+            • These triangular folds should not cross the fold line.
+            • Are a, b, and c parallel to p, q, and r respectively? If yes, why? If not, why not?
+
+            Notation
+
+            In mathematics, we use arrow marks (>) to show parallel lines. If there is more than one set of parallel lines (as in Figure 5.9), the second set is shown with two arrow marks, and so on. Perpendicular lines are marked with a square angle between them.`,
+            images: ["Figure 5.8", "Figure 5.9"]
+          },
+          {
+            title: "Find Out",
+            content: `1. In Figure 5.10, draw some lines perpendicular to the given lines on the dotted paper.
+
+            2. In Figure 5.11, use the notations given above (single arrow mark, double arrow mark, etc.) to mark the parallel lines. Mark the angle between perpendicular lines with the square symbol.
+            (a) How did you identify the perpendicular lines?
+            (b) How did you identify the parallel lines?
+
+            3. On the dotted paper given below, draw different sets of parallel lines. The line segments can be of different lengths, but their endpoints must be on the dots.
+
+            4. Using your understanding, describe what parallel lines look like and try to draw lines parallel to the given line segments on this dotted paper.
+
+            (a) Did you find drawing some of these lines challenging? (b) Which lines were challenging to draw? (c) How did you do it?
+
+            5. In Figure 5.13, which line is parallel to line a — line b or line c? How did you ensure this?
+
+            Note for Teachers — On rectangular dotted paper, it is easy to draw vertical, horizontal, and lines at 45°, but drawing a line parallel to a line with a different orientation is a bit difficult. Let students use their intuition for this.
+
+            From the previous exercises, we saw that sometimes it is difficult for us to ensure whether two lines are parallel or not. To ensure this, we use the concept of transversals.`,
+            images: ["Figure 5.10", "Figure 5.11", "Figure 5.12", "Figure 5.13"]
+          },
+          {
+            title: "5.5 Transversal Lines",
+            content: `Here we see what happens when two lines intersect in different ways. Let's find out what happens when one line intersects two different lines.
+
+            In Figure 5.14, line t intersects lines l and m. Here, t is a transversal line (a line that intersects two lines is called a transversal). Note that when a line crosses a set of two lines, 8 angles are formed.
+
+            ? Is it possible that all 8 angles have different measures? If yes, why? If not, why not?
+
+            ? What are your thoughts on the 5 different angles 6, 5, 4, 3, and 2?
+
+            In Figure 5.14, because ∠1 and ∠3 are vertically opposite angles, they are equal in measure. Are there other pairs of vertically opposite angles? We can see that there are 4 pairs of vertically opposite angles, and in each pair, the angles are equal to each other.
+
+            Thus, when two lines are intersected by a transversal, 8 angles are formed, which can have at most 4 different measures.`,
+            images: ["Figure 5.14"]
+          },
+          {
+            title: "5.6 Corresponding Angles",
+            content: `In Figure 5.14, we see that the transversal t forms two groups of angles — one with line l and the other with line m. Based on their position, the angles in the first group correspond to angles in the second group. ∠1 and ∠5 are called corresponding angles. Similarly, ∠2 and ∠6, ∠3 and ∠7, ∠4 and ∠8 are corresponding angles formed when transversal t intersects lines l and m.`,
+            examples: []
+          },
+          {
+            title: "Activity 3",
+            content: `Draw a pair of lines and a transversal such that they form two different angles.
+
+            Step 1 — Draw line l and a transversal t intersecting line l at point X.
+
+            Step 2 — Measure ∠a formed by lines l and t. (Let's assume it is 60°.)
+
+            How many different angles are formed now?
+            If one angle is 60°, the other angle in the linear pair must be 120°. So we have two different angles.
+
+            Now we want to draw another line intersecting transversal t such that it also forms only 60° and 120°.
+
+            Step 3 — Mark a point Y on line t.
+
+            Step 4 — Draw a line m passing through point Y that makes a 60° angle with line t. We can do this either by copying ∠a using tracing paper or by measuring the angles with a protractor.
+
+            What did you observe about lines l and m? Do they appear parallel to each other? Yes, they certainly appear parallel to each other.
+
+            Angles ∠a and ∠b, formed on lines l and m by transversal t, are corresponding angles. These corresponding angles are equal to each other.
+
+            From this, we can see that —
+
+            When a transversal makes a pair of corresponding angles equal on a pair of lines, then the lines of that pair are parallel to each other.
+
+            Suppose a transversal intersects two parallel lines, what can be said about the corresponding angles?`,
+            images: ["Step diagrams for Activity 3"]
+          },
+          {
+            title: "Activity 4",
+            content: `In Figure 5.19, lines l and m are parallel (what notation is used in the figure to mark parallel lines?). Line t is a transversal to these two lines. ∠a and ∠b are corresponding angles. Take a tracing paper, trace ∠a onto it. Now place this tracing paper over ∠b and see if the angles coincide exactly. You will see that the angles are equal. Check the other corresponding angles in the figure with the help of a protractor. Are all corresponding angles equal to each other?
+
+            Corresponding angles formed when a transversal intersects a pair of parallel lines are always equal to each other.`,
+            images: ["Figure 5.19"]
+          },
+          {
+            title: "Activity 5",
+            content: `In Figure 5.20, draw a transversal for lines l and m such that a pair of corresponding angles are equal. You can measure the angles with a protractor.
+
+            Are you finding it difficult to draw a transversal that makes the corresponding angles equal?
+
+            When the lines in a pair are not parallel to each other, the corresponding angles formed by a transversal can never be equal to each other.`,
+            images: ["Figure 5.20"]
+          },
+          {
+            title: "5.7 Drawing Parallel Lines",
+            content: `Can you draw a pair of parallel lines using a ruler and a set square?
+
+            Figure 5.21 shows how you can do this.
+
+            Draw a line l using a ruler. By sliding your set square, you can draw two lines perpendicular to line l.
+
+            Are these two lines parallel to each other? How did we ensure that they are parallel to each other? What angles are formed between these lines and line l?
+
+            Because we used the set square, the measure of the angles is 90°. The positions of the lines are different, but they make the same angle with l. If line l is seen as a transversal to the two new lines, then the measure of the corresponding angles is 90°.
+
+            As we know that these are corresponding angles and are equal, we can be sure that these lines are parallel.
+
+            As shown in Figure 5.22, draw two more parallel lines using the longer side of the set square.
+
+            How did you know that these two lines are parallel? Can you check if the corresponding angles are equal or not?
+
+            Note for Teachers — Students should be encouraged to use the tracing method and protractor to check the equality of corresponding angles. Pay attention to the language used to establish the relationship between corresponding angles and parallel lines. The equality of corresponding angles is both necessary and sufficient for a pair of lines to be parallel to each other.
+
+            Can you draw a line parallel to line l that passes through point A? How will you do it using the tools in your geometry box? Describe your method.`,
+            images: ["Figure 5.21", "Figure 5.22", "Figure 5.23"]
+          },
+          {
+            title: "Creating Parallel Lines by Folding Paper",
+            content: `Let's try to create parallel lines by folding paper. How can we draw a line parallel to a given line l (given as a fold) that passes through point A?
+
+            We know how to get a line perpendicular to line l by folding a piece of paper. Now, try to fold the paper for this perpendicular line to l in such a way that it passes through point A. Let's call the line from this new fold t.
+
+            Now, fold the paper for a line perpendicular to t that again passes through point A. Let's call this line m. Lines l and m are parallel to each other.
+
+            Why are lines l and m parallel to each other?`,
+            images: ["Figure 5.24"]
+          },
+          {
+            title: "5.8 Alternate Angles",
+            content: `In Figure 5.25, ∠d is called the alternate angle to ∠f, and ∠c is called the alternate angle to ∠e.
+
+            You can find the alternate angle to a given angle. Suppose we want to find the alternate angle to ∠f. First, we find the corresponding angle to ∠f, which is ∠b, and then find the vertically opposite angle to ∠b, which is ∠d.
+
+            In Figure 5.25, if the measure of ∠f is 120°, what is the measure of its alternate angle ∠d? If we know the measure of ∠b, can we find the measure of ∠d? Because these two are vertically opposite angles. Remember that vertically opposite angles are always equal.
+
+            What is the measure of ∠b? Its measure is 120°, because it is the corresponding angle to ∠f.
+
+            Therefore, the measure of ∠d will also be 120°.
+
+            In fact, ∠f = ∠b, whatever the measure of ∠f. Why? Because ∠b is the corresponding angle to ∠f. Similarly, ∠b = ∠d, whatever the measure of ∠b. Why? Because ∠d is the vertically opposite angle to ∠b. Therefore, this situation will always be the same—
+
+            From our understanding of corresponding angles, we have proven without any measurement that alternate angles are always equal.
+
+            Alternate angles formed when a transversal intersects a pair of parallel lines are always equal to each other.
+
+            Example 1 — In Figure 5.26, parallel lines l and m are intersected by transversal t. If the measure of ∠6 is 135°, what will be the measures of the other angles?
+
+            Solution — If the measure of ∠6 is 135°, then the measure of ∠2 will also be 135° because it is the corresponding angle to ∠6, and lines l and m are parallel.
+
+            ∠8 measures 135° because it is the vertically opposite angle to ∠6. ∠4 measures 135° because it is the corresponding angle to ∠8.
+
+            ∠2 measures 135° because it is the vertically opposite angle to ∠4.
+
+            Thus, ∠2, ∠4, ∠6, and ∠8 all measure 135°.
+
+            ∠5 and ∠6 form a linear pair, meaning their measures add up to 180°. If ∠6 measures 135°, then ∠5 = 180° − 135° = 45°.
+
+            Similarly, we can find that the measures of ∠1, ∠3, and ∠7 are 45°.
+
+            Example 2 — In Figure 5.27, lines l and m are intersected by transversal t. If ∠a measures 120° and ∠f measures 70°, are lines l and m parallel to each other?
+
+            Solution — ∠a measures 120°, so ∠b will measure 60°, because ∠a and ∠b form a linear pair.
+
+            ∠b is the corresponding angle to ∠f. If l and m were parallel, then ∠b should be equal to ∠f, but they are not equal.
+
+            Therefore, lines l and m are not parallel to each other, because the corresponding angles formed by transversal t are not equal.
+
+            Example 3 — In Figure 5.28, transversal t intersects parallel lines l and m. If the measure of ∠3 is 50°, what will be the measure of ∠6?
+
+            Solution — ∠3 measures 50°, so ∠2 will measure 130°, because ∠2 and ∠3 form a linear pair, and the sum of angles in a linear pair is always 180°. ∠2 and ∠6 are corresponding angles and should be equal because lines l and m are parallel. Therefore, ∠6 measures 130°.
+
+            Angles ∠3 and ∠6 are called interior angles on the same side of the transversal. Is there a relationship between angles ∠3 and ∠6? You can try to find this relationship by taking different measures for ∠3 and observing the measure of ∠6. Once you find this relationship, try to verify it and prove that it is always true. You will find that the sum of the interior angles on the same side of the transversal is always 180°.
+
+            Example 4 — In Figure 5.29, line segment AB is parallel to line segment CD, and line segment AD is parallel to line segment BC. ∠ADC measures 60°. What are the measures of ∠CAB, ∠ABC, and ∠BCD?
+
+            Solution — Let's look at parallel lines AB and CD. AD is a transversal to these two lines.
+
+            We know that when a transversal intersects a pair of parallel lines, the sum of the interior angles on the same side of the transversal is 180°.
+
+            Therefore, ∠ADC + ∠DAB = 180°
+            Or 60° + ∠DAB = 180°
+            Thus, ∠DAB = 120°
+
+            Can we find ∠CAB from this?
+            ∠DAB = ∠DAC + ∠CAB
+            Thus, 120° = 65° + ∠CAB
+            Therefore, ∠CAB = 55°
+
+            Now let's look at parallel line segments AD and BC. Transversal CD intersects these two. Therefore, ∠ADC + ∠BCD = 180°, because these are interior angles on the same side of the transversal. Since ∠ADC is given as 60°, ∠BCD = 120°. Similarly, we get ∠ABC = 60°.
+
+            Thus, in Figure 5.29, ∠CAB = 55°, ∠ABC = 60°, and ∠BCD = 120°.`,
+            images: ["Figure 5.25", "Figure 5.26", "Figure 5.27", "Figure 5.28", "Figure 5.29"]
+          },
+          {
+            title: "Find Out",
+            content: `1. Find the marked angles in the figures given below—
+
+            2. In the figures given below, find the value of the angles indicated by the mark 'a'—
+
+            3. In the figures given below, what are the values of angles x and y?
+
+            4. In Figure 5.33, ∠ABC = 45° and ∠IKJ = 78°. Find ∠GEH, ∠HEF, and ∠FED.
+
+            5. In Figure 5.34, AB is parallel to CD, and CD is parallel to EF. Also, EA is perpendicular to AB. If ∠BEF = 55°, find the values of x and y.
+
+            6. In Figure 5.35, what is the measure of angle ∠NOP?
+
+            (Hint — Draw lines through points N and O parallel to LM and PQ.)`,
+            images: ["Figure 5.30", "Figure 5.31", "Figure 5.32", "Figure 5.33", "Figure 5.34", "Figure 5.35"]
+          },
+          {
+            title: "5.9 Parallel Illusions",
+            content: `It seems there are no parallel lines here. Or are there?
+
+            What are the reasons for these illusions?`,
+            images: ["Optical illusion images related to parallel lines"]
+          }
+        ],
+        summary: [
+          "When two lines intersect, four angles are formed. Vertically opposite angles are equal, and the sum of angles in a linear pair is 180°.",
+          "When two lines intersect and form 90° angles between them (i.e., all four angles are equal), the lines are called perpendicular to each other.",
+          "When two lines on a plane never intersect each other, they are called parallel lines.",
+          "When a line l intersects another pair of lines, it is called a transversal and forms 2 groups of 4 angles each. Each angle in the first group has a corresponding angle in the second group.",
+          "When a transversal intersects a pair of parallel lines, the corresponding angles are equal. If a transversal intersects a pair of lines and the corresponding angles are equal, then the lines of the pair are parallel.",
+          "When a transversal intersects a pair of parallel lines, the alternate angles are equal.",
+          "When a transversal intersects a pair of parallel lines, the sum of the interior angles on the same side of the transversal is always 180°."
+        ]
+      }
+    },
+      // chapter 6 Number Play
+    {
+      id: 6,
+      title: "Number Play",
+      content: {
+        introduction: "In this chapter, we will explore various patterns and properties of numbers, including parity (even/odd), magic squares, the Virahanka-Fibonacci sequence, and cryptarithmetic puzzles.",
+        sections: [
+          {
+            title: "6.1 Numbers Tell Us",
+            content: `What do the numbers in the given figure tell us?
+
+            Recall the mathematics textbook of Class 6. Now they are calling out numbers using a different rule.
+
+            ? What do you think these numbers signify?
+
+            The children rearrange themselves, and each child speaks a number based on this new arrangement.
+
+            ? Can you figure out what these numbers are telling? Observe and try to find out.
+
+            There is a rule here — each child speaks the number of children standing in front of them who are taller than them. Check whether the number spoken by each child matches this rule in both arrangements.
+
+            ? Write the number that each child should speak based on this rule for the arrangement shown below.`,
+            images: ["Diagrams of children standing in a line with numbers"]
+          },
+          {
+            title: "Find Out",
+            content: `1. Arrange the cutouts of the sticker pictures given at the end of this book, or draw line segments and create an arrangement based on their height so that their sequence reads as follows—
+            (a) 0, 1, 1, 2, 4, 1, 5
+            (b) 0, 0, 0, 0, 0, 0, 0
+            (c) 0, 1, 2, 3, 4, 5, 6
+            (d) 0, 1, 0, 1, 0, 1, 0
+            (e) 0, 1, 1, 1, 1, 1, 1
+            (f) 0, 0, 0, 3, 3, 3, 3
+
+            2. Consider each of the statements given below and identify whether the statement is always true, sometimes true, or always false. Share your reasoning.
+            (a) If a person says '0', then such persons are the tallest in that group.
+            (b) If a person is the tallest, then their number is '0'.
+            (c) The number of the first person is '0'.
+            (d) If a person is not first or last in the row (i.e., they are standing somewhere in the middle), they cannot say '0'.
+            (e) The person who says the largest number is the shortest.
+            (f) What is the maximum possible number in a group of 8 people?`
+          },
+          {
+            title: "6.2 Parity Check",
+            content: `Kishor has some number cards and is working on a puzzle. There are 5 boxes, and each box should contain only 1 number card. The sum of the numbers on the cards placed in these boxes should be 30. Can you help him find a way to do this?
+
+            Can you find which 5 cards will sum to 30? Is it possible? There are many ways to choose 5 cards from this collection.
+
+            Is there a way to find a solution without checking all possibilities? Let's find out.
+
+            Add some even numbers. What type of number do you get? Does it matter how many such numbers you add?
+
+            Any even number can be arranged into pairs without remainder. Some even numbers are shown arranged in pairs.
+
+            As we see in the figure, no matter how many even numbers we add, the resulting number can be arranged into pairs without any remainder. In other words, this sum will always be an even number.
+
+            Now take some odd numbers and add them. What type of number do you get? Does it matter how many odd numbers you add?
+
+            Odd numbers cannot be arranged into pairs. An odd number is one more than a collection of pairs. Some odd numbers are shown below.
+
+            Can you also think of an odd number as one less than a collection of pairs? The figure shows that the sum of two odd numbers is always even. The other figures given here are examples verifying this proof!
+
+            What can you say about adding three odd numbers? Can the resulting sum be arranged into pairs?
+
+            Find out what happens in the case of the sum of (a) 4 odd numbers, (b) 5 odd numbers, and (c) 6 odd numbers.
+
+            Now, let's return to the puzzle that Kishor was trying to solve. There are 5 empty boxes. This means he has an odd number of boxes. All the number cards have odd numbers written on them.
+
+            Their sum should be 30, which is an even number. Because the sum of any 5 odd numbers will never be an even number. Therefore, Kishor can never arrange these cards in the boxes such that their sum is 30.
+
+            Two siblings, Martin and Maria, were born exactly one year apart. Today they are celebrating their birthday. Maria says that the sum of their ages is 112 years. Is this possible? If yes, why? If not, why not?
+
+            Because they were born one year apart, their ages will be two consecutive numbers. Could their ages be 51 and 52 years? 51 + 52 = 103. Try taking some other consecutive numbers and see if their sum is 112.
+
+            In the counting numbers 1, 2, 3, 4, 5, ..., even and odd numbers appear alternately. In any two consecutive numbers, one will always be even and the other will always be odd!
+
+            What will be the sum of an even number and an odd number? We can see that their sum cannot be arranged into pairs, so it will be an odd number.
+
+            Since 112 is an even number and the ages of Martin and Maria (in years) are consecutive numbers, their sum cannot be 112.
+
+            We use the word 'parity' to describe the property of being even or odd.
+
+            For example, the sum of any two consecutive numbers being an odd number is a parity. Similarly, the sum of any two odd numbers being an even number is a parity.`,
+            images: ["Diagrams showing even numbers arranged in pairs", "Diagrams showing odd numbers with one leftover", "Diagrams showing sum of two odd numbers forming pairs"]
+          },
+          {
+            title: "Find Out",
+            content: `1. Using your understanding of pictorial representations of odd and even numbers, find the parity of each of the following sums—
+            (a) Sum of 2 even numbers and 2 odd numbers (even + even + odd + odd)
+            (b) Sum of 2 odd numbers and 3 even numbers
+            (c) Sum of 5 even numbers
+            (d) Sum of 8 odd numbers
+
+            2. Lata has an odd number of ₹1 coins, an odd number of ₹5 coins, and an even number of ₹10 coins in her piggy bank. When she calculated the total amount, she got ₹205. Did she make a mistake in her calculation? If there is no mistake, how many coins of each type could she have? If she made a mistake, explain why it might have happened.
+
+            3. We know that —
+            (a) even + even = even
+            (b) odd + odd = even
+            (c) even + odd = odd
+            Similarly, find the parity for the following situations —
+            (d) even – even = ___________________
+            (e) odd – odd = ___________________
+            (f) even – odd = ___________________
+            (g) odd – even = ___________________
+
+            Small Squares in a Grid
+            A 3 × 3 grid has 9 small squares, which is an odd number. Similarly, a 3 × 4 grid has 12 small squares, which is an even number.
+            Here, the parity of 3 × 4 is even.
+            Given the dimensions of a grid, can you tell the parity of the number of small squares without calculating the product?`,
+            examples: [
+              "Find the parity of the number of small squares in these grids—",
+              "(a) 27 × 13",
+              "(b) 42 × 78",
+              "(c) 135 × 654"
+            ]
+          },
+          {
+            title: "Parity of Expressions",
+            content: `Consider the algebraic expression 3n + 4. For different values of n, this expression has different parities—`,
+            tableData: {
+              headers: ["n", "Value of 3n + 4", "Parity of the value"],
+              rows: [
+                ["3", "13", "Odd"],
+                ["8", "28", "Even"],
+                ["10", "34", "Even"]
+              ]
+            },
+            content: `Write an expression whose parity is always even.
+
+            Here are some examples, like 100p and 48w – 2. Try to find more such expressions.
+
+            Write expressions whose parity is always odd.
+
+            Write some other expressions like 3n + 4 whose parity can be either odd or even.
+
+            The value of the expression 6k + 2 gives 8, 14, 20, ... (for k = 1, 2, 3, ...). Many even numbers are missing from this list.
+
+            Are there expressions that can be used to generate the entire list of all even numbers? (Hint — All even numbers have a factor of 2.)
+
+            Are there expressions that can be used to generate the entire list of all odd numbers?
+
+            We have already seen how we can express the nth term in the sequence of multiples of 4, where n is a literal number representing a position in the sequence (e.g., first, twenty-third, one hundred seventeenth, etc.).
+
+            What is the nth term of the multiples of 2? In other words, what is the nth even number?
+
+            Let's consider odd numbers to answer this question.
+
+            What is the 100th odd number?
+
+            To answer this question, consider the following question—
+
+            What is the 100th even number?
+
+            It is 2 × 100 = 200.
+
+            Does this help us find the 100th odd number? Let's compare the sequences of even and odd numbers term by term.
+
+            Even numbers — 2, 4, 6, 8, 10, 12, ...
+            Odd numbers — 1, 3, 5, 7, 9, 11, ...
+
+            We see that at any position, the value of the odd number sequence is one less than the value of the even number sequence. Thus, the 100th odd number is 200 – 1 = 199.
+
+            ? Write a formula to find the nth odd number.
+
+            Let's first describe the method we learned to find an odd number at a given position —
+
+            (a) Find the even number at that position. It is 2 times the position number.
+            (b) Then subtract 1 from this even number.
+
+            Writing this process as expressions, we get —
+            (a) 2n (b) 2n – 1
+
+            Thus, 2n is the formula that gives the nth even number, and 2n – 1 is the formula that gives the nth odd number.`
+          },
+          {
+            title: "6.3 Some Discoveries in a Grid",
+            content: `Look at this 3 × 3 grid. It is filled according to a simple rule, using the numbers 1 to 9 without repetition. The numbers written outside the grid are circled.
+
+            ? Can you figure out what the circled numbers represent?
+
+            The numbers in the yellow circles are the sums of the corresponding rows and columns. Fill in the grids below based on the rule mentioned above.
+
+            Create some similar questions yourself and challenge your classmates.
+
+            Try to solve the given problem?
+
+            You might have experienced that it is not possible to find a solution for this grid. Why is this the case?
+
+            The minimum possible sum is 6 = 1 + 2 + 3. The maximum possible sum is 24 = 9 + 8 + 7. Clearly, any number inside the circles cannot be less than 6 or greater than 24. In this grid, the sums 5 and 26 are given. Therefore, it is impossible!
+
+            In the grid we solved earlier, Kishor observed that the sum of all the numbers in the circles was always 90. Vidya observed that the sum of the numbers in the circles for all three rows or all three columns was always 45. Check if this holds true for the grid you solved earlier.
+
+            Why must the sum of the row sums or column sums always be 45?
+
+            From this grid, we can see that the sum of all the row sums will be equal to the sum of the numbers from 1 to 9. The same can be observed for the column sums. The sum of numbers from 1 to 9 is 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 = 45.
+
+            If the sum of the numbers in each row, each column, and each diagonal is the same number, then such a square grid is called a magic square. This sum is called the magic sum. The diagonals are shown in the figure.
+
+            Trying to create a magic square by filling the grid randomly with numbers can be difficult. This is because there are many ways to fill a 3 × 3 grid using the numbers 1 to 9 without repetition. In fact, it can be found that there are exactly 3,62,880 such ways. You might be surprised that the number of ways to fill the grid in this manner can be found without writing them all down. We will see how this is done in higher classes.
+
+            Instead, we should proceed in a systematic way to create a magic square. For this, let's ask ourselves some questions.
+
+            1. What could be the magic sum? Can it be any number? Let's focus only on the row sums for a moment. We have seen that in a 3 × 3 grid with numbers 1 to 9, the total of the row sums will always be 45. Because in a magic square, all row sums are equal, and adding them gives 45. Hence, each of them must be 15. Thus, we get the following observation — Observation 1: In a magic square made using the numbers 1 to 9, the magic sum must be 15.
+
+            2. Which numbers can possibly appear at the center of a magic square?
+
+            Let's consider these possibilities one by one. Can the center number be 9? If so, then 8 must appear in some other square. For example, in this square, we would need 8 + 9 + another number = 15.
+
+            But this is not possible. Because no matter where we write 8, this problem will always remain.
+
+            Therefore, 9 cannot be at the center. Can the center number be 1?
+
+            If so, then 2 must appear in some other square. Here, we would need 2 + 1 + another number = 15. But this is not possible, because we are only using numbers from 1 to 9. No matter where we write 2, this problem will always remain.
+
+            Therefore, the number 1 also cannot be at the center.
+
+            Using similar reasoning, find out which numbers from 1 to 9 can appear at the center.
+
+            Through this exploration, we will arrive at the following interesting observation — Observation 2: In a magic square filled with the numbers 1 to 9, the number appearing at the center must be 5.
+
+            Now let's see where the smallest number (1) and the largest number (9) should appear in a magic square. Our second observation tells us that they must appear in one of the peripheral positions. Let's classify these positions into two categories —
+
+            Can 1 appear in a corner square? For example, can it be placed as shown in the adjacent square?
+
+            If yes, then to get 15, there should be three ways to pair 1 with two other numbers. We get 1 + 5 + 9 = 1 + 6 + 8 = 15. Is any other combination possible?
+
+            Similarly, can 9 be placed in a corner square?
+
+            Observation 3: The numbers 1 and 9 cannot appear in a corner position; therefore, they must appear in one of the middle positions (edge centers).
+
+            Can you find other possible positions for 1 and 9?
+
+            Now we have a complete row or a complete column for the magic square! Try to complete it! (Hint — First fill the row containing 1 and 9.)`,
+            images: ["3x3 grids with circled sums", "Positions in a 3x3 grid", "Corner and edge positions"]
+          },
+          {
+            title: "Find Out",
+            content: `1. How many different magic squares can be made using the numbers 1 to 9?
+
+            2. Create a magic square using the numbers 2 to 10. What strategy will you use to do this? Compare it with the magic squares made from numbers 1 to 9.
+
+            3. Take a magic square and—
+            (a) Increase each number by 1.
+            (b) Double each number.
+            In each case, is the resulting grid also a magic square? How does the magic sum change in each case?
+
+            4. What other operations can be performed on a magic square to obtain another magic square?
+
+            5. Discuss methods to create a magic square using any collection of 9 consecutive numbers (such as 2–10, 3–11, 9–17, etc.).`
+          },
+          {
+            title: "Generalizing a 3 × 3 Magic Square",
+            content: `We can explain how the numbers in a magic square are related to each other, i.e., how the structure of a magic square is built.
+
+            Choose one of the magic squares you created using consecutive numbers. If the number at the center is represented by the literal number m, then express how the other numbers are related to m, i.e., how much more or less they are than m. (Hint — Recall how we explained a 2 × 2 grid in a calendar month using algebraic expressions in the chapter on Algebraic Expressions.)
+
+            Once you have the generalized form, share your observations with the class.
+
+            Find Out
+            1. Using this generalized form, find the magic square when the center number is 25.
+            2. What expression do you get when you add the three terms of any row, column, or diagonal?
+            3. Write the results for the following situations—
+            (a) Adding 1 to each term of the generalized form.
+            (b) Doubling each term of the generalized form.
+            4. Create a magic square whose magic sum is 60.
+            5. Is it possible to obtain a magic square by filling 9 non-consecutive numbers?
+
+            The First 4 × 4 Magic Square
+            The first recorded 4 × 4 magic square is found in a 10th-century inscription at the Parshvanath Jain temple in Khajuraho, India, and is called the 'Chautisa Yantra'.`,
+            magicSquare4x4: [
+              [7, 12, 1, 14],
+              [2, 13, 8, 11],
+              [16, 3, 10, 5],
+              [9, 6, 15, 4]
+            ],
+            content: `'Chautisa' means 34. Why do you think people called it 'Chautisa Yantra'? The sum of the numbers in each row, column, and diagonal of this magic square is 34. Can you find other patterns of 4 numbers in this square where the sum of 4 numbers in each row, column, or diagonal is 34?`
+          },
+          {
+            title: "Magic Squares in History and Culture",
+            content: `The first recorded magic squares were created more than 2000 years ago in ancient China, known as the Lo Shu square. Legend has it that during a devastating flood in the Lo River, a god sent a turtle to save the people. The turtle carried a 3 × 3 grid on its back, with the numbers 1 to 9 arranged in a magical pattern.
+
+            Magic squares have been studied in various parts of the world at different times, including India, Japan, Central Asia, and Europe.
+
+            Indian mathematicians have worked extensively on magic squares. Their texts describe general methods for constructing these magic squares, which we have discussed above. The work of Indian mathematicians was not limited to creating 3 × 3 and 4 × 4 grids; they extended them to 5 × 5 and other larger square grids. We will study these in higher classes.
+
+            The appearance of magic squares is not limited to mathematical texts. They have been found in many places in India. The image on the right is a 3 × 3 magic square found on a pillar of a temple in Palani, Tamil Nadu. This temple was built around the 8th century. 3 × 3 magic squares can also be found in homes and shops in India. The 'Navagraha Yantra' shown below is one such example.`,
+            magicSquare3x3: [
+              [2, 7, 6],
+              [9, 5, 1],
+              [4, 3, 8]
+            ],
+            navagrahaYantra: [
+              ["Budh", "Shukra", "Chandra", "", "9", "4", "1", "1", "0"],
+              ["", "", "", "", "8", "6", "5", "1", "2"],
+              ["", "", "", "", "7", "10", "5", "1", "2"],
+              ["", "", "", "", "1", "9", "7", "6", "13"],
+              ["", "", "", "", "8", "10", "5", "1", "2"],
+              ["", "", "", "", "11", "9", "7", "6", "13"],
+              ["", "", "", "", "8", "10", "5", "1", "2"],
+              ["Ketu", "Shani", "Rahu", "", "14", "9", "16", "15", "13"],
+              ["", "", "", "", "11", "19", "17", "12", "?"]
+            ],
+            content2: `Note that a different magic sum is associated with each planet. An image of the 'Kubera Yantra' is shown below —`,
+            kuberaYantra: [
+              [27, 20, 25],
+              [22, 24, 26],
+              [23, 28, 21]
+            ]
+          },
+          {
+            title: "6.4 Nature's Favorite Sequence — Virahanka-Fibonacci Numbers!",
+            content: `The sequence 1, 2, 3, 5, 8, 13, 21, 34, ... (Virahanka-Fibonacci numbers) is one of the most famous sequences in all of mathematics. It can be seen everywhere in the world of art, science, and mathematics. Although these numbers appear many times in the field of science, it is remarkable that they were first discovered in the context of art (specifically poetry).
+
+            Thus, the Virahanka-Fibonacci numbers provide a beautiful illustration of the close relationships between art, science, and mathematics.
+
+            Discovery of Virahanka Numbers
+            Virahanka numbers first appeared thousands of years ago in the texts of Sanskrit and Prakrit linguists studying their poetic compositions!
+
+            In the poetic compositions of many Indian languages, such as Prakrit, Sanskrit, Marathi, Malayalam, Tamil, and Telugu, each syllable is classified as short (laghu) or long (guru).
+
+            A long syllable is pronounced for a longer duration than a short syllable — in fact, exactly twice as long. In musical terms, a short syllable takes one beat, and a long syllable takes two beats.
+
+            From this simple system of poetic meter, countless mathematical questions arose, which were extensively considered by the ancient poets of these languages. In the process of asking and answering questions related to poems, many important mathematical discoveries were made.
+
+            One particularly important question was: How many rhythms can be created for 8 beats by combining short syllables (1 beat) and long syllables (2 beats)? In other words, how many ways can a person fill eight beats with short and long syllables, where a short syllable takes one beat and a long syllable takes two beats?
+
+            Here are some possibilities —
+            • guru, guru, guru, guru
+            • laghu, laghu, laghu, laghu, laghu, laghu, laghu, laghu
+            • laghu, guru, guru, laghu, guru
+            • guru, guru, laghu, laghu, guru
+            • ...
+            Can you find other possibilities?
+
+            Writing this in more mathematical terms — In how many ways can the number 8 be written as a sum of 1s and 2s?
+
+            For example —
+            8 = 2 + 2 + 2 + 2
+            8 = 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1
+            8 = 1 + 2 + 2 + 1 + 2
+            8 = 2 + 2 + 1 + 1 + 2
+            ... and so on.
+
+            Can you think of any other ways?
+
+            Here, all the ways of writing the numbers 1, 2, 3, and 4 as a sum of 1s and 2s are given —`,
+            tableData: {
+              headers: ["n", "Different ways", "Number of ways"],
+              rows: [
+                ["1", "1", "1"],
+                ["2", "1+1, 2", "2"],
+                ["3", "1+1+1, 1+2, 2+1", "3"],
+                ["4", "1+1+1+1, 1+1+2, 1+2+1, 2+1+1, 2+2", "5"]
+              ]
+            },
+            content: `In the West, these numbers are called Fibonacci numbers, after the Italian mathematician Fibonacci, who wrote about them around 1202 CE, about 500 years after Virahanka. As we can see, Fibonacci was neither the first nor the second or third person to write about these numbers. But sometimes the term "Virahanka-Fibonacci numbers" is used so that everyone understands what is being referred to.
+
+            So, how many rhythms are there for 8 beats with short and long syllables? We take the 8th term of the Virahanka sequence 1, 2, 3, 5, 8, 13, 21, 34, 55, ... Thus, there are 34 rhythms for 8 beats.
+
+            Write the number that comes after 55 in this sequence. We have seen that in this sequence, the next number is obtained by adding the previous two numbers. Check whether this holds true for the numbers given above. The next number is — 34 + 55 = 89.
+
+            Write the next three numbers in this sequence —
+            1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ____, ____, ____, ____, ____
+
+            If you had to write one more number in the above sequence, can you tell (without adding the previous two numbers) whether this number will be even or odd?
+
+            What is the parity of each number in this sequence? Do you see any pattern in the sequence of parities?
+
+            Today, Virahanka-Fibonacci numbers form the basis of many mathematical and artistic principles, from poetic compositions (verses) to drumming, from painting and architecture to science. Perhaps the most wonderful manifestations of these numbers occur in the art of nature! For example, the number of petals in a daisy flower is usually a Virahanka number.
+
+            How many petals can you see in each of the following flowers?`,
+            images: ["Daisy flower with 13 petals", "Daisy flower with 21 petals", "Daisy flower with 34 petals"]
+          },
+          {
+            title: "6.5 Digit Puzzles (Cryptarithmetic)",
+            content: `You have performed arithmetic operations with numbers. What are your thoughts on performing these operations with letters?
+
+            In the calculations below, digits have been replaced by letters. Each letter represents a specific digit (0–9). You have to find out which digit each letter represents.
+
+            Here we have a 1-digit number T. Adding it to itself twice gives a 2-digit sum. The unit digit of this sum is the same single digit that was added.
+
+            What could U and T be? Can T be the digit 2? Can it be 3?
+
+            When you search, you will find that T = 5 and UT = 15.
+
+            Let's look at another example on the right. Here, K2 means that it is a 2-digit number with the unit digit 2 and the tens digit K. Adding K2 to itself gives a 3-digit number HMM. Which digit should correspond to the letter M?
+
+            In this sum, the tens and units places have the same digit.
+
+            What about H? Can it be 2? Can it be 3?
+
+            Solving such questions can be interesting and fun! Here are some more such questions for you to try. Find out which digit each letter represents.
+
+            Share the ideas you thought about for these questions with your classmates. You might also discover some new approaches.
+
+            YY + Z + 3D = ZOO
+
+            B5 + KP + C = ED5
+
+            KP + C + 1FF = PRR
+
+            Such questions are called cryptarithmetic questions or alphametic puzzles.`,
+            images: ["Addition problems with letters: T + T + T = UT", "K2 + K2 = HMM"]
+          },
+          {
+            title: "Find Out",
+            content: `1. An electric bulb is on. Dinesh presses its button 77 times. Will the bulb be on or off now? Why?
+
+            2. Lilita has a large ancient encyclopedia. When she opens it, many open pages fall out. She counts a total of 50 pages printed on both sides. Can the sum of the numbers on these open pages be 6000? If yes, why, or if not, why not?
+
+            3. Here is a 2 × 3 grid. The parity of the sum for each row and column is written in the circle. 'e' stands for even number and 'o' stands for odd number. Fill these boxes with 3 odd numbers (o) and 3 even numbers (e) such that the parity of the row and column sums is satisfied.
+
+            4. Create a 3 × 3 magic square with a magic sum of 0. All numbers cannot be zero. Use negative numbers as needed.
+
+            5. Fill in the following blanks with 'odd' or 'even'—
+            (a) The sum of an odd number of even numbers is ______.
+            (b) The sum of an even number of odd numbers is ______.
+            (c) The sum of an even number of even numbers is ______.
+            (d) The sum of an odd number of odd numbers is ______.
+
+            6. What is the parity of the sum of numbers from 1 to 100?
+
+            7. In the Virahanka sequence, two consecutive numbers are 987 and 1597. What are the next two numbers and the previous two numbers in this sequence?
+
+            8. Angad wants to climb a staircase with 8 steps. The rule of his game is that he can take only 1 step or 2 steps at a time. For example, one of his paths is 1, 2, 2, 1, 2. How many different ways can he reach the top?
+
+            9. What is the parity of the 20th term of the Virahanka sequence?
+
+            10. Identify the true statements—
+            (a) The expression 4m – 1 always gives odd numbers.
+            (b) All even numbers can be expressed in the form 6j – 4.
+            (c) Both expressions 2p + 1 and 2q – 1 describe all odd numbers.
+            (d) The expression 2f + 3 represents both even and odd numbers.
+
+            11. Solve the following cryptarithmetic problems —`,
+            cryptarithmeticExamples: [
+              "AA + BB = BCC",
+              "AB + CD = EFG"
+            ]
+          }
+        ],
+        summary: [
+          "In the first activity, we saw how information about a sequence of numbers (e.g., measurements) can be represented and how they can be arranged without any information about the actual numbers.",
+          "We studied the concept of number parity, learning about numbers that can be arranged in pairs (even numbers) and numbers that cannot be arranged in pairs (odd numbers).",
+          "We learned how to determine the parity of sums and products.",
+          "While exploring sums in a grid, we could determine that filling a grid based on row and column sums is impossible in some cases. We extended this fact to construct magic squares.",
+          "We saw how Virahanka numbers were historically discovered through the arts. The Virahanka sequence is 1, 2, 3, 5, 8, 13, 34, 55, ...",
+          "We became mathematical detectives through cryptarithmetic, where digits are replaced by letters."
+        ]
+      }
+    },
+    // chapter 7 A Story of Three Intersecting Lines
+    {
+      id: 7,
+      title: "A Story of Three Intersecting Lines",
+      content: {
+        introduction: "A triangle is the most fundamental closed shape. It contains three corner points called vertices, and three line segments called sides that connect the vertices in pairs. In this chapter, we will learn how to construct triangles given different sets of measurements, explore the triangle inequality, understand the angle sum property, and classify triangles based on sides and angles.",
+        sections: [
+          {
+            title: "Introduction",
+            content: `A triangle is the most fundamental closed shape. As we know, it contains the following points —
+
+            • Three corner points which we call the vertices of the triangle, and
+            • Three line segments, i.e., the sides of the triangle, which connect the vertices in pairs.
+
+            Triangles appear in various shapes. Some of these shapes are shown below —
+
+            Note the symbol used to represent a triangle and how the triangles are named using their vertices. When naming a triangle, its vertices can appear in any order.
+
+            When three lines meet at the corners, three angles are formed, which we call the angles of that triangle. For example, in ΔABC, these angles are ∠CAB, ∠ABC, and ∠BCA, which we denote as ∠A, ∠B, and ∠C respectively.
+
+            What happens when all three vertices lie on a straight line?`,
+            images: ["Various triangles of different shapes"]
+          },
+          {
+            title: "7.1 Equilateral Triangle",
+            content: `Among all triangles, equilateral triangles are the most symmetric. These are triangles whose sides are all equal in length. Let's try to construct them.
+
+            ? Construct a triangle whose sides are all 4 cm long.
+
+            How did you construct this triangle and what tools did you use? Can it be constructed using only a ruler and a pencil?
+
+            It is certainly possible to construct this triangle using only a ruler, but it might require many attempts. Suppose we draw a base of length 4 cm and name it AB (see the figure below). Now, if we try to mark the third point C using a ruler such that AC = 4 cm, it is possible that BC may not be 4 cm. If this happens, we would have to repeatedly try to mark C such that we get BC = 4 cm.
+
+            How can we make this construction more efficient?
+
+            Recall the method from the previous class (in the chapter 'Playing with Constructions') for solving a similar problem using a compass. We had to mark the 'peak' point that was at a distance of 5 cm from two other points. The same method we used to obtain that point can be used here.
+
+            After constructing AB = 4 cm, we can use the following method —
+
+            Step 1 — Using a compass, draw a sufficiently long arc of radius 4 cm with center A, as shown in the figure below. Point C will lie somewhere on this arc. How do we mark it?
+
+            Step 2 — Now, draw another arc of radius 4 cm with center B.
+
+            Let C be the intersection point of these two arcs.
+
+            This construction ensures that both AC and BC are 4 cm long. Can you tell why?
+
+            Step 3 — Join AC and BC to obtain the desired equilateral triangle.`,
+            images: ["Step-by-step construction of an equilateral triangle"]
+          },
+          {
+            title: "7.2 Constructing a Triangle from Given Sides",
+            content: `How do we construct triangles that are not equilateral?
+
+            Construct a triangle whose sides are 4 cm, 5 cm, and 6 cm long. Like the previous situation, this triangle can also be constructed using only a ruler, but it would require many attempts.
+
+            How can we construct this triangle more efficiently?
+
+            Take one of these given lengths as the base of the triangle, for example, choose 4 cm as the base. Let A and B be the vertices of this base, and let the third vertex be C. Suppose AC = 5 cm and BC = 6 cm.
+
+            As we did in the case of the equilateral triangle, let's first find all the points that are at a distance of 5 cm from A. These points lie on a circle with center A and radius 5 cm. Point C must also lie somewhere on this circle. How do we find it?
+
+            We will use the fact that this point C is at a distance of 6 cm from point B. Draw an arc of radius 6 cm with center B.
+
+            The desired point C will be one of the intersection points of these two circles.
+
+            Why is this intersection point the third vertex of the triangle? The reason is the same as for constructing equilateral triangles, as explained earlier. This point lies on both circles. Hence, its distance from A is the radius of the circle centered at A (5 cm), and its distance from B is the radius of the circle centered at B (6 cm).
+
+            Note that it is not necessary to draw full circles to obtain the third vertex. Let's summarize the steps of this construction (see Figures 7.2 and 7.3) —
+
+            Step 1 — Construct a base AB of one side length. Let's choose AB = 4 cm (see Figure 7.1).
+
+            Step 2 — With center A, draw a sufficiently long arc of radius 5 cm (see Figure 7.2).
+
+            Step 3 — With center B, draw an arc of radius 6 cm so that it intersects the first arc (see Figure 7.3).
+
+            Step 4 — The point where the two arcs meet is the desired third vertex C. Join AC and BC to obtain ΔABC.`,
+            images: ["Figure 7.1", "Figure 7.2", "Figure 7.3"]
+          },
+          {
+            title: "Construct",
+            content: `? Construct triangles with sides of the following lengths (all units in cm) —
+            (a) 4, 4, 6
+            (b) 3, 4, 5
+            (c) 1, 5, 5
+            (d) 4, 6, 8
+            (e) 3.5, 3.5, 3.5
+
+            We have seen that triangles with all three sides equal are called equilateral triangles. Triangles with two sides equal are called isosceles triangles.`
+          },
+          {
+            title: "Find Out",
+            content: `1. Use points on the given circles or center points to construct isosceles triangles.
+
+            2. Use points on the given circles or centers to construct isosceles and equilateral triangles. All these circles have the same radii.
+
+            (A and B are centers of circles with equal radii)
+            (A, B, and C are centers of circles with equal radii)`,
+            images: ["Diagrams with circles for constructing isosceles triangles"]
+          },
+          {
+            title: "Is it Possible to Construct Triangles of Any Length?",
+            content: `Can you construct triangles with sides of any given lengths? Are there lengths for which constructing a triangle is impossible? Let's find out.
+
+            Construct a triangle whose sides are 3 cm, 4 cm, and 8 cm long. Are you able to construct such a triangle?
+
+            Here is another set of lengths — 2 cm, 3 cm, and 6 cm. Check whether it is possible to form a triangle with sides of these lengths.
+
+            Try to find other sets of side lengths for which constructing a triangle is impossible. See if you can find any pattern in these sets.
+
+            We see that for some sets of lengths, constructing a triangle is possible, but for others, it is not. How can we check whether a triangle exists for a given set of lengths? One method is to actually try to construct the triangle and see if it is possible. Is there another, more efficient method to check this?
+
+            Triangle Inequality
+            Consider the lengths 10 cm, 15 cm, and 30 cm. Is it possible for a triangle with sides of these lengths to exist?
+
+            Let's study a property of triangles to answer this question. Imagine a small flat plot of land with a tent, a tree, and a pole. Suppose you are at the entrance of the tent and you want to go to the tree. Which path is shorter — (i) the straight line path to the tree (red path) or (ii) the straight line path from the tent to the pole, and then from the pole to the tree (yellow path)?
+
+            Clearly, the direct straight line path from the tent to the tree is shorter than the path that goes via the pole. In fact, the direct straight line path is the shortest possible path between two points.
+
+            Will the direct path between two points always be shorter than a path that goes through a third point? Clearly, the answer is 'yes'.
+
+            Can this understanding be used to say something about the existence of a triangle with sides of lengths 10 cm, 15 cm, and 30 cm?
+
+            Let's assume that a triangle with this set of lengths exists. Remember, we are not yet sure if the triangle exists; we are just assuming it does. Let's draw a rough sketch.
+
+            Does everything look correct in this triangle?
+
+            If this triangle were possible, then the direct path between any two vertices should be shorter than the path that goes through the third vertex. Is this true for our rough sketch?
+
+            Let's consider the path between B and C.
+
+            The length of the direct path = BC = 10 cm.
+
+            What is the length of the path passing through A? It is the sum of the lengths of segments BA and AC.
+
+            Length of the indirect path = BA + AC = 15 cm + 30 cm = 45 cm.
+
+            Is the length of the direct path shorter than the length of the indirect path?
+
+            Now consider the path between A and B.
+
+            Length of the direct path = AB = 15 cm.
+
+            Length of the indirect path through C = AC + CB = 30 cm + 10 cm = 40 cm.
+
+            Is the length of the direct path shorter than the length of the indirect path? Yes.
+
+            Finally, consider the path between C and A.
+
+            Length of the direct path = CA = 30 cm.
+
+            Length of the indirect path = CB + BA = 10 cm + 15 cm = 25 cm.
+
+            Is the length of the direct path shorter than the length of the indirect path? In this case, the direct path length is greater than the indirect path length, which is absurd. Can such a triangle exist? No.
+
+            Therefore, a triangle with sides of lengths 10 cm, 15 cm, and 30 cm cannot exist.
+
+            Thus, without constructing it, we were able to determine why a triangle with lengths 10 cm, 15 cm, and 30 cm cannot exist. We were able to do this using spatial intuition and reasoning.
+
+            Recall how we used similar intuition and reasoning to discover properties of intersecting and parallel lines. We will continue to do this as we discover more geometric properties.
+
+            Can we determine whether a triangle with sides 3 cm, 3 cm, and 7 cm exists? Verify your answer by constructing it.
+
+            "In the rough sketch shown in Figure 7.4, is it possible to assign the lengths in a different order so that the direct paths are always shorter than the indirect paths? If this is possible, then a triangle could exist."
+
+            Is such a rearrangement of lengths in a triangle possible?`,
+            images: ["Rough sketch of a triangle with sides 10, 15, 30"]
+          },
+          {
+            title: "Find Out",
+            content: `1. We have checked through construction that triangles with side lengths 3 cm, 4 cm, 8 cm and 2 cm, 3 cm, 6 cm are not possible. Check whether you could have figured this out without constructing the triangles.
+
+            2. Can we tell whether a triangle exists for each of the following sets of lengths?
+            (a) 10 km, 10 km, and 25 km
+            (b) 5 mm, 10 mm, and 20 mm
+            (c) 12 cm, 20 cm, and 40 cm
+
+            You may have experienced that using a rough sketch and comparing the lengths of direct paths with their corresponding indirect paths is equivalent to comparing each length with the sum of the other two lengths, and three such comparisons need to be made.
+
+            3. In each set of lengths observed so far, you must have noticed that in at least two comparisons, one direct length was less than the sum of the other two lengths (if not, check again). For example, for the set of lengths 10 cm, 15 cm, and 30 cm, the two comparisons where this happens are —
+            10 < 15 + 30
+            15 < 10 + 30
+            But this does not happen for the third length — 30 > 10 + 15.
+
+            Will this always be the case? That is, for any set of lengths, will there be at least two comparisons where one length is less than the sum of the other two? Find out for different sets of lengths.
+
+            Furthermore, for a given set of lengths, can we immediately identify which length is less than the sum of the other two without any calculation?
+            (Hint — Consider the lengths in increasing order.)
+
+            Given three side lengths, what comparison do we need to make to check for the existence of a triangle?
+
+            If each length is less than the sum of the other two lengths, we say that these lengths satisfy the triangle inequality. For example, the set 3, 4, 5 satisfies the triangle inequality, while the set 10, 15, 30 does not satisfy the triangle inequality.
+
+            We have seen that lengths that do not satisfy the triangle inequality cannot be the side lengths of a triangle, such as 10, 15, 30.
+
+            Does a triangle with sides 4 cm, 5 cm, and 8 cm exist? These satisfy the triangle inequality — 8 < 4 + 5 = 9.
+
+            Why do we not need to check the other two sides?
+
+            This means that the lengths of all direct paths are less than the lengths of the indirect paths. Does this confirm the existence of a triangle?
+
+            If even one direct path length were larger, we could conclude that the triangle certainly cannot exist. But in this case, we can only say that a triangle may exist or may not exist.
+
+            For a triangle to exist, the two arcs we draw to obtain the third vertex must necessarily intersect. Is it possible to determine whether this will happen without actually performing the construction?
+
+            Visualizing the Construction of Circles
+            Let's imagine we start the construction by taking the longest side as the base. Suppose AB is the base of length 8 cm. The next step is to draw sufficiently long arcs corresponding to the other two lengths, 4 cm and 5 cm.
+
+            Instead of just drawing arcs, let's draw full circles. Suppose we draw a circle with center A and radius 4 cm.
+
+            Now suppose we draw a circle with center B and radius 5 cm. Can you draw a rough sketch of the resulting figure?
+
+            Note that in the given figure, AX = 4 cm and AB = 8 cm. So, what is BX? Does this length help in visualizing the resulting figure?
+
+            Because BX = 4 cm and the radius of the circle centered at B is 5 cm, it is clear that these two circles will intersect at two points.
+
+            What does this fact tell us about the existence of a triangle? Points A and B, together with either of the two intersection points of the circles, will give us the desired triangle. Thus, a triangle with sides of lengths 4 cm, 5 cm, and 8 cm exists.`,
+            images: ["Figure 7.5 showing two circles intersecting"]
+          },
+          {
+            title: "Find Out",
+            content: `1. Which of the following sets of lengths can be the side lengths of a triangle? Explain your answers. Note that the unit of measurement is the same for all three lengths in each set.
+            (a) 2, 2, 5 (b) 3, 4, 6 (c) 2, 4, 8 (d) 5, 5, 8 (e) 10, 20, 25 (f) 10, 20, 35 (g) 24, 26, 28
+
+            From the previous questions, we see that whenever a set of three lengths satisfies the triangle inequality (each length < sum of the other two), then a triangle with those side lengths exists.
+
+            Is it always true that a triangle exists when a set of three lengths satisfies the triangle inequality? How can we be sure of this?
+
+            We can be sure of the existence of a triangle only if we can show that when the triangle inequality is satisfied, the two circles intersect internally (as in Figure 7.5). But what other possibilities can occur when two circles are drawn? Let's study them by drawing figures.
+
+            The following different situations are possible —
+            Situation 1 — The circles touch each other
+            Situation 2 — The circles do not intersect
+            Situation 3 — The circles intersect internally
+
+            Note that when constructing these circles, we —
+            (a) Take the length of base AB as the largest of the given lengths.
+            (b) Take the radii of the circles as the other two smaller lengths.
+
+            Which of the above situations will allow us to form a triangle? Clearly, triangles will only be formed when the circles intersect internally (Situation 3).
+
+            ? Let's study each of these situations to find a relationship between the radii (the two smaller lengths) and AB (the largest length).
+
+            Situation 1 — The circles touch each other at one point
+            For this situation to occur,
+            Sum of the two radii = AB
+            Or, sum of the two smaller lengths = the largest length.
+
+            Situation 2 — The circles do not intersect internally
+            What should be the relationship between the radii and AB for this situation to occur? It can be seen from the figure that
+            Sum of the two radii < AB
+            Or, sum of the two smaller lengths < the largest length.
+
+            Situation 3 — The circles intersect internally
+            AB is made up of one radius and a part of the other radius. Therefore,
+            Sum of the two radii > AB
+            Or, sum of the two smaller lengths > the largest length.
+
+            Can we use this analysis to say that a triangle exists when its lengths satisfy the triangle inequality?
+
+            If the given lengths satisfy the triangle inequality, then the sum of the two smaller lengths is greater than the largest length. This means we are in Situation 3, where the circles intersect internally, and therefore a triangle exists.
+
+            ? What kind of circles are formed for a set of lengths that does not satisfy the triangle inequality? Find three examples each of sets of lengths for which the circles —
+            (a) touch each other at one point
+            (b) do not intersect each other.
+
+            ? Create a complete procedure that can be used to check for the existence of a triangle.
+
+            Conclusion
+            If a given set of three lengths satisfies the triangle inequality, then a triangle with sides of those lengths exists. If the set does not satisfy the triangle inequality, then no triangle exists with sides of those lengths.`,
+            images: ["Diagrams showing three situations of circle intersections"]
+          },
+          {
+            title: "Find Out",
+            content: `1. Check whether a triangle exists for each of the following sets of lengths (lengths are in the same unit) —
+            (a) 1, 100, 100 (b) 3, 6, 9 (c) 1, 1, 5 (d) 5, 10, 12
+
+            2. Does an equilateral triangle with sides 50, 50, 50 (in the same unit) exist? In general, does an equilateral triangle with any side length exist? Justify your answer.
+
+            3. For each of the following, give at least 5 possible values for the third side length such that a triangle exists with these side lengths (decimal values can also be chosen) —
+            (a) 1, 100 (b) 5, 5 (c) 3, 7
+
+            See if you can describe all possible lengths of the third side for each case so that a triangle exists with sides of these lengths. For example, in case (a), all numbers between 99 and 101 are possible.`
+          },
+          {
+            title: "7.3 Constructing Triangles from Given Sides and Angles",
+            content: `We have seen how to construct triangles when their side lengths are given. Now we will take up constructions where some angle measures are given instead of side lengths.
+
+            Two Sides and the Included Angle
+            How do we construct a triangle when its two sides and the included angle are given? Here are some examples showing the measures of the included angle —
+
+            Construct a triangle ABC in which AB = 5 cm, AC = 4 cm, and ∠A = 45°. Let's take one of the given sides, AB, as the base of the triangle.
+
+            Step 1 — Construct a side AB of length 5 cm.
+            Step 2 — Construct ∠A = 45° by drawing the other ray of the angle.
+            Step 3 — On this ray, mark point C such that AC = 4 cm.
+            Step 4 — Join BC to obtain the desired triangle.`,
+            images: ["Step-by-step construction of triangle with two sides and included angle"]
+          },
+          {
+            title: "Find Out",
+            content: `1. Construct triangles for the following measurements where the angle is between the sides —
+            (a) 3 cm, 75°, 7 cm
+            (b) 6 cm, 25°, 3 cm
+            (c) 3 cm, 120°, 8 cm
+
+            We have seen that not all sets of side lengths allow a triangle to exist. Is there any combination of measures for two sides and the included angle where constructing a triangle is not possible? Justify your answer using what you observed while constructing them.`
+          },
+          {
+            title: "Two Angles and the Included Side",
+            content: `In this situation, we are given two angles and a side. This side is a part of both angles and is called the included side. Here are some examples of such measures —
+
+            Construct a triangle ABC in which AB = 5 cm, ∠A = 45°, and ∠B = 80°. Let's take the given side as the base.
+
+            Step 1 — Draw base AB of length 5 cm.
+            Step 2 — Draw ∠A and ∠B of measures 45° and 80° respectively.
+            Step 3 — The intersection point of the two new line segments is the third vertex C.`,
+            images: ["Step-by-step construction of triangle with two angles and included side"]
+          },
+          {
+            title: "Find Out",
+            content: `1. Construct triangles for the following measurements —
+            (a) 75°, 5 cm, 75°
+            (b) 25°, 3 cm, 60°
+            (c) 120°, 6 cm, 30°
+
+            Is a Triangle Always Possible?
+            Can triangles be formed for every combination of two angles and their included side? Find out.
+
+            Just as when we are given three sides, a triangle does not necessarily form every time, similarly, a triangle does not always form from every combination of two angles and the included side.
+
+            ? Find examples of measurements of two angles and their included side for which constructing a triangle is not possible.
+
+            Let's try to demonstrate such a situation. Once the base is drawn, try to imagine how the other two sides would have to be so that they do not meet each other. Here are some clear examples —
+
+            If one of these two angles is a right angle and the other is greater than or equal to 90°, it is clear that no triangle is possible in such a situation.
+
+            Now, let's make one of the base angles an acute angle of 40°. What should the value of the other angle possibly be so that these lines do not meet?
+
+            It is clear that if the line through B is sufficiently tilted to the right, it will not meet line l.
+
+            (a) Try to find a possible ∠B (marked in the figure above) for this to happen.
+            (b) What could be the minimum value of ∠B for these lines not to meet?
+
+            The blue line is the line that does not meet l and is tilted minimally to the right. It is clear from the figure that the line that makes the minimum ∠B must be parallel to line l. Let's call this parallel line m.
+
+            Can you tell the actual value of ∠B in this situation?
+            (Hint — Note that AB is a transversal.)
+
+            We have seen that when two lines are parallel, the sum of the interior angles on the same side of the transversal is 180°. Therefore, ∠B = 140°.
+
+            So, for which values of ∠B will a triangle not exist? Does the length AB play any role in this?
+
+            From the above discussion, it can be seen that the length AB plays no role in determining the existence of a triangle. We can say that when ∠B is 140° or greater, a triangle cannot exist.`,
+            images: ["Diagrams showing non-intersecting lines"]
+          },
+          {
+            title: "Find Out",
+            content: `1. For each of the following angles, find another angle such that a triangle is (i) possible (ii) not possible. Find at least two different angles for each category.
+            (a) 30° (b) 70° (c) 54° (d) 144°
+
+            2. Determine which of the following pairs can be angles of a triangle and which cannot —
+            (a) 35°, 150° (b) 70°, 30° (c) 90°, 85° (d) 50°, 150°
+
+            ? Similar to the triangle inequality, can you create a rule that describes the two angles for which a triangle can be constructed?
+
+            Can the sum of the two angles be used to create this rule?
+
+            When the sum of the given two angles is less than 180°, a triangle with these angles exists. If this sum is 180° or more, then no triangle exists with these angles.
+
+            Let's take two angles. Suppose we take angles of 60° and 70°, whose sum is less than 180°. Suppose the included side is 5 cm.
+
+            What could be the measure of the third angle? If the length of the base is changed to some other value, say 7 cm, will this measure change? Construct and find out.
+
+            In general, once the two angles are fixed, does the third angle depend on the length of the included side? Try with different pairs of angles and side lengths.
+
+            Measurements may show that the length of the side has no effect (or very little effect) on the third angle. With this observation, let's see if we can find the third angle without constructing and measuring.
+
+            Try experimenting with different triangles to see if there is a relationship between any two angles and the third angle. What data will you collect to find this relationship, and how will you organize the collected data?
+
+            Consider a triangle ABC where ∠B = 50° and ∠C = 70°. Let's see how we can find ∠A without constructing any triangle.
+
+            We saw that the concept of parallel lines was useful in determining that the sum of any two angles of a triangle is less than 180°. Parallel lines can also be used to find the third angle ∠BAC.
+
+            Suppose we draw a line XY through vertex A parallel to base BC.
+
+            We can see that new angles have been formed. These angles are ∠XAB and ∠YAC. What are their measures?
+
+            Because line XY is parallel to base BC, ∠XAB = ∠B and ∠YAC = ∠C, as they are alternate angles formed by transversals AB and AC.
+
+            Therefore, ∠XAB = 50° and ∠YAC = 70°. Can we find ∠BAC from this? We know that ∠XAB, ∠YAC, and ∠BAC together form an angle of 180°. Therefore,
+
+            ∠XAB + ∠YAC + ∠BAC = 180°
+            50° + ∠BAC + 70° = 180°
+            120° + ∠BAC = 180°
+            Thus, ∠BAC = 180° - 120° = 60°.
+
+            Now, take any suitable length for BC and construct a triangle to verify if this situation is actually possible.`,
+            images: ["Figure 7.6 - Triangle with line through vertex parallel to base"]
+          },
+          {
+            title: "Find Out",
+            content: `1. If two angles are given, find the third angle of the triangle using a parallel line.
+            (a) 36°, 72° (b) 150°, 15° (c) 90°, 30° (d) 75°, 45°
+
+            2. Can you construct a triangle where all angles are equal to 70°? If two angles are 70°, what will be the third angle? If all angles of a triangle are equal, what will be the measure of each angle? Explore and find out.
+
+            3. Here is a triangle where we know that ∠B = ∠C and ∠A = 50°. Can you try to find ∠B and ∠C without constructing?`,
+            images: ["Triangle with two equal angles"]
+          },
+          {
+            title: "Angle Sum Property",
+            content: `What can we say about the sum of the angles of a triangle?
+
+            Consider a triangle ABC. To find the sum of its angles, we can use the same method of drawing a line parallel to the base — construct a line through A parallel to BC.
+
+            We need to find ∠A + ∠B + ∠C.
+
+            We know that ∠B = ∠XAB and ∠C = ∠YAC.
+
+            Therefore, ∠A + ∠B + ∠C = ∠A + ∠XAB + ∠YAC = 180°, because these three angles together form a straight angle.
+
+            Thus, we have proved that the sum of the three angles of any triangle is 180°. This amazing result is called the angle sum property of triangles.
+
+            Spend some time thinking about how we discovered this angle sum property. Initially, the relationship between the third angle and the other two angles was not clear. But the simple idea of drawing a line parallel to the base through the vertex (see Figure 7.7) immediately made this relationship clear. This elegant idea can be found in 'The Elements', an influential book in the history of mathematics. The credit for writing this book is given to the Greek mathematician Euclid, who lived around 300 BCE.
+
+            This solution is another example of how creative thinking plays a key role in mathematics!
+
+            There is a convenient method to verify this angle sum property. In this method, triangular paper cutouts are folded. Can you see how this method shows that the sum of angles in this triangle is 180°?`,
+            images: ["Figure 7.7 - Angle sum property demonstration", "Folding method for angle sum property"]
+          },
+          {
+            title: "Exterior Angle",
+            content: `When a side of a triangle is extended, the angle formed by it with another side is called the exterior angle of the triangle. In this figure, ∠ACD is an exterior angle.
+
+            If ∠A = 50° and ∠B = 60°, find ∠ACD.
+
+            By the angle sum property, we know that
+            50° + 60° + ∠ACB = 180°
+            110° + ∠ACB = 180°
+            Therefore, ∠ACB = 70°.
+
+            Since ∠ACD = 180° - 70° = 110° (as ∠ACB and ∠ACD form a straight angle).
+
+            Find the exterior angle for different measures of ∠A and ∠B. Do you see any relationship between the exterior angle and these two angles?
+            (Hint — By the angle sum property, we have ∠A + ∠B + ∠ACB = 180°. We also have ∠ACD + ∠ACB = 180°, as they form a straight angle. What does this imply?)`,
+            images: ["Diagram showing exterior angle of a triangle"]
+          },
+          {
+            title: "7.4 Constructions Related to Altitudes of a Triangle",
+            content: `Another useful set of measurements related to a triangle concerns the height of each vertex with respect to its opposite side.
+
+            In the world around us, we talk about the heights of various objects, such as a person's height, a tree's height, a building's height, etc. What do we mean by the word 'height'?
+
+            Consider a triangle ABC. How high is vertex A from the opposite side BC, and how can it be measured?
+
+            Suppose AD is the perpendicular line segment drawn from A to BC. The length of AD is the height from vertex A to side BC. The line segment AD is one of the 'altitudes' of this triangle.
+
+            In the figure below, the other altitudes BE and CF are the perpendiculars drawn from the other vertices to their corresponding opposite sides.
+
+            Whenever we use the word 'height' of a triangle, it generally refers to the length of an altitude, regardless of which side we take as the base (in Figure 7.8, this altitude is AD).
+
+            What will be the altitude from A to side BC in this triangle?
+
+            (We extend BC and then drop a perpendicular from A to this line.)
+
+            Altitude Using Paper Folding
+            Cut out a triangular piece of paper. Fix one of the three sides as the base. Fold it so that the resulting crease is an altitude from the top vertex to the base. Justify why the crease must be perpendicular to the base.
+
+            Constructing an Altitude of a Triangle
+            Construct a triangle. Take BC as the base and name the vertices A, B, and C.
+
+            Draw the altitude from A to side BC.
+
+            Drawing the altitude using only a ruler would not be accurate. To obtain an exact 90° angle, we use a set square along with a ruler.
+
+            Can you see how this is done?
+
+            Step 1 — Place the ruler along the base. Now place the set square on the ruler as shown in the figure so that one edge of the set square touches the ruler.
+
+            Step 2 — Slide the set square along the ruler until the vertical edge of the set square touches vertex A.
+
+            Step 3 — Using the vertical edge of the set square, draw the perpendicular from A to BC.
+
+            Is there a triangle where one side is also an altitude? Imagine such a triangle and draw a rough sketch. We see that this happens in triangles where one angle is a right angle. A triangle with a right angle is called a right-angled triangle or simply a right triangle.`,
+            images: ["Figure 7.8 - Altitude AD", "Other altitudes BE and CF", "Extending base to draw altitude", "Using set square to draw altitude"]
+          },
+          {
+            title: "7.5 Types of Triangles",
+            content: `In our study of triangles, we have encountered the following types of triangles — equilateral, isosceles, scalene, and right-angled triangles.
+
+            Have you seen any other type of triangle?
+
+            The classification of equilateral and isosceles triangles was based on the equality of sides.
+
+            In an equilateral triangle, all sides are equal in length. In an isosceles triangle, two sides are equal in length. In a scalene triangle, all sides are of different lengths.
+
+            Can a similar classification be done based on the equality of angles? Is there a relationship between these two classifications? We will answer this question in a later chapter.
+
+            When we classified a triangle as a right-angled triangle, we used the measures of angles.
+
+            What are the other types of triangles based on angle measures?
+
+            One classification of triangles based on their angle measures is acute-angled, right-angled, and obtuse-angled triangles. We already know what a right-angled triangle is. It is a triangle that has one right angle. Similarly, an obtuse-angled triangle has one obtuse angle.
+
+            What could be an acute-angled triangle? Can we define it as a triangle with one acute angle? Why not?
+
+            An acute-angled triangle has all three angles acute.`,
+            images: ["Equilateral triangle", "Isosceles triangle", "Scalene triangle", "Acute-angled triangle", "Right-angled triangle", "Obtuse-angled triangle"]
+          },
+          {
+            title: "Find Out",
+            content: `1. Construct a triangle ABC in which BC = 5 cm, AB = 6 cm, and CA = 5 cm. Construct the altitude from A to side BC.
+
+            2. Construct a triangle TRY in which RY = 4 cm, TR = 7 cm, and ∠R = 140°. Construct the altitude from T to side RY.
+
+            3. Construct a right-angled triangle ABC in which ∠B = 90° and AC = 5 cm. How many different triangles are possible with these measurements?
+            (Hint — Note that other measurements can take any value. Take AC as the base. What values can ∠A and ∠C take so that the other angle is 90°?)
+
+            4. Through construction, find out whether it is possible to construct an equilateral triangle that is (i) right-angled and (ii) obtuse-angled. Also, construct an isosceles triangle that is (i) right-angled and (ii) obtuse-angled.`
+          },
+          {
+            title: "Summary",
+            content: `• Using a compass simplifies the construction of triangles when their side lengths are given.
+
+            • A set of three lengths satisfies the triangle inequality when each length is less than the sum of the other two lengths.
+
+            • The side lengths of a triangle satisfy the triangle inequality, and if a given set of lengths satisfies the triangle inequality, then a triangle with those side lengths can be constructed.
+
+            • Triangles can also be constructed when the following measurements are given —
+            (a) two sides and the included angle
+            (b) two angles and the included side
+
+            • The sum of the angles of a triangle is always 180°.
+
+            • An altitude of a triangle is the perpendicular line segment drawn from a vertex to the opposite side.
+
+            • Equilateral triangles have all sides of equal length. Isosceles triangles have two sides of equal length, and scalene triangles have all three sides of different lengths.
+
+            • Triangles can be classified based on their angle measures as acute-angled triangles, right-angled triangles, and obtuse-angled triangles.`
+          },
+          {
+            title: "Something from Before!",
+            content: `The Shortest Path Across a Box
+
+            A spider sits at one corner of a box. It wants to reach the farthest opposite corner (marked in the figure). Since it cannot fly, it can only reach that opposite corner by walking on the surfaces of the box. Which shortest path can it take?
+
+            Take a cardboard box and mark the path that you think is the shortest from one corner to the opposite corner. Compare the length of this path with the lengths of the paths marked by your friends.`,
+            images: ["Diagram of a box with corners marked"]
+          }
+        ]
+      }
+    },
+      // chapter 8 Working with Fractions
+    {
+      id: 8,
+      title: "Working with Fractions",
+      content: {
+        introduction: "In this chapter, we will learn how to multiply and divide fractions. We will explore the rules for these operations, understand the relationship between the product and the factors, and see how these concepts apply to real-life situations. We will also learn about the historical development of fraction arithmetic in India.",
+        sections: [
+          {
+            title: "8.1 Multiplication of Fractions",
+            content: `Aaron walks 3 kilometers in one hour. How far can he walk in 5 hours?
+
+            This is a simple question. We know that to find the distance, we need the product of 5 and 3, i.e., we multiply 5 and 3.
+
+            Distance covered in 1 hour = 3 km
+
+            Therefore, distance covered in 5 hours = 5 × 3 km = 3 + 3 + 3 + 3 + 3 km = 15 km.
+
+            ? Aaron's pet turtle walks very slowly. It only walks 1/4 kilometer in one hour. How far can it walk in 3 hours?
+
+            Here, the distance covered in one hour is a fraction. That doesn't matter. The total distance covered is calculated in the same way as multiplication.
+
+            Distance covered in 1 hour = 1/4 km
+
+            Therefore, distance covered in 3 hours = 3 × 1/4 km = 1/4 + 1/4 + 1/4 km = 3/4 km.
+
+            The turtle can walk 3/4 km in 3 hours.
+
+            Let's consider a situation where the time spent walking is a fraction of an hour.
+
+            We saw that Aaron can walk 3 kilometers in one hour. How far can he walk in 1/5 hour?
+
+            We will calculate the total distance covered by multiplication.
+
+            Distance covered in 1 hour = 3 km
+
+            Distance covered in 1/5 hour = 1/5 × 3 km
+
+            Finding the product
+            Distance covered in 1 hour = 3 km
+            The distance covered in 1/5 hour is equal to the length obtained by dividing 3 kilometers into 5 equal parts, which is 3/5 km.
+
+            This tells us that 1/5 × 3 = 3/5.
+
+            How far can Aaron walk in 2/5 hours?
+
+            Once again we have —
+
+            Distance covered = 2/5 × 3 km
+
+            Finding the product
+
+            1. First, we can find the distance covered in 1/5 hour.
+            2. Since the duration is double of 1/5, we multiply this distance by 2 to get the total distance covered.
+
+            This calculation is as follows —
+
+            Distance covered in 1 hour = 3 km
+
+            1. Distance covered in 1/5 hour = length of one part obtained by dividing 3 km into 5 equal parts = 3/5 km
+            2. Multiplying this distance by 2 gives us 2 × 3/5 = 6/5 km.
+
+            From the above, we can see that 2/5 × 3 = 6/5.
+
+            Discussion
+            We performed this multiplication as follows —
+
+            • First, we divided the multiplicand 3 by the denominator of the multiplier, 5, giving us 3/5.
+            • Then, we multiplied this result by the numerator of the multiplier, 2, giving us 6/5.`,
+            images: []
+          },
+          {
+            title: "Find Out",
+            content: `5. Multiply and convert to a mixed fraction.
+            (a) 7 × 3/5
+            (b) 4 × 1/3
+            (c) 9/7 × 6
+            (d) 13/11 × 6
+
+            So far, we have learned to multiply a whole number by a fraction and a fraction by a whole number. What happens when both numbers in the multiplication are fractions?
+
+            Multiplying Two Fractions
+            We know that Aaron's pet turtle can only walk 1/4 km in one hour. How far can it walk in half an hour?
+
+            Using the multiplication method to solve such problems gives us —
+
+            Distance covered in 1/2 hour = 1/2 × 1/4 km.
+
+            Finding the product
+            Distance covered in 1 hour = 1/4 km.
+            Therefore, the distance covered in 1/2 hour will be the length obtained by dividing 1/4 into 2 equal parts.
+
+            To find this, it is useful to represent fractions using a unit square as a whole.
+
+            Unit square as a whole
+            1/4 of the whole
+
+            Now we divide this 1/4 into 2 equal parts. What do we get?
+
+            What fraction of the whole is shaded?
+
+            Because the whole has been divided into 8 equal parts and one part is shaded, we can say that 1/8 of the whole is shaded. Therefore, the distance covered by the turtle in 1/2 hour is 1/8 km.
+
+            This shows that 1/2 × 1/4 = 1/8.
+
+            If the turtle walks faster and can cover 2/5 km in one hour, how far will it walk in 3/4 hour?
+
+            Distance covered = 3/4 × 2/5 km.
+
+            Finding the product
+
+            (i) First, find the distance covered in 1/4 hour.
+            (ii) Then, multiply the result by 3 to find the distance covered in 3/4 hour.
+
+            (i) Distance covered in 1/4 hour (in km) = each part obtained by dividing 2/5 into 4 equal parts.
+
+            Taking the unit square as the whole, the shaded part in Figure 8.1 is the area we get by dividing 2/5 into 4 equal parts.
+
+            What fraction of the whole is this?
+
+            The whole is divided into 5 rows and 4 columns, giving 5 × 4 = 20 equal parts.
+            Number of shaded parts = 2.
+
+            Therefore, distance covered in 1/4 hour = 2/20.
+
+            (ii) Now we need to multiply 2/20 by 3. Distance covered in 3/4 hour = 3 × 2/20 = 6/20.
+            Thus, 3/4 × 2/5 = 6/20 = 3/10.
+
+            Discussion
+            In the situation of multiplying one fraction by another, we follow the same method we used when multiplying a fraction by a whole number. We multiplied as follows —
+
+            (2/5) ÷ 4 = 2/20 (Dividing the multiplicand by 4)
+            Using this understanding, multiply 5/4 × 2/3.
+
+            Let's first represent 3/2 using a unit square as the whole. Since 3/2 is one whole and a half fraction, it can be seen as follows —
+
+            Following the steps of multiplication, we first need to divide the fraction 3/2 into 4 equal parts. This can be done as shown by the yellow region in Figure 8.2. This represents the fraction obtained by dividing 3/2 into 4 equal parts. What is its value?
+
+            We see that the whole is divided into 2 rows and 4 columns, giving 2 × 4 = 8 equal parts.
+            Total number of shaded parts = 3. Therefore, the shaded yellow part = 3/8.
+
+            Now, in the next step, the result is multiplied by 5. This gives the product of 5/4 and 3/2.
+            5/4 × 3/2 = (5 × 3)/(8) = 15/8.
+
+            Relationship between Area of a Rectangle and Fraction Multiplication
+            What are the length and breadth of the shaded rectangle in Figure 8.3? Since we started with a unit square (side 1 unit), the length and breadth are 1/2 unit and 1/4 unit.
+
+            What is the area of this rectangle? We see that 8 such rectangles together form a square of unit area. Therefore, the area of each rectangle is 1/8 square unit.
+
+            Do you see a relationship between the area and the product of length and breadth?
+
+            The area of a rectangle with fractional sides is equal to the product of its sides. In general, if we want to find the product of two fractions, we can find the area of a rectangle with those fractions as sides.`,
+            images: ["Unit square representation", "Figure 8.1", "Figure 8.2", "Figure 8.3"]
+          },
+          {
+            title: "Find Out",
+            content: `1. Find the following products. Use a unit square as a whole to represent the fractions.
+            (a) 1/3 × 1/5
+            (b) 1/4 × 1/3
+            (c) 1/5 × 1/2
+            (d) 1/6 × 1/5
+
+            Now find 1/12 × 1/18.
+
+            Representing fractions using a unit square for this is a very complex task. Let's find the product by observing what we did in the above situations.
+
+            In each situation, the whole is divided into rows and columns.
+            The number of rows is the denominator of the multiplicand, which in this case is 18.
+            The number of columns is the denominator of the multiplier, which in this case is 12.
+            Thus, the whole is divided into 18 × 12 equal parts.
+
+            Therefore, 1/18 × 1/12 = 1/(18×12) = 1/216.
+
+            Thus, when two unit fractions are multiplied, their product is 1 over the product of the denominators.
+
+            We can express this as — 1/b × 1/d = 1/(b × d).
+
+            2. Find the following products. Use a unit square as a whole to represent the fractions and show the operations.
+            (a) 2/3 × 4/5
+            (b) 1/4 × 2/3
+            (c) 3/5 × 1/2
+            (d) 4/6 × 3/5`
+          },
+          {
+            title: "Multiplying Numerators and Denominators",
+            content: `Now find 5/12 × 7/18.
+
+            Let's find the product by step-by-step multiplication as before. First, by dividing the whole into 18 rows and 12 columns, we get 12 × 18 equal parts.
+
+            Then, we multiply this result by 5 to get the product. This is (5 × 7)/(12 × 18).
+
+            Therefore, 5/12 × 7/18 = (5 × 7)/(12 × 18) = 35/216.
+
+            From this, we can see that in general —
+
+            a/b × c/d = (a × c)/(b × d).
+
+            This formula in its general form was first stated by Brahmagupta in his work 'Brahmasphuta-siddhanta' in 628 CE.
+
+            The above formula also works when the multiplier or multiplicand is a whole number. We can write a whole number as a fraction with denominator 1. For example —
+
+            3 × 3/4 can be written as 3/1 × 3/4 = (3 × 3)/(1 × 4) = 9/4.
+
+            And 3/5 × 4 can be written as 3/5 × 4/1 = (3 × 4)/(5 × 1) = 12/5.`
+          },
+          {
+            title: "Product of Fractions — Simplification to Lowest Terms",
+            content: `? Multiply the following fractions and express the product in its lowest terms.
+
+            12/7 × 5/24
+
+            Instead of multiplying the numerators (12 and 5) and denominators (7 and 24) first and then simplifying, we can do this —
+
+            12/7 × 5/24 = (12 × 5)/(7 × 24)
+
+            We see that the numbers in the circles have a common factor of 12. We know that a fraction remains the same when the numerator and denominator are divided by a common factor. In this case, we can divide them by 12.
+
+            (12 × 5)/(7 × 24) = (1 × 5)/(7 × 2) = 5/14.
+
+            Let's perform another calculation using this method.
+
+            14/15 × 25/42 = (14 × 25)/(15 × 42) = (1 × 5)/(3 × 3) = 5/9.
+
+            When multiplying fractions, we can divide the numerator and denominator by their common factors before multiplying the numerators and denominators. This is called cancelling common factors.
+
+            A Glimpse of History
+            The process of simplifying a fraction to its lowest terms is called 'apavartana' in India. This process is so famous that it is mentioned even in a non-mathematical text. The Jain scholar Umaswati (150 CE) used it as an analogy in a philosophical text!`,
+            images: []
+          },
+          {
+            title: "Find Out",
+            content: `1. A water tank is being filled by a tap. If the tap is open for 1 hour, 7/10 of the tank is filled. How much of the tank will be filled if the tap is left open for the following times —
+            (a) 1/3 hour
+            (b) 2/3 hour
+            (c) 3/4 hour
+            (d) 7/10 hour
+            (e) How long should the tap be left open to fill the tank completely?
+
+            2. The government took 1/6 of Somu's land for building a road. How much of the land does Somu have left? He gives half of the remaining land to his daughter Krishna and 1/3 of the remaining to his son Bora. He keeps the remaining land for himself.
+            (a) What fraction of the original land did Krishna receive?
+            (b) What fraction of the original land did Bora receive?
+            (c) What fraction of the original land did Somu keep for himself?
+
+            3. Find the area of a rectangle whose sides are 3 3/4 feet and 9 3/5 feet.
+
+            4. Tssewang planted four saplings in a row in his garden. The distance between two saplings is 3/4 meter. Find the distance between the first and the last sapling.
+            (Hint — Draw a rough sketch of four saplings with a distance of 3/4 meter between two saplings.)
+
+            5. Which is heavier — 12/15 of 500 grams or 3/20 of 4 kilograms?
+
+            Is the product always greater than the numbers being multiplied?
+            As we know, when a number is multiplied by 1, the product always remains unchanged. Now we will look at multiplication of pairs of numbers where neither number is 1.
+            When we multiply two counting numbers greater than 1, such as 3 and 5, the product is greater than both numbers being multiplied.
+            3 × 5 = 15. The product 15 is greater than both 3 and 5.
+            But what happens when we multiply 1/4 and 8?
+            1/4 × 8 = 2. In the above multiplication, the product 2 is greater than 1/4 but less than 8.
+            What happens when we multiply 3/4 and 2/5?
+            3/4 × 2/5 = 6/20 = 3/10.
+            Let's compare this product 3/10 with the numbers 3/4 and 2/5. For this, let's express 3/4 as 15/20 and 2/5 as 8/20.
+            From this, we can see that the product is smaller than both numbers.
+
+            What do you think — when is the product greater than both numbers being multiplied, when is it between them, and when is it smaller than both?
+            (Hint — The relationship between the product and the numbers being multiplied depends on whether they are between 0 and 1 or greater than 1. Take different pairs of numbers and observe their products. Consider the following questions for each multiplication.)`,
+            tableData: {
+              headers: ["Situation", "Multiplication", "Relationship"],
+              rows: [
+                ["Situation 1", "Both numbers are greater than 1.<br/>(e.g., 4/3 × 4)", "Product (16/3) is greater than both numbers."],
+                ["Situation 2", "Both numbers are between 0 and 1.<br/>(e.g., 3/4 × 2/5)", "Product (3/10) is smaller than both numbers."],
+                ["Situation 3", "One number is between 0 and 1, and one number is greater than 1.<br/>(e.g., 3/4 × 5)", "Product (15/4) is less than the number greater than 1 and greater than the number between 0 and 1."]
+              ]
+            },
+            content: `Create more examples for each situation and carefully observe the relationship between the product and the numbers being multiplied.
+
+            ? What conclusion can you draw about the relationship between the numbers being multiplied and the product? Fill in the blanks —
+
+            - When one of the numbers being multiplied is between 0 and 1, the product is ______ (greater/smaller) than the other number.
+            - When one of the numbers being multiplied is greater than 1, the product is ______ (greater/smaller) than the other number.`
+          },
+          {
+            title: "Order of Multiplication",
+            content: `2/3 × ? = 3. Can you find the answer?
+            We know what to multiply 2/3 by to get 1. To get 3, we simply need to multiply it by 3.
+            2/3 × (3/2) × 3 = 3.
+            Therefore, 3 ÷ 2/3 = 3 × 3/2 = 9/2.
+
+            What is 1/5 ÷ 1/2?
+            Rewriting this as a multiplication problem, we get 1/2 × ? = 1/5.
+            How do we solve this?
+            1/2 × 2 × 1/5 = 1/5.
+            Therefore, 1/5 ÷ 1/2 = 1/5 × 2 = 2/5.
+
+            What is 2/3 ÷ 3/5?
+            Rewriting this as a multiplication problem, we get 3/5 × ? = 2/3.
+            How will we solve this?
+            3/5 × 5/3 × 2/3 = 2/3.
+            Therefore, 2/3 ÷ 3/5 = 2/3 × 5/3 = 10/9.`
+          },
+          {
+            title: "Discussion",
+            content: `Observe how we found the answer in each of the division problems above. How is division of two fractions performed? Can we formulate a rule for this?
+
+            Let's consider the last problem.
+
+            In each division problem, we have a dividend, a divisor, and a quotient. The technique we are using to find the quotient is —
+
+            1. First, we find the number which, when multiplied by the divisor, gives 1. We see that this number is a fraction whose numerator is the denominator of the divisor and whose denominator is the numerator of the divisor.
+            For the divisor 3/5, this fraction is 5/3. We call 5/3 the reciprocal of 3/5.
+            When we multiply a fraction by its reciprocal, we get 1. Therefore, the first step in our technique is — find the reciprocal of the divisor.
+
+            2. Then, we multiply the dividend by this reciprocal to obtain the quotient.
+
+            In summary, to divide two fractions —
+            • Find the reciprocal of the divisor.
+            • Multiply this reciprocal by the dividend to get the quotient.
+
+            Therefore, a/b ÷ c/d = d/c × a/b = (d × a)/(c × b).
+
+            This can be rewritten as — a/b ÷ c/d = a/b × d/c = (a × d)/(b × c).
+
+            The methods and formulas for addition, subtraction, and multiplication of fractions that you learned earlier, and these methods and formulas for division of fractions, were first clearly stated in their general form by Brahmagupta in his work 'Brahmasphuta-siddhanta' (628 CE).
+
+            Thus, using the Brahmagupta formula above, for example, to find the value of 2/3 ÷ 3/5, we write —
+
+            2/3 ÷ 3/5 = 2/3 × 5/3 = (2 × 5)/(3 × 3) = 10/9.
+
+            Example 3 — A milkman pours 1/4 liter of milk equally into 5 cups. How much milk is there in each cup?
+
+            According to the Brahmagupta method, we perform division as follows —
+
+            The reciprocal of 5 (divisor) is 1/5.
+            Multiplying this reciprocal by the dividend (1/4) gives us — 1/5 × 1/4 = 1/20.
+
+            Therefore, each cup contains 1/20 liter of milk.
+
+            Example 4 — Some of the oldest examples of working with non-unit fractions are found in the most ancient geometric texts, the Shulba Sutras. Here is an example from Baudhayana's Shulba Sutra (c. 800 BCE).
+
+            An area of 7 1/2 square units is to be covered with square bricks, each with side 1/5 unit.
+            How many such square bricks are needed?
+
+            Area of each square brick = 1/5 × 1/5 = 1/25 square units.
+            Total area to be covered = 7 1/2 square units = 15/2 square units.
+
+            As (number of bricks) × (area of one brick) = total area,
+            Number of bricks = 15/2 ÷ 1/25.
+
+            The reciprocal of the divisor is 25.
+            Multiplying this reciprocal by the dividend gives us — 25 × 15/2 = (25 × 15)/2 = 375/2.
+
+            Example 5 — This problem was also discussed by Chaturveda Prithudaka Swami (c. 860 CE) in his commentary on Brahmagupta's 'Brahmasphuta-siddhanta'.
+
+            Four fountains fill a tank. The first fountain can fill the tank in one day. The second can fill it in half a day. The third can fill it in one-fourth of a day. The fourth fountain can fill the tank in 1/5 of a day. If they are all opened together, how long will it take them to fill the tank?
+
+            Let's solve this problem step by step.
+
+            How many times in one day will —
+            • The first fountain fill the tank? = 1 ÷ 1 = 1
+            • The second fountain fill the tank? = 1 ÷ 1/2 = 2
+            • The third fountain fill the tank? = 1 ÷ 1/4 = 4
+            • The fourth fountain fill the tank? = 1 ÷ 1/5 = 5
+
+            Together, the four fountains will fill the tank 1 + 2 + 4 + 5 = 12 times in one day.
+
+            Thus, the four fountains together will take 1/12 of a day to fill the tank.`,
+            images: []
+          },
+          {
+            title: "Fractional Relationships",
+            content: `Here is a square with some lines drawn inside it.
+
+            What fraction of the whole square's area does the shaded region occupy?
+
+            There are different methods to solve this problem. One of them is —
+
+            Let the area of the whole square be 1 square unit.
+
+            We can see that the top right square occupies 1/4 of the area of the whole square (in Figure 8.5).
+
+            Let's look at this red square. The triangle inside it (in yellow) has an area half of the red square's area. Therefore,
+
+            Area of the yellow triangle = 1/2 × 1/4 = 1/8 square unit.
+
+            What fraction of this yellow triangle is shaded? The shaded region occupies 3/4 of the area of the yellow triangle. Can you find out why?
+
+            Area of the shaded region = 3/4 × 1/8 = 3/32 square unit.
+
+            Thus, the shaded region occupies 3/32 of the area of the whole square.
+
+            In each of the figures given below, find the fraction of the larger square occupied by the shaded region.
+
+            In the next chapter, we will solve more such interesting problems.`,
+            images: ["Figure 8.4", "Figure 8.5", "Figure 8.6", "Additional figures for practice"]
+          },
+          {
+            title: "A Donation of a Damma",
+            content: `The following problem is translated from the work 'Lilavati' composed by Bhaskaracharya (Bhaskara II) in 1150 CE.
+
+            "O wise one! A miser gave a beggar 1/2 of 2/3 of 3/4 of 1/5 of 1/16 of 1/4 of a damma. If you know the mathematics of fractions well, tell me, how many cowries did the miser give to the beggar?"
+
+            Damma refers to a silver coin used in those days. The story says that 1 damma was equivalent to 1280 cowries. Let's see what fraction of a damma the person gave —
+
+            1/2 × 2/3 × 3/4 × 1/5 × 1/16 × 1/4 of a damma
+
+            Solving this, we get 6/7680.
+
+            Simplifying this to its lowest terms, we get — 6/7680 = 1/1280.
+
+            Therefore, the beggar was given 1 cowrie.
+
+            You can see the wit of Bhaskaracharya in the answer. The miser gave the beggar only a single coin of the smallest value, i.e., just one cowrie.
+
+            Around the 12th century, various types of coins were in circulation in different empires of the Indian subcontinent. Mostly, gold coins called 'Dinar' (Gadyana and Huna); silver coins called 'Damma' or 'Tanka'; copper coins called 'Kasu' or 'Pana' and 'Mashaka'; and 'Cowries' were used. The exact exchange (conversion) rates of these coins depended on the region, time period, economic conditions, weight of the coins, and their purity.
+
+            Gold coins had a higher value and were used for large transactions and accumulating wealth. Silver coins were mostly used for daily transactions. Copper coins had a lower value and were used for small transactions. The cowrie was the lowest denomination currency and was used for very small transactions or as change.
+
+            If we assume that 1 gold Dinar = 12 silver Dammas, 1 silver Damma = 4 copper Panas, 1 copper Pana = 6 Mashakas, and 1 Pana = 30 cowries,
+
+            Then 1 copper Pana = ? gold Dinar, 1 cowrie = ? copper Pana, 1 cowrie = ? gold Dinar.`,
+            images: []
+          },
+          {
+            title: "A Historical Glimpse",
+            content: `As you have seen, fractions are important numbers that play a significant role in various daily life problems, including dividing and sharing quantities or magnitudes equally. The general concept of non-unit fractions, along with arithmetic operations of addition, subtraction, multiplication, and division that we use today, was largely developed in India. The ancient Indian geometric texts are called Shulba Sutras. They were composed before 800 BCE. These texts were related to the construction of altars for rituals. They made extensive use of general non-unit fractions. This also included dividing such fractions, as we saw in Example 3.
+
+            Fractions had made their place in India's popular culture well before 150 CE, as evidenced by an informal reference to expressing fractions in lowest terms in the philosophical work of the renowned Jain scholar Umaswati.
+
+            The general rules for arithmetic operations on fractions that we use today were first codified by Brahmagupta in his work 'Brahmasphuta-siddhanta' in 628 CE. We have already seen his methods for adding and subtracting general fractions. For multiplying general fractions, Brahmagupta wrote —
+
+            "The product of two or more fractions is obtained by dividing the product of the numerators by the product of the denominators." (Brahmasphuta-siddhanta, Verse 12.1.3)
+
+            The formula is: a/b × c/d = (a × c)/(b × d).
+
+            For dividing general fractions, Brahmagupta wrote —
+
+            "Division of fractions is performed by interchanging the numerator and denominator of the divisor; then the numerator of the dividend is multiplied by the new numerator and the denominator by the new denominator."
+
+            Bhaskara II, in his book 'Lilavati' (1150 CE), further clarified Brahmagupta's statement in the context of the concept of the reciprocal.
+
+            "Division of one fraction by another is equal to the product of the first fraction with the reciprocal of the second." (Lilavati, Verse 2.3.40)
+
+            Both verses are equivalent to the formula: a/b ÷ c/d = a/b × d/c = (a × d)/(b × c).
+
+            Bhaskara I, in his commentary 'Aryabhatiya Bhashya' (629 CE) on Aryabhata's work (499 CE), described the geometric interpretation of multiplication of fractions (which we saw earlier) as dividing a square into equal parts corresponding to length and width, thus partitioning it into rectangles.
+
+            Many other Indian mathematicians, such as Sridharacharya (c. 750 CE), Mahaviracharya (c. 850 CE), Chaturveda Prithudaka Swami (c. 860 CE), and Bhaskara II (c. 1150 CE), further developed the use of fraction arithmetic.
+
+            The Indian theory of fractions and arithmetic operations on them was transmitted and further developed by Arab and African mathematicians like Al-Hassar (c. 1192 CE) in Morocco. This theory spread to Europe through the Arabs over the next few centuries and only came into general use in Europe around the 17th century. After that, it spread throughout the world. This theory is truly indispensable in modern mathematics today.`,
+            images: []
+          },
+          {
+            title: "Find Out",
+            content: `1. Evaluate the following —
+            (a) 3 ÷ 7/9
+            (b) 14/4 ÷ 2
+            (c) 2/3 ÷ 2/3
+            (d) 14/6 ÷ 7/3
+            (e) 4/3 ÷ 3/4
+            (f) 7/4 ÷ 1/7
+            (g) 8/2 ÷ 4/15
+            (h) 1/5 ÷ 1/9
+            (i) 1/6 ÷ 11/12
+            (j) 3/2 ÷ 1/3
+
+            2. For each question given below, choose the expression that describes the solution. Then simplify it.
+            (a) Maria bought 8 meters of ribbon to decorate bags made for school. She used 1/4 meter of ribbon for each bag and used up all the ribbon. How many bags did she decorate?
+                (i) 8 × 1/4
+                (ii) 1/8 × 1/4
+                (iii) 8 ÷ 1/4
+                (iv) 1/4 ÷ 8
+            (b) 1/2 meter of ribbon is used to make 8 badges. What is the length of ribbon used to make each badge?
+                (i) 8 × 1/2
+                (ii) 1/2 ÷ 1/8
+                (iii) 8 ÷ 1/2
+                (iv) 1/2 ÷ 8
+            (c) A baker needs 1/6 kg of flour to make a large loaf. He has 5 kg of flour. How many loaves can he make?
+                (i) 5 × 1/6
+                (ii) 1/6 ÷ 5
+                (iii) 5 ÷ 1/6
+                (iv) 5 × 6
+
+            3. If 1/4 kg of flour is used to make 12 loaves, how much flour is used to make 6 loaves?
+
+            4. This problem is mentioned in the book 'Pati Ganita' written by Sridharacharya in the 9th century CE, "O friend! Think and tell, what will be obtained by adding 1 ÷ 1/6, 1 ÷ 1/10, 1 ÷ 1/13, 1 ÷ 1/9, and 1 ÷ 1/2?" What will be the friend's answer?
+
+            5. Meera is reading a novel which has 400 pages. She read 1/5 of the total pages yesterday and 3/10 of the total pages today. How many more pages does she need to read to complete the novel?
+
+            6. A car travels 16 km using 1 liter of petrol. How far will it travel using 2 3/4 liters of petrol?
+
+            7. Amritpal chooses a destination for his holidays. If he goes by train, it will take him 5 1/2 hours to reach there. If he goes by airplane, it will take him 1/2 hour. How much time will he save by going by airplane?
+
+            8. Mariam's grandmother makes a cake. Mariam and her cousin eat 4/5 of the cake. The remaining cake is divided equally among Mariam's three friends. What fraction of the cake does each friend get?
+
+            9. Choose one or more options to describe the product of (565/465) × (707/676) —
+            (a) > 565/465
+            (b) < 565/465
+            (c) > 707/676
+            (d) < 707/676
+            (e) > 1
+            (f) < 1
+
+            10. What fraction of the whole square is shaded?
+
+            11. A group of ants set out in search of food. As they search, they keep dividing equally at each point (as shown in Figure 8.7) and reach two food sources — one group near the mango tree and the other near the sugarcane field. What fraction of the original group reached each food source?
+
+            12. What is 1 – 1/2?
+            What is (1 – 1/2) × (1 – 1/3)?
+            What is (1 – 1/2) × (1 – 1/3) × (1 – 1/4) × (1 – 1/5)?
+            What is (1 – 1/2) × (1 – 1/3) × (1 – 1/4) × (1 – 1/5) × (1 – 1/6) × (1 – 1/7) × (1 – 1/8) × (1 – 1/9) × (1 – 1/10)?
+            Make a general statement and explain it.`,
+            images: ["Figure 8.7"]
+          }
+        ],
+        summary: [
+          "Brahmagupta's formula for multiplication of fractions: a/b × c/d = (a × c)/(b × d).",
+          "When multiplying fractions, if there are common factors in numerators and denominators, we can cancel them before multiplying.",
+          "In multiplication, when one of the numbers being multiplied is between 0 and 1, the product is smaller than the other number. When one of the numbers being multiplied is greater than 1, the product is greater than the other number.",
+          "The reciprocal of a fraction a/b is b/a. When a fraction is multiplied by its reciprocal, the product is 1.",
+          "Brahmagupta's formula for division of fractions: a/b ÷ c/d = a/b × d/c = (a × d)/(b × c).",
+          "In division, when the divisor is between 0 and 1, the quotient is greater than the dividend. When the divisor is greater than 1, the quotient is smaller than the dividend."
         ]
       }
     }

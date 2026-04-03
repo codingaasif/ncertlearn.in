@@ -130,11 +130,11 @@ export default function FooterPage() {
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-3">
               {[
-                { path: "/dashboard", label: "Dashboard", icon: GraduationCap },
+                { path: "/competitive-exams", label: "All Exams", icon: GraduationCap },
                 { path: "/tutorials", label: "Tutorials", icon: BookOpen },
                 { path: "/exercises", label: "Exercises", icon: CheckCircle },
                 { path: "/progress", label: "Progress", icon: CheckCircle },
-                { path: "/notes", label: "Notes", icon: BookOpen },
+                { path: "/notes", label: "For Notes", icon: BookOpen },
               ].map((link, idx) => (
                 <li key={idx}>
                   <Link

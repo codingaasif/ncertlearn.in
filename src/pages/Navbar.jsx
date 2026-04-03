@@ -8,16 +8,17 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   const navItems = [
+    { to: "/competitive-exams", label: "Exam Zone" },
+    { to: "/dashboard", label: "Dashboard" },
     { to: "/tutorials", label: "Tutorials" },
     { to: "/exercises", label: "Exercises" },
-    {to: "/competitive-exams", label: "Competitive" },
-    { to: "/dashboard", label: "Dashboard" },
     { to: "/questions", label: "Questions" },
     { to: "/contact", label: "Contact" },
     { to: "/feedback", label: "Feedback" },
   ];
 
-  const activeClass = "font-medium text-blue-900 border-b-2 border-blue-900";
+  const activeClass =
+    "font-medium bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent pb-1 relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-blue-600 after:to-purple-600";
   const normalClass = "font-medium text-gray-600 hover:text-blue-900";
 
   return (
